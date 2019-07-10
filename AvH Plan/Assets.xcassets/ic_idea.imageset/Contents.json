@@ -6,10 +6,12 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "ic_idea_2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "ic_idea_3x.png",
       "scale" : "3x"
     }
   ],

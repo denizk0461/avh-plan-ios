@@ -14,7 +14,7 @@
         <!--AvH Plan-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="AvH Plan" id="9pv-A4-QxB" customClass="FirstViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="AvH Plan" id="9pv-A4-QxB" customClass="PlanViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,7 +161,7 @@
         <!--Personal-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="PersonalViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,7 +189,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Personal" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Personal" image="ic_idea" selectedImage="ic_idea" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,7 +198,7 @@
         <!--Information-->
         <scene sceneID="tt5-VM-aeV">
             <objects>
-                <viewController id="Ve9-lV-ekU" sceneMemberID="viewController">
+                <viewController id="Ve9-lV-ekU" customClass="InfoViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFO-Bf-72I">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,7 +214,7 @@
         <!--Menu-->
         <scene sceneID="JTo-oO-5Xc">
             <objects>
-                <viewController id="bBH-of-tdd" sceneMemberID="viewController">
+                <viewController id="bBH-of-tdd" customClass="MenuViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOs-f2-7qu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,9 +249,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_idea" width="16.666666030883789" height="25"/>
         <image name="ic_information" width="25" height="25"/>
         <image name="ic_tomato" width="25" height="25"/>
         <image name="ic_writing" width="25" height="25"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

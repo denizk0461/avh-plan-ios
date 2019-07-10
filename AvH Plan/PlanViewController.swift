@@ -11,7 +11,7 @@ import SwiftSoup
 import Alamofire
 import SQLite3
 
-class FirstViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PlanViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let reuseIdentifier = "cell"
     @IBOutlet weak var collectionView: UICollectionView!
@@ -35,8 +35,8 @@ class FirstViewController : UIViewController, UICollectionViewDataSource, UIColl
         refreshControl.addTarget(self, action: #selector(objDoAsync(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor(red: 0.39, green: 0.71, blue: 0.96, alpha: 1.0)
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching the plan...")
-        self.refreshControl.beginRefreshing()
-        self.doAsync()
+//        self.refreshControl.beginRefreshing()
+//        self.doAsync()
     }
     
     @objc private func objDoAsync(_ sender: Any) {
