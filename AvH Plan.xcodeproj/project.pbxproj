@@ -21,6 +21,7 @@
 		A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3496B22D4859200F35AE0 /* SubstModel.swift */; };
 		A9C1D2FE22D656A400139043 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D2FD22D656A400139043 /* InfoViewController.swift */; };
 		A9C1D30022D656DD00139043 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D2FF22D656DD00139043 /* MenuViewController.swift */; };
+		A9C1D30222D7237200139043 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D30122D7237200139043 /* DataFetcher.swift */; };
 		C736A19A44C64423F3A695B7 /* Pods_AvH_PlanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74EDE3D8134812AB76BEB988 /* Pods_AvH_PlanUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		A9A3496B22D4859200F35AE0 /* SubstModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstModel.swift; sourceTree = "<group>"; };
 		A9C1D2FD22D656A400139043 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		A9C1D2FF22D656DD00139043 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A9C1D30122D7237200139043 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		C6EC6ACE7893F2BB0A157817 /* Pods-AvH Plan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AvH Plan.release.xcconfig"; path = "Target Support Files/Pods-AvH Plan/Pods-AvH Plan.release.xcconfig"; sourceTree = "<group>"; };
 		D9D6269E96544A9242A29611 /* Pods_AvH_PlanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_PlanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E596AED9E99670CBF1B6F49E /* Pods-AvH Plan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AvH Plan.debug.xcconfig"; path = "Target Support Files/Pods-AvH Plan/Pods-AvH Plan.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				A961338D2299867A00B541D4 /* Info.plist */,
 				A96133AF229986DF00B541D4 /* CollectionViewCell.swift */,
 				A9A3496B22D4859200F35AE0 /* SubstModel.swift */,
+				A9C1D30122D7237200139043 /* DataFetcher.swift */,
 			);
 			path = "AvH Plan";
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				A96133B0229986DF00B541D4 /* CollectionViewCell.swift in Sources */,
 				A9C1D2FE22D656A400139043 /* InfoViewController.swift in Sources */,
 				A96133822299867400B541D4 /* PlanViewController.swift in Sources */,
+				A9C1D30222D7237200139043 /* DataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
