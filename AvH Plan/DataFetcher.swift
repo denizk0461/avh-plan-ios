@@ -6,12 +6,23 @@
 //  Copyright © 2019 Deniz Duezgoeren. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import Alamofire
 import SwiftSoup
+import SQLite
 
 class DataFetcher {
+    
+    let path = Bundle.main.path(forResource: "db", ofType: "sqlite3")
+    
+    let substitutions = Table("substitutions")
+    let id = Expression<Int64>("id")
+    let group = Expression<String>("group")
+    let course = Expression<String>("course")
+    let additional = Expression<String>("additional")
+    let date = Expression<String>("date")
+    let time = Expression<String>("time")
+    let room = Expression<String>("room")
     
     func doAsync(completionHandler: @escaping (_ substitutions: Array<SubstModel>) -> ()) {
         DispatchQueue(label: "work-queue").async {
@@ -31,13 +42,34 @@ class DataFetcher {
             let doc: Document = try SwiftSoup.parse(html)
             let rows: Elements = try doc.select("tr")
             
+            let db = try Connection(path!)
+            
+            try db.run(substitutions.create { t in
+                t.column(id, primaryKey: true)
+                t.column(group)
+                t.column(course)
+                t.column(additional)
+                t.column(date)
+                t.column(time)
+                t.column(room)
+            })
+            
             for i in (0..<rows.size()) {
                 let row = rows.get(i)
                 let cols = try row.select("th")
                 
-                subst.append(SubstModel(group: try cols.get(0).text(), course: try cols.get(3).text(), additional: try cols.get(5).text(),
-                                        date: try cols.get(1).text(), time: try cols.get(2).text(), room: try cols.get(4).text()))
+                let mGroup = try cols.get(0).text()
+                let mCourse = try cols.get(3).text()
+                let mAdditional = try cols.get(5).text()
+                let mDate = try cols.get(1).text()
+                let mTime = try cols.get(2).text()
+                let mRoom = try cols.get(4).text()
                 
+                subst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
+                                          date: mDate, time: mTime, room: mRoom))
+                let insert = substitutions.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
+                                                  date <- mDate, time <- mTime, room <- mRoom)
+                _ = try db.run(insert)
             }
             
         } catch Exception.Error(let type, let message) {
@@ -47,6 +79,17 @@ class DataFetcher {
             print("error")
         }
         return subst
+    }
+    
+    func getFromDatabase() -> [SubstModel] {
+        var substs = [SubstModel]()
+        do {
+            let db = try Connection(path!)
+            for subst in try db.prepare(substitutions) {
+                substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room]))
+            }
+        } catch {}
+        return substs
     }
     
     func getImage(from icon: String) -> UIImage? {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1BF3A6CA97BA41C38482C1A6 /* Pods_AvH_PlanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D6269E96544A9242A29611 /* Pods_AvH_PlanTests.framework */; };
 		2E65263AFD35D6B542E89AE4 /* Pods_AvH_Plan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605BB0678C9E27A1D3E9DAA /* Pods_AvH_Plan.framework */; };
+		A949F26322D7938700D4BFFD /* db.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = A949F26222D7938700D4BFFD /* db.sqlite3 */; };
 		A96133802299867400B541D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961337F2299867400B541D4 /* AppDelegate.swift */; };
 		A96133822299867400B541D4 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133812299867400B541D4 /* PlanViewController.swift */; };
 		A96133842299867400B541D4 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133832299867400B541D4 /* PersonalViewController.swift */; };
@@ -46,6 +47,7 @@
 		589FBD2CE6A9C73CD9B81441 /* Pods-AvH PlanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AvH PlanUITests.release.xcconfig"; path = "Target Support Files/Pods-AvH PlanUITests/Pods-AvH PlanUITests.release.xcconfig"; sourceTree = "<group>"; };
 		74EDE3D8134812AB76BEB988 /* Pods_AvH_PlanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_PlanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7605BB0678C9E27A1D3E9DAA /* Pods_AvH_Plan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_Plan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A949F26222D7938700D4BFFD /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = text; path = db.sqlite3; sourceTree = "<group>"; };
 		A961337C2299867400B541D4 /* AvH Plan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AvH Plan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A961337F2299867400B541D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A96133812299867400B541D4 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				A96133AF229986DF00B541D4 /* CollectionViewCell.swift */,
 				A9A3496B22D4859200F35AE0 /* SubstModel.swift */,
 				A9C1D30122D7237200139043 /* DataFetcher.swift */,
+				A949F26222D7938700D4BFFD /* db.sqlite3 */,
 			);
 			path = "AvH Plan";
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				A961338C2299867A00B541D4 /* LaunchScreen.storyboard in Resources */,
 				A96133892299867A00B541D4 /* Assets.xcassets in Resources */,
 				A96133872299867400B541D4 /* Main.storyboard in Resources */,
+				A949F26322D7938700D4BFFD /* db.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +395,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-AvH Plan/Pods-AvH Plan-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -399,6 +404,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

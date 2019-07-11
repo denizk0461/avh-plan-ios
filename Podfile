@@ -9,6 +9,7 @@ target 'AvH Plan' do
 	pod 'SwiftSoup'
 	pod 'Kanna'
   pod 'Alamofire'
+  pod 'SQLite.swift'
 
   target 'AvH PlanTests' do
     inherit! :search_paths

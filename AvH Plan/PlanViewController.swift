@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import SwiftSoup
-import Alamofire
-import SQLite3
 
 class PlanViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -17,7 +14,6 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var collectionView: UICollectionView!
     var substs = Array<SubstModel>()
     private let refreshControl = UIRefreshControl()
-    var db: OpaquePointer?
     let df = DataFetcher()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +39,9 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+        
+        self.substs = self.df.getFromDatabase()
+        self.collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -76,17 +75,14 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             }
         }
         
-//        cell.courseIcon.frame = CGRect(x: 0, y: 0, width: cell.course.frame.height, height: cell.course.frame.height)
-        
-//        cell.backgroundColor = UIColor(red: 0.39, green: 0.71, blue: 0.96, alpha: 1.0)
         cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         cell.tintView.backgroundColor = cell.backgroundColor
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("You selected cell#\(indexPath.item)!")
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("You selected cell#\(indexPath.item)!")
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.size.width, height: 108)
