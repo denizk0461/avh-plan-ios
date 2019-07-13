@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import Foundation
 import Alamofire
 import SwiftSoup
 import SQLite
 
 class DataFetcher {
     
-    let path = Bundle.main.path(forResource: "db", ofType: "sqlite3")
+    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     
     let substitutions = Table("substitutions")
+    let personal = Table("personal")
+    let information = Table("information")
+    let foodmenu = Table("foodmenu")
     let id = Expression<Int64>("id")
     let group = Expression<String>("group")
     let course = Expression<String>("course")
@@ -23,28 +27,46 @@ class DataFetcher {
     let date = Expression<String>("date")
     let time = Expression<String>("time")
     let room = Expression<String>("room")
+    let text = Expression<String>("text")
     
-    func doAsync(completionHandler: @escaping (_ substitutions: Array<SubstModel>) -> ()) {
+    func doAsync(do task: String, completionHandler: @escaping (_ substitutions: Array<Any>) -> ()) {
         DispatchQueue(label: "work-queue").async {
-            let url = "https://djd4rkn355.github.io/subst_test.html"
+            var url = ""
+            switch task {
+            case "menu": url = "https://djd4rkn355.github.io/food_test.html"
+            default: url = "https://djd4rkn355.github.io/subst_test.html"
+            }
             Alamofire.request(url).responseString { response in
                 if let html = response.result.value {
-                    completionHandler(self.parseHTML(html: html))
+                    switch task {
+                    case "plan": completionHandler(self.parseHTML(html: html, isPersonal: false))
+                    case "personal": completionHandler(self.parseHTML(html: html, isPersonal: true))
+                    case "info": completionHandler(self.parseInformation(html: html))
+                    default: completionHandler(self.parseMenu(html: html))
+                    }
+                    
                 }
             }
             
         }
     }
     
-    func parseHTML(html: String) -> Array<SubstModel> {
+    func parseHTML(html: String, isPersonal: Bool) -> Array<SubstModel> {
         var subst = Array<SubstModel>()
+        var personalSubst = Array<SubstModel>()
         do {
             let doc: Document = try SwiftSoup.parse(html)
             let rows: Elements = try doc.select("tr")
             
-            let db = try Connection(path!)
+//            let prefs = UserDefaults.standard
+//            let courses = prefs.string(forKey: "courses")
+//            let classes = prefs.string(forKey: "classes")
+            let courses: String? = "GES7"
+            let classes: String? = "17"
             
-            try db.run(substitutions.create { t in
+            let db = try Connection("\(path)/db.sqlite3")
+            
+            try db.run(substitutions.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: true)
                 t.column(group)
                 t.column(course)
@@ -53,6 +75,19 @@ class DataFetcher {
                 t.column(time)
                 t.column(room)
             })
+            
+            try db.run(personal.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: true)
+                t.column(group)
+                t.column(course)
+                t.column(additional)
+                t.column(date)
+                t.column(time)
+                t.column(room)
+            })
+            
+            try db.run(substitutions.delete())
+            try db.run(personal.delete())
             
             for i in (0..<rows.size()) {
                 let row = rows.get(i)
@@ -70,6 +105,33 @@ class DataFetcher {
                 let insert = substitutions.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
                                                   date <- mDate, time <- mTime, room <- mRoom)
                 _ = try db.run(insert)
+                
+                if courses == nil || courses == "", classes != nil && classes != "" {
+                    if !mGroup.isEmpty && mGroup != "" {
+                        if classes!.contains(mGroup) || mGroup.contains(classes!) {
+                            personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
+                                                            date: mDate, time: mTime, room: mRoom))
+                            let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
+                                                                 date <- mDate, time <- mTime, room <- mRoom)
+                            _ = try db.run(insertPersonal)
+                        }
+                    }
+                } else if courses != nil && courses != "" && classes != nil && classes != "" {
+                    if mGroup != "" && mCourse != "" {
+                        if courses!.contains(mCourse) {
+                            if classes!.contains(mGroup) || mGroup.contains(classes!) {
+                                personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
+                                                                date: mDate, time: mTime, room: mRoom))
+                                let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
+                                                                     date <- mDate, time <- mTime, room <- mRoom)
+                                _ = try db.run(insertPersonal)
+                            }
+                        }
+                    }
+                }
+                
+                
+                
             }
             
         } catch Exception.Error(let type, let message) {
@@ -78,18 +140,119 @@ class DataFetcher {
         } catch {
             print("error")
         }
-        return subst
+        if isPersonal {
+            return personalSubst
+        } else {
+            return subst
+        }
     }
     
     func getFromDatabase() -> [SubstModel] {
         var substs = [SubstModel]()
         do {
-            let db = try Connection(path!)
+            let db = try Connection("\(path)/db.sqlite3")
             for subst in try db.prepare(substitutions) {
                 substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room]))
             }
         } catch {}
         return substs
+    }
+    
+    func getPersonalFromDatabase() -> [SubstModel] {
+        var substs = [SubstModel]()
+        do {
+            let db = try Connection("\(path)/db.sqlite3")
+            for subst in try db.prepare(personal) {
+                substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room]))
+            }
+        } catch {}
+        return substs
+    }
+    
+    func parseInformation(html: String) -> [String] {
+        var list = [String]()
+        do {
+            let doc: Document = try SwiftSoup.parse(html)
+            let p: Elements = try doc.select("p")
+            
+            let db = try Connection("\(path)/db.sqlite3")
+            
+            try db.run(information.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: true)
+                t.column(text)
+            })
+            
+            try db.run(information.delete())
+            
+            for item in p {
+                
+                let t = try item.text()
+                
+                list.append(t)
+                
+                let insert = information.insert(text <- t)
+                _ = try db.run(insert)
+                
+                
+                
+            }
+            
+        } catch Exception.Error(let type, let message) {
+            print(type)
+            print(message)
+        } catch {
+            print("error")
+        }
+        return list
+    }
+    
+    func readInformation() -> [String] {
+        var list = [String]()
+        do {
+            let db = try Connection("\(path)/db.sqlite3")
+            for item in try db.prepare(information) {
+                list.append(item[text])
+            }
+        } catch {}
+        return list
+    }
+    
+    func parseMenu(html: String) -> [String] {
+        
+        var items = [String]()
+        do {
+            let doc: Document = try SwiftSoup.parse(html)
+            let e: Elements = try doc.select("th")
+            
+            let db = try Connection("\(path)/db.sqlite3")
+            
+            try db.run(foodmenu.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: true)
+                t.column(text)
+            })
+            
+            try db.run(foodmenu.delete())
+            
+            for i in 0..<e.size() {
+                items.append(try e.get(i).text())
+                let insert = foodmenu.insert(text <- try e.get(i).text())
+                _ = try db.run(insert)
+            }
+            
+        } catch {}
+        
+        return items
+    }
+    
+    func readMenu() -> [String] {
+        var menu = [String]()
+        do {
+            let db = try Connection("\(path)/db.sqlite3")
+            for item in try db.prepare(foodmenu) {
+                menu.append(item[text])
+            }
+        } catch {}
+        return menu
     }
     
     func getImage(from icon: String) -> UIImage? {
