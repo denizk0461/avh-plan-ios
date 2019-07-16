@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.8.2)
   - Kanna (5.0.0)
+  - MagazineLayout (1.5.0)
   - SQLite.swift (0.12.2):
     - SQLite.swift/standard (= 0.12.2)
   - SQLite.swift/standard (0.12.2)
@@ -9,6 +10,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Kanna
+  - MagazineLayout
   - SQLite.swift
   - SwiftSoup
 
@@ -16,15 +18,17 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Kanna
+    - MagazineLayout
     - SQLite.swift
     - SwiftSoup
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Kanna: a32875df62975f8f4b871e933b4ea1a5c3b8be0f
+  MagazineLayout: fe41dc2cf1923e3bf377cd8d906a4455a0bf9c83
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: c4280217888b0eb35930fa3d2e02b367a6ff910f
+PODFILE CHECKSUM: 800b015f8a9a586793f8789b635602ca3c1941e7
 
 COCOAPODS: 1.6.1

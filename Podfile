@@ -10,6 +10,7 @@ target 'AvH Plan' do
 	pod 'Kanna'
   pod 'Alamofire'
   pod 'SQLite.swift'
+  pod 'MagazineLayout'
 
   target 'AvH PlanTests' do
     inherit! :search_paths
