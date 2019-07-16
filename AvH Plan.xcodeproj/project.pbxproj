@@ -13,17 +13,20 @@
 		A957A75222DDC15500E0A2ED /* MenuViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A957A75022DDC15500E0A2ED /* MenuViewCell.xib */; };
 		A96133802299867400B541D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961337F2299867400B541D4 /* AppDelegate.swift */; };
 		A96133822299867400B541D4 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133812299867400B541D4 /* PlanViewController.swift */; };
-		A96133842299867400B541D4 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133832299867400B541D4 /* PersonalViewController.swift */; };
 		A96133872299867400B541D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A96133852299867400B541D4 /* Main.storyboard */; };
 		A96133892299867A00B541D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96133882299867A00B541D4 /* Assets.xcassets */; };
 		A961338C2299867A00B541D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A961338A2299867A00B541D4 /* LaunchScreen.storyboard */; };
 		A96133972299867A00B541D4 /* AvH_PlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133962299867A00B541D4 /* AvH_PlanTests.swift */; };
 		A96133A22299867A00B541D4 /* AvH_PlanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133A12299867A00B541D4 /* AvH_PlanUITests.swift */; };
 		A96133B0229986DF00B541D4 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133AF229986DF00B541D4 /* CollectionViewCell.swift */; };
+		A96D4CC822DDE01A006BAB34 /* GeneralPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */; };
+		A96D4CCA22DDE184006BAB34 /* PersonalPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */; };
 		A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3496B22D4859200F35AE0 /* SubstModel.swift */; };
 		A9C1D2FE22D656A400139043 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D2FD22D656A400139043 /* InfoViewController.swift */; };
 		A9C1D30022D656DD00139043 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D2FF22D656DD00139043 /* MenuViewController.swift */; };
 		A9C1D30222D7237200139043 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D30122D7237200139043 /* DataFetcher.swift */; };
+		A9D830A722DE258C00D7EA05 /* PlanViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D830A522DE258C00D7EA05 /* PlanViewCell.swift */; };
+		A9D830A822DE258C00D7EA05 /* PlanViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9D830A622DE258C00D7EA05 /* PlanViewCell.xib */; };
 		C736A19A44C64423F3A695B7 /* Pods_AvH_PlanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74EDE3D8134812AB76BEB988 /* Pods_AvH_PlanUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +56,6 @@
 		A961337C2299867400B541D4 /* AvH Plan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AvH Plan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A961337F2299867400B541D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A96133812299867400B541D4 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
-		A96133832299867400B541D4 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		A96133862299867400B541D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A96133882299867A00B541D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A961338B2299867A00B541D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,10 +67,14 @@
 		A96133A12299867A00B541D4 /* AvH_PlanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvH_PlanUITests.swift; sourceTree = "<group>"; };
 		A96133A32299867A00B541D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A96133AF229986DF00B541D4 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPlanViewController.swift; sourceTree = "<group>"; };
+		A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPlanViewController.swift; sourceTree = "<group>"; };
 		A9A3496B22D4859200F35AE0 /* SubstModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstModel.swift; sourceTree = "<group>"; };
 		A9C1D2FD22D656A400139043 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		A9C1D2FF22D656DD00139043 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A9C1D30122D7237200139043 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		A9D830A522DE258C00D7EA05 /* PlanViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewCell.swift; sourceTree = "<group>"; };
+		A9D830A622DE258C00D7EA05 /* PlanViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanViewCell.xib; sourceTree = "<group>"; };
 		C6EC6ACE7893F2BB0A157817 /* Pods-AvH Plan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AvH Plan.release.xcconfig"; path = "Target Support Files/Pods-AvH Plan/Pods-AvH Plan.release.xcconfig"; sourceTree = "<group>"; };
 		D9D6269E96544A9242A29611 /* Pods_AvH_PlanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_PlanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E596AED9E99670CBF1B6F49E /* Pods-AvH Plan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AvH Plan.debug.xcconfig"; path = "Target Support Files/Pods-AvH Plan/Pods-AvH Plan.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,7 +161,6 @@
 			children = (
 				A961337F2299867400B541D4 /* AppDelegate.swift */,
 				A96133812299867400B541D4 /* PlanViewController.swift */,
-				A96133832299867400B541D4 /* PersonalViewController.swift */,
 				A9C1D2FD22D656A400139043 /* InfoViewController.swift */,
 				A9C1D2FF22D656DD00139043 /* MenuViewController.swift */,
 				A96133852299867400B541D4 /* Main.storyboard */,
@@ -167,6 +172,10 @@
 				A9C1D30122D7237200139043 /* DataFetcher.swift */,
 				A957A74F22DDC15500E0A2ED /* MenuViewCell.swift */,
 				A957A75022DDC15500E0A2ED /* MenuViewCell.xib */,
+				A9D830A522DE258C00D7EA05 /* PlanViewCell.swift */,
+				A9D830A622DE258C00D7EA05 /* PlanViewCell.xib */,
+				A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */,
+				A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */,
 			);
 			path = "AvH Plan";
 			sourceTree = "<group>";
@@ -301,6 +310,7 @@
 				A957A75222DDC15500E0A2ED /* MenuViewCell.xib in Resources */,
 				A96133892299867A00B541D4 /* Assets.xcassets in Resources */,
 				A96133872299867400B541D4 /* Main.storyboard in Resources */,
+				A9D830A822DE258C00D7EA05 /* PlanViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,15 +434,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A96133842299867400B541D4 /* PersonalViewController.swift in Sources */,
 				A96133802299867400B541D4 /* AppDelegate.swift in Sources */,
 				A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */,
 				A9C1D30022D656DD00139043 /* MenuViewController.swift in Sources */,
 				A96133B0229986DF00B541D4 /* CollectionViewCell.swift in Sources */,
 				A957A75122DDC15500E0A2ED /* MenuViewCell.swift in Sources */,
 				A9C1D2FE22D656A400139043 /* InfoViewController.swift in Sources */,
+				A9D830A722DE258C00D7EA05 /* PlanViewCell.swift in Sources */,
+				A96D4CC822DDE01A006BAB34 /* GeneralPlanViewController.swift in Sources */,
 				A96133822299867400B541D4 /* PlanViewController.swift in Sources */,
 				A9C1D30222D7237200139043 /* DataFetcher.swift in Sources */,
+				A96D4CCA22DDE184006BAB34 /* PersonalPlanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
