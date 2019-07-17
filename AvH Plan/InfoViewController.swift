@@ -24,9 +24,10 @@ class InfoViewController : UIViewController {
             scrollView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(objDoAsync(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor(red: 0.39, green: 0.71, blue: 0.96, alpha: 1.0)
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching some information...")
+        refreshControl.tintColor = #colorLiteral(red: 0.07843137255, green: 0.5568627451, blue: 1, alpha: 1)
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("fetch_info", comment: ""))
         self.scrollView.isDirectionalLockEnabled = true
+        content.text = df.readInformation()
     }
     
     @objc private func objDoAsync(_ sender: Any) {
@@ -34,10 +35,5 @@ class InfoViewController : UIViewController {
             self.content.text = infoArray[0] as? String
             self.refreshControl.endRefreshing()
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        content.text = df.readInformation()
     }
 }

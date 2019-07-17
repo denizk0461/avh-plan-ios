@@ -11,6 +11,7 @@
 		2E65263AFD35D6B542E89AE4 /* Pods_AvH_Plan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605BB0678C9E27A1D3E9DAA /* Pods_AvH_Plan.framework */; };
 		A957A75122DDC15500E0A2ED /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A957A74F22DDC15500E0A2ED /* MenuViewCell.swift */; };
 		A957A75222DDC15500E0A2ED /* MenuViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A957A75022DDC15500E0A2ED /* MenuViewCell.xib */; };
+		A958A92222DF5388007052B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A958A92422DF5388007052B0 /* Localizable.strings */; };
 		A96133802299867400B541D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961337F2299867400B541D4 /* AppDelegate.swift */; };
 		A96133822299867400B541D4 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133812299867400B541D4 /* PlanViewController.swift */; };
 		A96133872299867400B541D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A96133852299867400B541D4 /* Main.storyboard */; };
@@ -53,6 +54,9 @@
 		7605BB0678C9E27A1D3E9DAA /* Pods_AvH_Plan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_Plan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A957A74F22DDC15500E0A2ED /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		A957A75022DDC15500E0A2ED /* MenuViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewCell.xib; sourceTree = "<group>"; };
+		A958A91E22DF528C007052B0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		A958A92322DF5388007052B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A958A92522DF538C007052B0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A961337C2299867400B541D4 /* AvH Plan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AvH Plan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A961337F2299867400B541D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A96133812299867400B541D4 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				A9D830A622DE258C00D7EA05 /* PlanViewCell.xib */,
 				A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */,
 				A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */,
+				A958A92422DF5388007052B0 /* Localizable.strings */,
 			);
 			path = "AvH Plan";
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = A96133732299867300B541D4;
 			productRefGroup = A961337D2299867400B541D4 /* Products */;
@@ -307,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A961338C2299867A00B541D4 /* LaunchScreen.storyboard in Resources */,
+				A958A92222DF5388007052B0 /* Localizable.strings in Resources */,
 				A957A75222DDC15500E0A2ED /* MenuViewCell.xib in Resources */,
 				A96133892299867A00B541D4 /* Assets.xcassets in Resources */,
 				A96133872299867400B541D4 /* Main.storyboard in Resources */,
@@ -480,10 +487,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A958A92422DF5388007052B0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A958A92322DF5388007052B0 /* en */,
+				A958A92522DF538C007052B0 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		A96133852299867400B541D4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A96133862299867400B541D4 /* Base */,
+				A958A91E22DF528C007052B0 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -503,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -564,6 +582,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

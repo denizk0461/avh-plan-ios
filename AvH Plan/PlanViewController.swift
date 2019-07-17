@@ -13,7 +13,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     
     let identifier = "plan_cell"
     var substs = [SubstModel]()
-    private let refreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
     let df = DataFetcher()
     let layout = MagazineLayout()
     var collectionView: UICollectionView
@@ -41,6 +41,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         collectionView.register(UINib(nibName: "PlanViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -48,8 +49,11 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             collectionView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(objDoAsync(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor(red: 0.39, green: 0.71, blue: 0.96, alpha: 1.0)
+        refreshControl.tintColor = #colorLiteral(red: 0.07843137255, green: 0.5568627451, blue: 1, alpha: 1)
         refreshControl.attributedTitle = NSAttributedString(string: getRefreshViewString())
+        
+        self.substs = getFromDatabase()
+        self.collectionView.reloadData()
     }
     
     func getViewType() -> String {
@@ -61,7 +65,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func getRefreshViewString() -> String {
-        return "Fetching the plan..."
+        return NSLocalizedString("fetch_plan", comment: "")
     }
     
     @objc private func objDoAsync(_ sender: Any) {
@@ -70,14 +74,6 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collectionView.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
-        
-        self.substs = getFromDatabase()
-        self.collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -141,7 +137,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, verticalSpacingForElementsInSectionAtIndex index: Int) -> CGFloat {
-        return 1
+        return 0 // change this if needed
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetsForSectionAtIndex index: Int) -> UIEdgeInsets {

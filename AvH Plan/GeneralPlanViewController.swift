@@ -21,7 +21,7 @@ class GeneralViewController: PlanViewController {
     }
     
     override func getRefreshViewString() -> String {
-        return "Fetching the plan..."
+        return NSLocalizedString("fetch_plan", comment: "")
     }
     
     override func getFromDatabase() -> [SubstModel] {

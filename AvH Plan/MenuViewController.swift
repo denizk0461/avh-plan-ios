@@ -38,6 +38,7 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
         collectionView.register(UINib(nibName: "MenuViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -45,8 +46,11 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
             collectionView.addSubview(refreshControl) // likely unnecessary
         }
         refreshControl.addTarget(self, action: #selector(objDoAsync(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor(red: 0.39, green: 0.71, blue: 0.96, alpha: 1.0)
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching the food menu...")
+        refreshControl.tintColor = #colorLiteral(red: 0.07843137255, green: 0.5568627451, blue: 1, alpha: 1)
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("fetch_menu", comment: ""))
+        
+        self.items = self.df.readMenu()
+        self.collectionView.reloadData()
     }
     
     @objc private func objDoAsync(_ sender: Any) {
@@ -55,14 +59,6 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collectionView.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
-        
-        self.items = self.df.readMenu()
-        self.collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -108,7 +104,7 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, verticalSpacingForElementsInSectionAtIndex index: Int) -> CGFloat {
-        return 1
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetsForSectionAtIndex index: Int) -> UIEdgeInsets {

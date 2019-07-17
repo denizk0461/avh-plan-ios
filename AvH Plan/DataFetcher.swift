@@ -32,37 +32,35 @@ class DataFetcher {
     
     func doAsync(do task: String, completionHandler: @escaping (_ substitutions: Array<Any>) -> ()) {
         DispatchQueue(label: "work-queue").async {
-            var url = ""
-            switch task {
-            case "menu": url = "https://djd4rkn355.github.io/food_test.html"
-            default: url = "https://djd4rkn355.github.io/subst_test.html"
-            }
+            let foodUrl = "https://djd4rkn355.github.io/food_test.html"
+            let url = "https://djd4rkn355.github.io/subst_test.html"
             Alamofire.request(url).responseString { response in
                 if let html = response.result.value {
-                    switch task {
-                    case "plan": completionHandler(self.parseHTML(html: html, isPersonal: false))
-                    case "personal": completionHandler(self.parseHTML(html: html, isPersonal: true))
-                    case "info": completionHandler(self.parseInformation(html: html))
-                    default: completionHandler(self.parseMenu(html: html))
+                    Alamofire.request(foodUrl).responseString { response in
+                        if let foodHtml = response.result.value {
+                            completionHandler(self.parseHTML(html: html, food: foodHtml, type: task))
+                        }
                     }
-                    
                 }
             }
             
         }
     }
     
-    func parseHTML(html: String, isPersonal: Bool) -> Array<SubstModel> {
+    func parseHTML(html: String, food: String, type: String) -> Array<Any> {
         var subst = Array<SubstModel>()
         var personalSubst = Array<SubstModel>()
+        var info = ""
+        var infoList = [String]()
+        
+        var menuList = [String]()
         do {
-            let doc: Document = try SwiftSoup.parse(html)
+            let doc = try SwiftSoup.parse(html)
+            
             let rows: Elements = try doc.select("tr")
             
             let courses = prefs.string(forKey: "courses")
             let classes = prefs.string(forKey: "classes")
-//            let courses: String? = "GES7"
-//            let classes: String? = "17"
             
             let db = try Connection("\(path)/db.sqlite3")
             
@@ -130,20 +128,53 @@ class DataFetcher {
                     }
                 }
                 
-                
-                
             }
             
-        } catch Exception.Error(let type, let message) {
-            print(type)
-            print(message)
-        } catch {
-            print("error")
-        }
-        if isPersonal {
-            return personalSubst
-        } else {
+            let pi: Elements = try doc.select("p")
+            
+            for item in pi {
+                if info.isEmpty {
+                    info = try item.text()
+                } else {
+                    info += "\n\n\(try item.text())"
+                }
+            }
+            _ = prefs.set(info, forKey: "information")
+            
+        } catch {}
+        
+        infoList.append(info)
+        
+        do {
+            let foodDoc: Document = try SwiftSoup.parse(food)
+            let ef: Elements = try foodDoc.select("th")
+            
+            let db = try Connection("\(path)/db.sqlite3")
+            
+            try db.run(foodmenu.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: true)
+                t.column(text)
+            })
+            
+            try db.run(foodmenu.delete())
+            
+            for i in 0..<ef.size() {
+                menuList.append(try ef.get(i).text())
+                let insert = foodmenu.insert(text <- try ef.get(i).text())
+                _ = try db.run(insert)
+            }
+            
+        } catch {}
+        
+        switch type {
+        case "plan":
             return subst
+        case "personal":
+            return personalSubst
+        case "info":
+            return infoList
+        default:
+            return menuList
         }
     }
     
@@ -169,61 +200,8 @@ class DataFetcher {
         return substs
     }
     
-    func parseInformation(html: String) -> [String] {
-        var info = ""
-        do {
-            let doc: Document = try SwiftSoup.parse(html)
-            let p: Elements = try doc.select("p")
-            
-            for item in p {
-                if info.isEmpty {
-                    info = try item.text()
-                } else {
-                    info += "\n\n\(try item.text())"
-                }
-            }
-            _ = prefs.set(info, forKey: "information")
-            
-        } catch Exception.Error(let type, let message) {
-            print(type)
-            print(message)
-        } catch {
-            print("error")
-        }
-        var list = [String]()
-        list.append(info)
-        return list
-    }
-    
     func readInformation() -> String {
         return prefs.string(forKey: "information") ?? ""
-    }
-    
-    func parseMenu(html: String) -> [String] {
-        
-        var items = [String]()
-        do {
-            let doc: Document = try SwiftSoup.parse(html)
-            let e: Elements = try doc.select("th")
-            
-            let db = try Connection("\(path)/db.sqlite3")
-            
-            try db.run(foodmenu.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: true)
-                t.column(text)
-            })
-            
-            try db.run(foodmenu.delete())
-            
-            for i in 0..<e.size() {
-                items.append(try e.get(i).text())
-                let insert = foodmenu.insert(text <- try e.get(i).text())
-                _ = try db.run(insert)
-            }
-            
-        } catch {}
-        
-        return items
     }
     
     func readMenu() -> [String] {

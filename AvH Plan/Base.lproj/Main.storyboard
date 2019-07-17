@@ -15,10 +15,10 @@
             <objects>
                 <viewController title="AvH Plan" id="9pv-A4-QxB" customClass="GeneralViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8V-CQ-shR">
+                            <navigationBar contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8V-CQ-shR">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <viewLayoutGuide key="safeArea" id="b9C-lJ-bz8"/>
                                 <items>
@@ -48,15 +48,15 @@
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="PersonalPlanViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYA-MY-Azp">
+                            <navigationBar contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYA-MY-Azp">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <viewLayoutGuide key="safeArea" id="Or0-Ph-ylC"/>
                                 <items>
                                     <navigationItem title="Personal Plan" id="8j4-CR-EDO">
-                                        <barButtonItem key="rightBarButtonItem" title="Customise" id="iH8-LX-SKF">
+                                        <barButtonItem key="rightBarButtonItem" title="Customize" id="iH8-LX-SKF">
                                             <connections>
                                                 <action selector="toolbarButtonCustomise:" destination="8rJ-Kc-sve" id="XTh-6F-m3e"/>
                                             </connections>
@@ -87,10 +87,10 @@
             <objects>
                 <viewController id="Ve9-lV-ekU" customClass="InfoViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFO-Bf-72I">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9O-m5-UQM">
+                            <navigationBar contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9O-m5-UQM">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <viewLayoutGuide key="safeArea" id="YA8-Ln-bdM"/>
                                 <items>
@@ -104,7 +104,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="52.333333333333336"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H8-lj-boN">
-                                                <rect key="frame" x="24" y="16" width="366" height="20.333333333333329"/>
+                                                <rect key="frame" x="24" y="15.999999999999998" width="366" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -155,10 +155,10 @@
             <objects>
                 <viewController id="bBH-of-tdd" customClass="MenuViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOs-f2-7qu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R10-r1-giF">
+                            <navigationBar contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R10-r1-giF">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <viewLayoutGuide key="safeArea" id="zEW-od-JDN"/>
                                 <items>
@@ -187,10 +187,9 @@
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController title="AvH Plan" id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>

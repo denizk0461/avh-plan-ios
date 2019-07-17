@@ -1,0 +1,12 @@
+
+/* Class = "UITabBarItem"; title = "Information"; ObjectID = "OBW-rE-k7z"; */
+"OBW-rE-k7z.title" = "Informationen";
+
+/* Class = "UITabBarItem"; title = "Plan"; ObjectID = "keQ-St-8hM"; */
+"keQ-St-8hM.title" = "Plan";
+
+/* Class = "UITabBarItem"; title = "Personal"; ObjectID = "spn-vi-J6I"; */
+"spn-vi-J6I.title" = "Persönlich";
+
+/* Class = "UITabBarItem"; title = "Menu"; ObjectID = "zev-fl-fMd"; */
+"zev-fl-fMd.title" = "Speiseplan";

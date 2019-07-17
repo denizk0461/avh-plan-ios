@@ -14,18 +14,18 @@ class PersonalPlanViewController: PlanViewController {
     let prefs = UserDefaults.standard
     
     @IBAction func toolbarButtonCustomise(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Customise personal page", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("customize_alert_title", comment: ""), message: nil, preferredStyle: .alert)
         alert.addTextField { (name) in
             name.text = self.prefs.string(forKey: "username")
-            name.placeholder = "Name"
+            name.placeholder = NSLocalizedString("name", comment: "")
         }
         alert.addTextField { (classes) in
             classes.text = self.prefs.string(forKey: "classes")
-            classes.placeholder = "Classes"
+            classes.placeholder = NSLocalizedString("classes", comment: "")
         }
         alert.addTextField { (courses) in
             courses.text = self.prefs.string(forKey: "courses")
-            courses.placeholder = "Courses"
+            courses.placeholder = NSLocalizedString("courses", comment: "")
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (action) -> Void in
             _ = self.prefs.set(alert!.textFields![0].text, forKey: "username")
@@ -42,16 +42,11 @@ class PersonalPlanViewController: PlanViewController {
         let user = self.prefs.string(forKey: "username")
         if (user != nil && user != "") {
             if (user!.last == "x" || user!.last == "s" || user!.last == "z") {
-                self.toolbar!.topItem!.title = "\(user!)' Plan"
+                self.toolbar!.topItem!.title = "\(user!)\(NSLocalizedString("nosplan", comment: ""))"
             } else {
-                self.toolbar!.topItem!.title = "\(user!)'s Plan"
+                self.toolbar!.topItem!.title = "\(user!)\(NSLocalizedString("splan", comment: ""))"
             }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
     }
     
     override func getViewType() -> String {
@@ -59,7 +54,7 @@ class PersonalPlanViewController: PlanViewController {
     }
     
     override func getRefreshViewString() -> String {
-        return "Fetching your plan..."
+        return NSLocalizedString("fetch_personal", comment: "")
     }
     
     override func getFromDatabase() -> [SubstModel] {
@@ -69,15 +64,5 @@ class PersonalPlanViewController: PlanViewController {
     override func getToolbarBottomAnchor() -> NSLayoutYAxisAnchor {
         return toolbar.bottomAnchor
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

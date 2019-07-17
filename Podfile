@@ -7,7 +7,6 @@ target 'AvH Plan' do
 
   # Pods for AvH Plan
 	pod 'SwiftSoup'
-	pod 'Kanna'
   pod 'Alamofire'
   pod 'SQLite.swift'
   pod 'MagazineLayout'
