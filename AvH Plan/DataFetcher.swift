@@ -15,6 +15,7 @@ import SQLite
 class DataFetcher {
     
     let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+    let prefs = UserDefaults.standard
     
     let substitutions = Table("substitutions")
     let personal = Table("personal")
@@ -58,11 +59,10 @@ class DataFetcher {
             let doc: Document = try SwiftSoup.parse(html)
             let rows: Elements = try doc.select("tr")
             
-//            let prefs = UserDefaults.standard
-//            let courses = prefs.string(forKey: "courses")
-//            let classes = prefs.string(forKey: "classes")
-            let courses: String? = "GES7"
-            let classes: String? = "17"
+            let courses = prefs.string(forKey: "courses")
+            let classes = prefs.string(forKey: "classes")
+//            let courses: String? = "GES7"
+//            let classes: String? = "17"
             
             let db = try Connection("\(path)/db.sqlite3")
             
@@ -170,32 +170,19 @@ class DataFetcher {
     }
     
     func parseInformation(html: String) -> [String] {
-        var list = [String]()
+        var info = ""
         do {
             let doc: Document = try SwiftSoup.parse(html)
             let p: Elements = try doc.select("p")
             
-            let db = try Connection("\(path)/db.sqlite3")
-            
-            try db.run(information.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: true)
-                t.column(text)
-            })
-            
-            try db.run(information.delete())
-            
             for item in p {
-                
-                let t = try item.text()
-                
-                list.append(t)
-                
-                let insert = information.insert(text <- t)
-                _ = try db.run(insert)
-                
-                
-                
+                if info.isEmpty {
+                    info = try item.text()
+                } else {
+                    info += "\n\n\(try item.text())"
+                }
             }
+            _ = prefs.set(info, forKey: "information")
             
         } catch Exception.Error(let type, let message) {
             print(type)
@@ -203,18 +190,13 @@ class DataFetcher {
         } catch {
             print("error")
         }
+        var list = [String]()
+        list.append(info)
         return list
     }
     
-    func readInformation() -> [String] {
-        var list = [String]()
-        do {
-            let db = try Connection("\(path)/db.sqlite3")
-            for item in try db.prepare(information) {
-                list.append(item[text])
-            }
-        } catch {}
-        return list
+    func readInformation() -> String {
+        return prefs.string(forKey: "information") ?? ""
     }
     
     func parseMenu(html: String) -> [String] {

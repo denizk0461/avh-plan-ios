@@ -65,7 +65,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     }
     
     @objc private func objDoAsync(_ sender: Any) {
-        df.doAsync(do: getViewType()) { substitutions in
+        self.df.doAsync(do: self.getViewType()) { substitutions in
             self.substs = substitutions as! [SubstModel]
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
