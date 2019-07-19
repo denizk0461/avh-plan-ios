@@ -1,0 +1,11 @@
+/* 
+  InfoPList.strings
+  AvH Plan
+
+  Created by Deniz Duezgoeren on 17.07.19.
+  Copyright © 2019 Deniz Duezgoeren. All rights reserved.
+*/
+
+
+CFBundleDisplayName = "AvH-Plan";
+CFBundleName = "AvH-Plan";

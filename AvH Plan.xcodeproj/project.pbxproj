@@ -19,7 +19,6 @@
 		A961338C2299867A00B541D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A961338A2299867A00B541D4 /* LaunchScreen.storyboard */; };
 		A96133972299867A00B541D4 /* AvH_PlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133962299867A00B541D4 /* AvH_PlanTests.swift */; };
 		A96133A22299867A00B541D4 /* AvH_PlanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133A12299867A00B541D4 /* AvH_PlanUITests.swift */; };
-		A96133B0229986DF00B541D4 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133AF229986DF00B541D4 /* CollectionViewCell.swift */; };
 		A96D4CC822DDE01A006BAB34 /* GeneralPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */; };
 		A96D4CCA22DDE184006BAB34 /* PersonalPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */; };
 		A996BFF922E05AAB00E7BE42 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A996BFFB22E05AAB00E7BE42 /* InfoPlist.strings */; };
@@ -70,7 +69,6 @@
 		A961339D2299867A00B541D4 /* AvH PlanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AvH PlanUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A96133A12299867A00B541D4 /* AvH_PlanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvH_PlanUITests.swift; sourceTree = "<group>"; };
 		A96133A32299867A00B541D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A96133AF229986DF00B541D4 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPlanViewController.swift; sourceTree = "<group>"; };
 		A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPlanViewController.swift; sourceTree = "<group>"; };
 		A996BFF322E05AAB00E7BE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				A96133882299867A00B541D4 /* Assets.xcassets */,
 				A961338A2299867A00B541D4 /* LaunchScreen.storyboard */,
 				A996BFED22E0586500E7BE42 /* Info.plist */,
-				A96133AF229986DF00B541D4 /* CollectionViewCell.swift */,
 				A9A3496B22D4859200F35AE0 /* SubstModel.swift */,
 				A9C1D30122D7237200139043 /* DataFetcher.swift */,
 				A957A74F22DDC15500E0A2ED /* MenuViewCell.swift */,
@@ -449,7 +446,6 @@
 				A96133802299867400B541D4 /* AppDelegate.swift in Sources */,
 				A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */,
 				A9C1D30022D656DD00139043 /* MenuViewController.swift in Sources */,
-				A96133B0229986DF00B541D4 /* CollectionViewCell.swift in Sources */,
 				A957A75122DDC15500E0A2ED /* MenuViewCell.swift in Sources */,
 				A9C1D2FE22D656A400139043 /* InfoViewController.swift in Sources */,
 				A9D830A722DE258C00D7EA05 /* PlanViewCell.swift in Sources */,
