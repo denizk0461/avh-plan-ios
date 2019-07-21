@@ -281,4 +281,60 @@ class DataFetcher {
     func getColourPaletteNames() -> [String] {
         return ["White", "Red", "Orange", "Yellow", "Green", "Cyan", "Light Blue", "Blue", "Purple", "Pink", "Brown", "Grey"]
     }
+    
+    func getColour(for course: String) -> UIColor {
+        if course.count >= 2 {
+            let index = course.index(course.startIndex, offsetBy: 1)
+            let s = course[...index].lowercased()
+            var searchAgain = false
+            var key = ""
+            
+            switch (s) {
+            case "nw": key = "Biology"
+            case "wp": key = "WP"
+            default: searchAgain = true
+            }
+            
+            if searchAgain && course.count >= 3 {
+                let index1 = course.index(course.startIndex, offsetBy: 2)
+                let s1 = course[...index1].lowercased()
+                switch (s1) {
+                case "deu", "dep", "daz", "fda": key = "German"
+                case "mat", "map": key = "Maths"
+                case "eng", "enp", "ena": key = "English"
+                case "spo", "spp", "spth": key = "PhysEd"
+                case "pol", "pop": key = "Politics"
+                case "dar", "dap": key = "Theatre"
+                case "phy", "php": key = "Physics"
+                case "bio", "bip", "nw1", "nw2", "nw3", "nw4": key = "Biology"
+                case "che", "chp": key = "Chemistry"
+                case "phi", "psp": key = "Philosophy"
+                case "laa", "laf", "lat": key = "Latin"
+                case "spa", "spf": key = "Spanish"
+                case "fra", "frf", "frz": key = "French"
+                case "inf": key = "Compsci"
+                case "ges": key = "History"
+                case "rel": key = "Religion"
+                case "geg": key = "Geography"
+                case "kun": key = "Arts"
+                case "mus": key = "Music"
+                case "tue": key = "Turkish"
+                case "chi": key = "Chinese"
+                case "gll": key = "GLL"
+                case "wat": key = "WAT"
+                case "för": key = "Forder"
+                case "met", "wpb": key = "WP"
+                default: key = ""
+                }
+            }
+            
+            if key != "" {
+                return self.getColourPalette()[prefs.integer(forKey: "colour-index-\(key)")]
+            } else {
+                return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            }
+        } else {
+            return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        }
+    }
 }

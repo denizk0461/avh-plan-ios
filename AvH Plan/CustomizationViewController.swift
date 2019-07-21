@@ -48,12 +48,19 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
         self.txtClasses.text = prefs.string(forKey: "classes")
         self.txtCourses.text = prefs.string(forKey: "courses")
         self.defaultSegments.selectedSegmentIndex = prefs.integer(forKey: "default-plan")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
+    }
+    
+    @objc func loadList(notification: NSNotification){
+        self.collectionView.reloadItems(at: [notification.userInfo?["indexPath"] as! IndexPath])
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let s = storyboard?.instantiateViewController(withIdentifier: "ColourPickerView") as? ColourPickerView {
             s.course = self.courses[indexPath.item]
             s.internalCourse = self.courses[indexPath.item]
+            s.currentIndexPath = indexPath
             self.present(s, animated: true)
         }
     }
@@ -100,7 +107,7 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! ColourViewCell
         cell.label.text = self.courses[indexPath.item]
         cell.colorView.layer.cornerRadius = cell.colorView.frame.height / 2
-        cell.colorView.backgroundColor = self.df.getColourPalette()[prefs.integer(forKey: "debug-colour-index-\(courses[indexPath.item])")]
+        cell.colorView.backgroundColor = self.df.getColourPalette()[prefs.integer(forKey: "colour-index-\(courses[indexPath.item])")]
         cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell
     }

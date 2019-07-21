@@ -82,32 +82,30 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! PlanViewCell
-        if self.substs.count != 0 {
-            cell.group.text = self.substs[indexPath.item].group
-            cell.additional.text = self.substs[indexPath.item].additional
-            cell.date.text = self.substs[indexPath.item].date
-            cell.time.text = self.substs[indexPath.item].time
-            cell.room.text = self.substs[indexPath.item].room
+        cell.group.text = self.substs[indexPath.item].group
+        cell.additional.text = self.substs[indexPath.item].additional
+        cell.date.text = self.substs[indexPath.item].date
+        cell.time.text = self.substs[indexPath.item].time
+        cell.room.text = self.substs[indexPath.item].room
+        
+        let course = self.substs[indexPath.item].course
+        let image = df.getImage(from: course)
+        
+        if image != nil {
+            let attachment: NSTextAttachment = NSTextAttachment()
+            attachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
+            attachment.image = image
             
-            let course = self.substs[indexPath.item].course
-            let image = df.getImage(from: course)
+            let courseImage = NSMutableAttributedString(attachment: attachment)
+            let courseString = NSAttributedString(string: " \(course)")
+            courseImage.append(courseString)
             
-            if image != nil {
-                let attachment: NSTextAttachment = NSTextAttachment()
-                attachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
-                attachment.image = image
-                
-                let courseImage = NSMutableAttributedString(attachment: attachment)
-                let courseString = NSAttributedString(string: " \(course)")
-                courseImage.append(courseString)
-                
-                cell.course.attributedText = courseImage
-            } else {
-                cell.course.text = course
-            }
+            cell.course.attributedText = courseImage
+        } else {
+            cell.course.text = course
         }
         
-        cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.backgroundColor = self.df.getColour(for: course)
         cell.tintView.backgroundColor = cell.backgroundColor
         return cell
     }
