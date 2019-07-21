@@ -14,7 +14,7 @@ class InfoViewController : UIViewController {
     let prefs = UserDefaults.standard
     @IBOutlet weak var scrollView: UIScrollView!
     private let refreshControl = UIRefreshControl()
-    let df = DataFetcher() // should be a static reference
+    let df = DataFetcher.sharedInstance
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

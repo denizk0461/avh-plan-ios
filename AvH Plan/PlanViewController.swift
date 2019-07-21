@@ -14,7 +14,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     let identifier = "plan_cell"
     var substs = [SubstModel]()
     let refreshControl = UIRefreshControl()
-    let df = DataFetcher()
+    let df = DataFetcher.sharedInstance
     let layout = MagazineLayout()
     var collectionView: UICollectionView
     

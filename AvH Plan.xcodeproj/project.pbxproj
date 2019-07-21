@@ -23,6 +23,12 @@
 		A96D4CCA22DDE184006BAB34 /* PersonalPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */; };
 		A996BFF922E05AAB00E7BE42 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A996BFFB22E05AAB00E7BE42 /* InfoPlist.strings */; };
 		A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3496B22D4859200F35AE0 /* SubstModel.swift */; };
+		A9B033D822E4D0AB009ACF8A /* ColourViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B033D622E4D0AB009ACF8A /* ColourViewCell.swift */; };
+		A9B033D922E4D0AB009ACF8A /* ColourViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9B033D722E4D0AB009ACF8A /* ColourViewCell.xib */; };
+		A9B0464C22E1F255005FB0DB /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B0464B22E1F255005FB0DB /* CustomTabBarController.swift */; };
+		A9B0464E22E1F75A005FB0DB /* CustomizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B0464D22E1F75A005FB0DB /* CustomizationViewController.swift */; };
+		A9B0465022E21207005FB0DB /* ColourPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B0464F22E21207005FB0DB /* ColourPickerView.swift */; };
+		A9B0465422E448EC005FB0DB /* GenericViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B0465322E448EC005FB0DB /* GenericViewCell.swift */; };
 		A9C1D2FE22D656A400139043 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D2FD22D656A400139043 /* InfoViewController.swift */; };
 		A9C1D30022D656DD00139043 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D2FF22D656DD00139043 /* MenuViewController.swift */; };
 		A9C1D30222D7237200139043 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1D30122D7237200139043 /* DataFetcher.swift */; };
@@ -75,6 +81,12 @@
 		A996BFFC22E05AAB00E7BE42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A996BFFD22E05AAB00E7BE42 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A9A3496B22D4859200F35AE0 /* SubstModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstModel.swift; sourceTree = "<group>"; };
+		A9B033D622E4D0AB009ACF8A /* ColourViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourViewCell.swift; sourceTree = "<group>"; };
+		A9B033D722E4D0AB009ACF8A /* ColourViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColourViewCell.xib; sourceTree = "<group>"; };
+		A9B0464B22E1F255005FB0DB /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		A9B0464D22E1F75A005FB0DB /* CustomizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizationViewController.swift; sourceTree = "<group>"; };
+		A9B0464F22E21207005FB0DB /* ColourPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourPickerView.swift; sourceTree = "<group>"; };
+		A9B0465322E448EC005FB0DB /* GenericViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewCell.swift; sourceTree = "<group>"; };
 		A9C1D2FD22D656A400139043 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		A9C1D2FF22D656DD00139043 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A9C1D30122D7237200139043 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
@@ -182,6 +194,12 @@
 				A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */,
 				A958A92422DF5388007052B0 /* Localizable.strings */,
 				A996BFFB22E05AAB00E7BE42 /* InfoPlist.strings */,
+				A9B0464B22E1F255005FB0DB /* CustomTabBarController.swift */,
+				A9B0464D22E1F75A005FB0DB /* CustomizationViewController.swift */,
+				A9B0464F22E21207005FB0DB /* ColourPickerView.swift */,
+				A9B0465322E448EC005FB0DB /* GenericViewCell.swift */,
+				A9B033D622E4D0AB009ACF8A /* ColourViewCell.swift */,
+				A9B033D722E4D0AB009ACF8A /* ColourViewCell.xib */,
 			);
 			path = "AvH Plan";
 			sourceTree = "<group>";
@@ -315,6 +333,7 @@
 			files = (
 				A961338C2299867A00B541D4 /* LaunchScreen.storyboard in Resources */,
 				A958A92222DF5388007052B0 /* Localizable.strings in Resources */,
+				A9B033D922E4D0AB009ACF8A /* ColourViewCell.xib in Resources */,
 				A957A75222DDC15500E0A2ED /* MenuViewCell.xib in Resources */,
 				A996BFF922E05AAB00E7BE42 /* InfoPlist.strings in Resources */,
 				A96133892299867A00B541D4 /* Assets.xcassets in Resources */,
@@ -416,7 +435,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AvH Plan/Pods-AvH Plan-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/MagazineLayout/MagazineLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
@@ -426,7 +444,6 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagazineLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
@@ -443,16 +460,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9B0465422E448EC005FB0DB /* GenericViewCell.swift in Sources */,
+				A9B0464E22E1F75A005FB0DB /* CustomizationViewController.swift in Sources */,
 				A96133802299867400B541D4 /* AppDelegate.swift in Sources */,
 				A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */,
 				A9C1D30022D656DD00139043 /* MenuViewController.swift in Sources */,
 				A957A75122DDC15500E0A2ED /* MenuViewCell.swift in Sources */,
 				A9C1D2FE22D656A400139043 /* InfoViewController.swift in Sources */,
+				A9B0464C22E1F255005FB0DB /* CustomTabBarController.swift in Sources */,
 				A9D830A722DE258C00D7EA05 /* PlanViewCell.swift in Sources */,
 				A96D4CC822DDE01A006BAB34 /* GeneralPlanViewController.swift in Sources */,
 				A96133822299867400B541D4 /* PlanViewController.swift in Sources */,
 				A9C1D30222D7237200139043 /* DataFetcher.swift in Sources */,
 				A96D4CCA22DDE184006BAB34 /* PersonalPlanViewController.swift in Sources */,
+				A9B033D822E4D0AB009ACF8A /* ColourViewCell.swift in Sources */,
+				A9B0465022E21207005FB0DB /* ColourPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,7 +589,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: k.duezgoeren@gmail.com (R9NVDFCQHW)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -629,7 +651,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: k.duezgoeren@gmail.com (R9NVDFCQHW)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -659,6 +681,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7D4AT23XH8;
 				INFOPLIST_FILE = "$(SRCROOT)/AvH PlanTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -678,6 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7D4AT23XH8;
 				INFOPLIST_FILE = "$(SRCROOT)/AvH PlanTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

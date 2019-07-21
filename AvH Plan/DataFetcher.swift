@@ -14,6 +14,8 @@ import SQLite
 
 class DataFetcher {
     
+    static let sharedInstance = DataFetcher()
+    
     let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     let prefs = UserDefaults.standard
     
@@ -30,7 +32,7 @@ class DataFetcher {
     let room = Expression<String>("room")
     let text = Expression<String>("text")
     
-    func doAsync(do task: String, completionHandler: @escaping (_ substitutions: Array<Any>) -> ()) {
+    func doAsync(do task: String, completionHandler: @escaping (_ substitutions: [Any]) -> ()) {
         DispatchQueue(label: "work-queue").async {
             let foodUrl = "https://djd4rkn355.github.io/food_test.html"
             let url = "https://djd4rkn355.github.io/subst_test.html"
@@ -43,16 +45,14 @@ class DataFetcher {
                     }
                 }
             }
-            
         }
     }
     
-    func parseHTML(html: String, food: String, type: String) -> Array<Any> {
-        var subst = Array<SubstModel>()
-        var personalSubst = Array<SubstModel>()
+    func parseHTML(html: String, food: String, type: String) -> [Any] {
+        var subst = [SubstModel]()
+        var personalSubst = [SubstModel]()
         var info = ""
         var infoList = [String]()
-        
         var menuList = [String]()
         do {
             let doc = try SwiftSoup.parse(html)
@@ -272,5 +272,13 @@ class DataFetcher {
             return nil
         }
         return UIImage(named: imagePath)
+    }
+    
+    func getColourPalette() -> [UIColor] {
+        return [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1), #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1), #colorLiteral(red: 0.9995340705, green: 0.988355577, blue: 0.4726552367, alpha: 1), #colorLiteral(red: 0.4500938654, green: 0.9813225865, blue: 0.4743030667, alpha: 1), #colorLiteral(red: 0.4508578777, green: 0.9882974029, blue: 0.8376303315, alpha: 1), #colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1), #colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1), #colorLiteral(red: 0.8446564078, green: 0.5145705342, blue: 1, alpha: 1), #colorLiteral(red: 1, green: 0.5409764051, blue: 0.8473142982, alpha: 1), #colorLiteral(red: 0.6745098039, green: 0.5568627451, blue: 0.4078431373, alpha: 1), #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)]
+    }
+    
+    func getColourPaletteNames() -> [String] {
+        return ["White", "Red", "Orange", "Yellow", "Green", "Cyan", "Light Blue", "Blue", "Purple", "Pink", "Brown", "Grey"]
     }
 }

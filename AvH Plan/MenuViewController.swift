@@ -13,7 +13,7 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
     
     var items = [String]()
     private let refreshControl = UIRefreshControl()
-    let df = DataFetcher()
+    let df = DataFetcher.sharedInstance
     @IBOutlet weak var toolbar: UINavigationBar!
     let layout = MagazineLayout()
     var collectionView: UICollectionView
@@ -71,7 +71,7 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
             cell.content.text = self.items[indexPath.item]
         }
 
-        cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell
     }
 
