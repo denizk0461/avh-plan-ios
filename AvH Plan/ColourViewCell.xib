@@ -13,27 +13,36 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ColourViewCell" customModule="AvH_Plan" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="437" height="71"/>
+            <rect key="frame" x="0.0" y="0.0" width="437" height="55"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="437" height="71"/>
+                <rect key="frame" x="0.0" y="0.0" width="437" height="55"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="190-8v-eT2">
-                        <rect key="frame" x="71" y="8" width="342" height="55"/>
+                        <rect key="frame" x="71" y="8" width="342" height="39"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXw-Js-My4">
-                        <rect key="frame" x="16" y="70" width="405" height="1"/>
+                        <rect key="frame" x="16" y="54" width="405" height="1"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HcR-OC-IDt">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcR-OC-IDt">
                         <rect key="frame" x="16" y="8" width="39" height="39"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="psw-Nb-1ak">
+                                <rect key="frame" x="12" y="12" width="15" height="15"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="HcR-OC-IDt" secondAttribute="height" multiplier="1:1" id="4zf-WA-ORG"/>
+                            <constraint firstAttribute="bottom" secondItem="psw-Nb-1ak" secondAttribute="bottom" constant="12" id="BDV-j7-tt4"/>
+                            <constraint firstAttribute="trailing" secondItem="psw-Nb-1ak" secondAttribute="trailing" constant="12" id="GGZ-kx-EA8"/>
+                            <constraint firstItem="psw-Nb-1ak" firstAttribute="leading" secondItem="HcR-OC-IDt" secondAttribute="leading" constant="12" id="h8y-KQ-lwZ"/>
+                            <constraint firstItem="psw-Nb-1ak" firstAttribute="top" secondItem="HcR-OC-IDt" secondAttribute="top" constant="12" id="hje-Pu-PPR"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -56,6 +65,7 @@
             <size key="customSize" width="437" height="71"/>
             <connections>
                 <outlet property="colorView" destination="HcR-OC-IDt" id="qB6-fL-D3e"/>
+                <outlet property="imageView" destination="psw-Nb-1ak" id="oew-Yu-sU3"/>
                 <outlet property="label" destination="190-8v-eT2" id="Xnc-ZG-PDp"/>
             </connections>
             <point key="canvasLocation" x="412.31884057971018" y="160.37946428571428"/>

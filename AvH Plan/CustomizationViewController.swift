@@ -11,7 +11,8 @@ import MagazineLayout
 
 class CustomizationViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateMagazineLayout {
 
-    let courses = ["German", "English", "French", "Spanish", "Latin", "Turkish", "Chinese", "Arts", "Music", "Theatre", "Geography", "History", "Politics", "Philosophy", "Religion", "Maths", "Biology", "Chemistry", "Physics", "CompSci", "PhysEd", "GLL", "WAT", "Forder", "WP"]
+    var courses = [String]()
+    var translatedCourses = [String]()
     @IBOutlet weak var collectionView: UICollectionView!
     let identifier = "customisation_cell"
 //    let storyboard = UIStoryboard(name: "main", bundle: nil)
@@ -27,6 +28,8 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        courses = self.df.courses
+        translatedCourses = self.df.translatedCourses
         self.collectionView.register(UINib(nibName: "ColourViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
     }
     
@@ -58,7 +61,7 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let s = storyboard?.instantiateViewController(withIdentifier: "ColourPickerView") as? ColourPickerView {
-            s.course = self.courses[indexPath.item]
+            s.course = self.translatedCourses[indexPath.item]
             s.internalCourse = self.courses[indexPath.item]
             s.currentIndexPath = indexPath
             self.present(s, animated: true)
@@ -105,8 +108,10 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! ColourViewCell
-        cell.label.text = self.courses[indexPath.item]
+        cell.label.text = self.translatedCourses[indexPath.item]
         cell.colorView.layer.cornerRadius = cell.colorView.frame.height / 2
+        cell.colorView.layer.borderWidth = 0.4
+        cell.colorView.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.colorView.backgroundColor = self.df.getColourPalette()[prefs.integer(forKey: "colour-index-\(courses[indexPath.item])")]
         cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell

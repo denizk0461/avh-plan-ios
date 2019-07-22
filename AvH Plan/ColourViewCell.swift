@@ -12,4 +12,5 @@ class ColourViewCell: GenericViewCell {
     
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
 }

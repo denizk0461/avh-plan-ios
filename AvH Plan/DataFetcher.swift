@@ -279,7 +279,7 @@ class DataFetcher {
     }
     
     func getColourPaletteNames() -> [String] {
-        return ["White", "Red", "Orange", "Yellow", "Green", "Cyan", "Light Blue", "Blue", "Purple", "Pink", "Brown", "Grey"]
+        return [NSLocalizedString("white", comment: ""), NSLocalizedString("red", comment: ""), NSLocalizedString("orange", comment: ""), NSLocalizedString("yellow", comment: ""), NSLocalizedString("green", comment: ""), NSLocalizedString("cyan", comment: ""), NSLocalizedString("lightblue", comment: ""), NSLocalizedString("blue", comment: ""), NSLocalizedString("purple", comment: ""), NSLocalizedString("pink", comment: ""), NSLocalizedString("brown", comment: ""), NSLocalizedString("grey", comment: "")]
     }
     
     func getColour(for course: String) -> UIColor {
@@ -337,4 +337,8 @@ class DataFetcher {
             return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         }
     }
+    
+    let courses = ["German", "English", "French", "Spanish", "Latin", "Turkish", "Chinese", "Arts", "Music", "Theatre", "Geography", "History", "Politics", "Philosophy", "Religion", "Maths", "Biology", "Chemistry", "Physics", "CompSci", "PhysEd", "GLL", "WAT", "Forder", "WP"]
+    
+    let translatedCourses = [NSLocalizedString("german", comment: ""), NSLocalizedString("english", comment: ""), NSLocalizedString("french", comment: ""), NSLocalizedString("spanish", comment: ""), NSLocalizedString("latin", comment: ""), NSLocalizedString("turkish", comment: ""), NSLocalizedString("chinese", comment: ""), NSLocalizedString("arts", comment: ""), NSLocalizedString("music", comment: ""), NSLocalizedString("theatre", comment: ""), NSLocalizedString("geography", comment: ""), NSLocalizedString("history", comment: ""), NSLocalizedString("politics", comment: ""), NSLocalizedString("philosophy", comment: ""), NSLocalizedString("religion", comment: ""), NSLocalizedString("mathematics", comment: ""), NSLocalizedString("biology", comment: ""), NSLocalizedString("chemistry", comment: ""), NSLocalizedString("physics", comment: ""), NSLocalizedString("compsci", comment: ""), NSLocalizedString("physed", comment: ""), NSLocalizedString("gll", comment: ""), NSLocalizedString("wat", comment: ""), NSLocalizedString("forder", comment: ""), NSLocalizedString("wp", comment: "")]
 }

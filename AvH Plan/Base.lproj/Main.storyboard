@@ -22,7 +22,13 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <viewLayoutGuide key="safeArea" id="b9C-lJ-bz8"/>
                                 <items>
-                                    <navigationItem title="AvH Plan" id="b1q-oE-Z8h"/>
+                                    <navigationItem title="AvH Plan" id="b1q-oE-Z8h">
+                                        <barButtonItem key="rightBarButtonItem" title="Customize" id="meV-sG-wBX">
+                                            <connections>
+                                                <segue destination="8XB-jK-YFD" kind="show" id="UX9-mg-MGy"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -382,4 +388,7 @@
         <image name="ic_tomato" width="25" height="25"/>
         <image name="ic_writing" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="UX9-mg-MGy"/>
+    </inferredMetricsTieBreakers>
 </document>
