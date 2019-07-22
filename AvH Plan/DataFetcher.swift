@@ -34,8 +34,8 @@ class DataFetcher {
     
     func doAsync(do task: String, completionHandler: @escaping (_ substitutions: [Any]) -> ()) {
         DispatchQueue(label: "work-queue").async {
-            let foodUrl = "https://djd4rkn355.github.io/food_test.html"
-            let url = "https://djd4rkn355.github.io/subst_test.html"
+            let foodUrl = "https://djd4rkn355.github.io/food.html"
+            let url = "https://djd4rkn355.github.io/subst.html"
             Alamofire.request(url).responseString { response in
                 if let html = response.result.value {
                     Alamofire.request(foodUrl).responseString { response in
@@ -54,6 +54,7 @@ class DataFetcher {
         var info = ""
         var infoList = [String]()
         var menuList = [String]()
+        var isPersonalEmpty = true
         do {
             let doc = try SwiftSoup.parse(html)
             
@@ -112,6 +113,7 @@ class DataFetcher {
                             let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
                                                                  date <- mDate, time <- mTime, room <- mRoom)
                             _ = try db.run(insertPersonal)
+                            isPersonalEmpty = false
                         }
                     }
                 } else if courses != nil && courses != "" && classes != nil && classes != "" {
@@ -123,11 +125,18 @@ class DataFetcher {
                                 let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
                                                                      date <- mDate, time <- mTime, room <- mRoom)
                                 _ = try db.run(insertPersonal)
+                                isPersonalEmpty = false
                             }
                         }
                     }
                 }
                 
+            }
+            
+            if isPersonalEmpty {
+                personalSubst.append(SubstModel(group: NSLocalizedString("personal_plan_empty", comment: ""), course: "", additional: "", date: "", time: "", room: ""))
+                let insertPersonal = personal.insert(group <- NSLocalizedString("personal_plan_empty", comment: ""), course <- "", additional <- "", date <- "", time <- "", room <- "")
+                _ = try db.run(insertPersonal)
             }
             
             let pi: Elements = try doc.select("p")
