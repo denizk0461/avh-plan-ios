@@ -101,7 +101,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Customize" id="9Pf-pB-wLS">
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="PWA-cp-z6o">
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="PWA-cp-z6o">
                                             <connections>
                                                 <action selector="done:" destination="8XB-jK-YFD" id="7wR-PO-v0i"/>
                                             </connections>
@@ -216,7 +216,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="HYG-gj-KYl">
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="ZI8-Ec-yYU">
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="ZI8-Ec-yYU">
                                             <connections>
                                                 <action selector="done:" destination="xQo-mK-Kfi" id="DK7-6I-kUG"/>
                                             </connections>
