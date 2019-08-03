@@ -100,7 +100,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hWP-3N-RUn">
-                                <rect key="frame" x="8" y="352" width="398" height="486"/>
+                                <rect key="frame" x="8" y="352" width="398" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="sCM-Sc-0Zw" customClass="MagazineLayout" customModule="MagazineLayout"/>
                                 <cells/>
@@ -131,7 +131,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="iN7-lf-GS3" firstAttribute="bottom" secondItem="hWP-3N-RUn" secondAttribute="bottom" constant="24" id="3pJ-hl-GCJ"/>
+                            <constraint firstItem="iN7-lf-GS3" firstAttribute="bottom" secondItem="hWP-3N-RUn" secondAttribute="bottom" id="3pJ-hl-GCJ"/>
                             <constraint firstItem="TpM-Mz-EpI" firstAttribute="leading" secondItem="iN7-lf-GS3" secondAttribute="leading" constant="24" id="7Ng-ON-AQ6"/>
                             <constraint firstItem="bCV-w1-hVY" firstAttribute="top" secondItem="TpM-Mz-EpI" secondAttribute="bottom" constant="16" id="9ex-Jw-qBO"/>
                             <constraint firstItem="hkV-XP-jXe" firstAttribute="top" secondItem="69O-Fo-TQF" secondAttribute="bottom" constant="16" id="9fR-TP-JaT"/>
@@ -322,11 +322,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Plan-->
+        <!--General-->
         <scene sceneID="wZh-Nl-baJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u5k-1S-jRe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Plan" image="ic_writing" selectedImage="ic_writing" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="General" image="ic_writing" selectedImage="ic_writing" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="eWV-1q-K0n">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -406,6 +406,6 @@
         <image name="ic_writing" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OZ6-ZZ-xdo"/>
+        <segue reference="0Bb-6a-gkf"/>
     </inferredMetricsTieBreakers>
 </document>

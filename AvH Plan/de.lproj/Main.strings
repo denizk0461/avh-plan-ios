@@ -1,4 +1,3 @@
-
 /* Class = "UITabBarController"; title = "AvH Plan"; ObjectID = "49e-Tb-3d3"; */
 "49e-Tb-3d3.title" = "AvH-Plan";
 
@@ -11,14 +10,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "6H8-lj-boN"; */
 "6H8-lj-boN.text" = "Label";
 
-/* Class = "UINavigationItem"; title = "Personal Plan"; ObjectID = "8j4-CR-EDO"; */
-"8j4-CR-EDO.title" = "Dein Plan";
-
 /* Class = "UINavigationItem"; title = "Customize"; ObjectID = "9Pf-pB-wLS"; */
 "9Pf-pB-wLS.title" = "Anpassen";
-
-/* Class = "UINavigationItem"; title = "Information"; ObjectID = "9lv-eD-jS6"; */
-"9lv-eD-jS6.title" = "Informationen";
 
 /* Class = "UIViewController"; title = "AvH Plan"; ObjectID = "9pv-A4-QxB"; */
 "9pv-A4-QxB.title" = "AvH-Plan";
@@ -30,9 +23,9 @@
 "HYG-gj-KYl.title" = "Title";
 
 /* Class = "UITabBarItem"; title = "Menu"; ObjectID = "IfX-2p-YWq"; */
-"IfX-2p-YWq.title" = "Speiseplan";
+"IfX-2p-YWq.title" = "Menü";
 
-/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "PWA-cp-z6o"; */
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "PWA-cp-z6o"; */
 "PWA-cp-z6o.title" = "Speichern";
 
 /* Class = "UITextField"; accessibilityHint = "Name"; ObjectID = "TpM-Mz-EpI"; */
@@ -41,14 +34,11 @@
 /* Class = "UITextField"; placeholder = "Your name"; ObjectID = "TpM-Mz-EpI"; */
 "TpM-Mz-EpI.placeholder" = "Dein Name";
 
-/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "ZI8-Ec-yYU"; */
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "ZI8-Ec-yYU"; */
 "ZI8-Ec-yYU.title" = "Speichern";
 
-/* Class = "UITabBarItem"; title = "Plan"; ObjectID = "acW-dT-cKf"; */
-"acW-dT-cKf.title" = "Plan";
-
-/* Class = "UINavigationItem"; title = "AvH Plan"; ObjectID = "b1q-oE-Z8h"; */
-"b1q-oE-Z8h.title" = "AvH-Plan";
+/* Class = "UITabBarItem"; title = "General"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "Allgemein";
 
 /* Class = "UITextField"; accessibilityHint = "Classes"; ObjectID = "bCV-w1-hVY"; */
 "bCV-w1-hVY.accessibilityHint" = "Klassen";
@@ -56,19 +46,14 @@
 /* Class = "UITextField"; placeholder = "Your classes"; ObjectID = "bCV-w1-hVY"; */
 "bCV-w1-hVY.placeholder" = "Deine Klassen";
 
+/* Class = "UIBarButtonItem"; title = "Customize"; ObjectID = "bae-uC-OAx"; */
+"bae-uC-OAx.title" = "Anpassen";
+
 /* Class = "UITabBarItem"; title = "Personal"; ObjectID = "cPa-gy-q4n"; */
 "cPa-gy-q4n.title" = "Persönlich";
 
 /* Class = "UILabel"; text = "Default plan"; ObjectID = "hkV-XP-jXe"; */
 "hkV-XP-jXe.text" = "Standardplan";
-
-/* Class = "UIBarButtonItem"; title = "Customize"; ObjectID = "iH8-LX-SKF"; */
-"iH8-LX-SKF.title" = "Anpassen";
-
-"meV-sG-wBX.title" = "Anpassen";
-
-/* Class = "UINavigationItem"; title = "Food Menu"; ObjectID = "mFX-6q-tAs"; */
-"mFX-6q-tAs.title" = "Speiseplan";
 
 /* Class = "UISegmentedControl"; omP-RH-Hlh.segmentTitles[0] = "General"; ObjectID = "omP-RH-Hlh"; */
 "omP-RH-Hlh.segmentTitles[0]" = "Allgemein";
@@ -79,6 +64,5 @@
 /* Class = "UILabel"; text = "Custom colours"; ObjectID = "rks-gf-AM4"; */
 "rks-gf-AM4.text" = "Benutzerdefinierte Farben";
 
-"bae-uC-OAx.text" = "Anpassen";
-
-"zsF-Jh-U3n.text" = "Anpassen";
+/* Class = "UIBarButtonItem"; title = "Customize"; ObjectID = "zsF-Jh-U3n"; */
+"zsF-Jh-U3n.title" = "Anpassen";

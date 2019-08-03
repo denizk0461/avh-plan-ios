@@ -58,7 +58,6 @@
 		589FBD2CE6A9C73CD9B81441 /* Pods-AvH PlanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AvH PlanUITests.release.xcconfig"; path = "Target Support Files/Pods-AvH PlanUITests/Pods-AvH PlanUITests.release.xcconfig"; sourceTree = "<group>"; };
 		74EDE3D8134812AB76BEB988 /* Pods_AvH_PlanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_PlanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7605BB0678C9E27A1D3E9DAA /* Pods_AvH_Plan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_Plan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A920726022E5BAD8001B3D46 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		A957A74F22DDC15500E0A2ED /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		A957A75022DDC15500E0A2ED /* MenuViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewCell.xib; sourceTree = "<group>"; };
 		A958A92322DF5388007052B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -77,6 +76,7 @@
 		A96133A32299867A00B541D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPlanViewController.swift; sourceTree = "<group>"; };
 		A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPlanViewController.swift; sourceTree = "<group>"; };
+		A989B31122F58D4700353714 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		A996BFF322E05AAB00E7BE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		A996BFFC22E05AAB00E7BE42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A996BFFD22E05AAB00E7BE42 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -523,7 +523,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A96133862299867400B541D4 /* Base */,
-				A920726022E5BAD8001B3D46 /* de */,
+				A989B31122F58D4700353714 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
