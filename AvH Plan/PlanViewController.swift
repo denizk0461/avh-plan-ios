@@ -35,7 +35,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: getToolbarBottomAnchor()),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor), // getToolbarBottomAnchor()),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             ])
         collectionView.register(UINib(nibName: "PlanViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)

@@ -35,7 +35,7 @@ class DataFetcher {
     func doAsync(do task: String, completionHandler: @escaping (_ substitutions: [Any]) -> ()) {
         DispatchQueue(label: "work-queue").async {
             let foodUrl = "https://djd4rkn355.github.io/food.html"
-            let url = "https://djd4rkn355.github.io/subst.html"
+            let url = "https://djd4rkn355.github.io/subst_test.html"
             Alamofire.request(url).responseString { response in
                 if let html = response.result.value {
                     Alamofire.request(foodUrl).responseString { response in
@@ -139,14 +139,12 @@ class DataFetcher {
                 _ = try db.run(insertPersonal)
             }
             
+            let lastUpdated = try doc.select("h1").get(0).text()
+            info = "\(NSLocalizedString("last_updated", comment: ""))\(lastUpdated)."
             let pi: Elements = try doc.select("p")
             
             for item in pi {
-                if info.isEmpty {
-                    info = try item.text()
-                } else {
-                    info += "\n\n\(try item.text())"
-                }
+                info += "\n\n\(try item.text())"
             }
             _ = prefs.set(info, forKey: "information")
             

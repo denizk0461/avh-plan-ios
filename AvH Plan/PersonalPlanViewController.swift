@@ -10,7 +10,6 @@ import UIKit
 
 class PersonalPlanViewController: PlanViewController {
     
-    @IBOutlet weak var toolbar: UINavigationBar!
     let prefs = UserDefaults.standard
     
     @IBAction func toolbarButtonCustomise(_ sender: UIBarButtonItem) {
@@ -44,9 +43,9 @@ class PersonalPlanViewController: PlanViewController {
         let user = self.prefs.string(forKey: "username")
         if (user != nil && user != "") {
             if (user!.last == "x" || user!.last == "s" || user!.last == "z") {
-                self.toolbar!.topItem!.title = "\(user!)\(NSLocalizedString("nosplan", comment: ""))"
+                self.navigationController?.navigationBar.topItem?.title = "\(user!)\(NSLocalizedString("nosplan", comment: ""))"
             } else {
-                self.toolbar!.topItem!.title = "\(user!)\(NSLocalizedString("splan", comment: ""))"
+                self.navigationController?.navigationBar.topItem?.title = "\(user!)\(NSLocalizedString("splan", comment: ""))"
             }
         }
     }
@@ -61,10 +60,6 @@ class PersonalPlanViewController: PlanViewController {
     
     override func getFromDatabase() -> [SubstModel] {
         return df.getPersonalFromDatabase()
-    }
-    
-    override func getToolbarBottomAnchor() -> NSLayoutYAxisAnchor {
-        return toolbar.bottomAnchor
     }
 
 }

@@ -9,11 +9,10 @@
 import UIKit
 
 class GeneralViewController: PlanViewController {
-    
-    @IBOutlet weak var toolbar: UINavigationBar!    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("avh_plan", comment: "")
     }
     
     override func getViewType() -> String {
@@ -26,10 +25,6 @@ class GeneralViewController: PlanViewController {
     
     override func getFromDatabase() -> [SubstModel] {
         return df.getFromDatabase()
-    }
-
-    override func getToolbarBottomAnchor() -> NSLayoutYAxisAnchor {
-        return toolbar.bottomAnchor
     }
     
     /*

@@ -24,8 +24,6 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var txtCourses: UITextField!
     @IBOutlet weak var defaultSegments: UISegmentedControl!
     
-    @IBOutlet weak var toolbar: UINavigationBar!
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         courses = self.df.courses

@@ -30,6 +30,11 @@ class InfoViewController : UIViewController {
         content.text = df.readInformation()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("information", comment: "")
+    }
+    
     @objc private func objDoAsync(_ sender: Any) {
         self.df.doAsync(do: "info") { infoArray in
             self.content.text = infoArray[0] as? String

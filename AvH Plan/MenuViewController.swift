@@ -14,7 +14,6 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
     var items = [String]()
     private let refreshControl = UIRefreshControl()
     let df = DataFetcher.sharedInstance
-    @IBOutlet weak var toolbar: UINavigationBar!
     let layout = MagazineLayout()
     var collectionView: UICollectionView
     let identifier = "menu_cell"
@@ -32,7 +31,7 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: self.toolbar.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         collectionView.register(UINib(nibName: "MenuViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
@@ -51,6 +50,11 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
         
         self.items = self.df.readMenu()
         self.collectionView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("food_menu", comment: "")
     }
     
     @objc private func objDoAsync(_ sender: Any) {
@@ -73,10 +77,6 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
 
         cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("You selected cell#\(indexPath.item)!")
     }
     
     // generated stubs filled with return values
