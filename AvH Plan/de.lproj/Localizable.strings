@@ -1,0 +1,66 @@
+/* 
+  Localizable.strings
+  AvH Plan
+
+  Created by Deniz Duezgoeren on 17.07.19.
+  Copyright © 2019 Deniz Duezgoeren. All rights reserved.
+*/
+
+"fetch_plan" = "Aktualisiere den Plan...";
+"fetch_personal" = "Aktualisiere deinen Plan...";
+"fetch_info" = "Aktualisiere die Infos...";
+"fetch_menu" = "Aktualisiere den Speiseplan...";
+"name" = "Name";
+"classes" = "Klassen";
+"courses" = "Kurse";
+"splan" = "s Plan";
+"nosplan" = "' Plan";
+"customize_alert_title" = "Passe persönliche Einstellungen an";
+"german" = "Deutsch (+ DAZ)";
+"english" = "Englisch (+ ENA)";
+"french" = "Französisch";
+"spanish" = "Spanisch";
+"latin" = "Latein";
+"turkish" = "Türkisch";
+"chinese" = "Chinesisch";
+"arts" = "Kunst";
+"music" = "Musik";
+"theatre" = "Darstellendes Spiel";
+"geography" = "Geographie & WUK";
+"history" = "Geschichte";
+"politics" = "Politik";
+"philosophy" = "Philosophie";
+"religion" = "Religion";
+"mathematics" = "Mathematik";
+"biology" = "Biologie & Naturwissenschaften";
+"chemistry" = "Chemie";
+"physics" = "Physik";
+"compsci" = "Informatik";
+"physed" = "Sport";
+"gll" = "GLL";
+"wat" = "WAT";
+"forder" = "Förderunterricht";
+"wp" = "WP & Methodenstunde";
+
+"white" = "Weiß";
+"red" = "Rot";
+"orange" = "Orange";
+"yellow" = "Gelb";
+"green" = "Grün";
+"cyan" = "Cyan";
+"lightblue" = "Hellblau";
+"blue" = "Blau";
+"purple" = "Violett";
+"pink" = "Pink";
+"brown" = "Braun";
+"grey" = "Grau";
+"personal_plan_empty" = "Dein Plan ist leer :(";
+
+// titles
+"avh_plan" = "AvH-Plan";
+"information" = "Informationen";
+"food_menu" = "Speiseplan";
+
+"last_updated" = "Zuletzt aktualisiert: ";
+"back" = "Zurück";
+"your_plan" = "Dein Plan";

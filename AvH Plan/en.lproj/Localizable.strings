@@ -1,0 +1,67 @@
+/* 
+  Localizable.strings
+  AvH Plan
+
+  Created by Deniz Duezgoeren on 17.07.19.
+  Copyright © 2019 Deniz Duezgoeren. All rights reserved.
+*/
+
+"fetch_plan" = "Fetching the plan...";
+"fetch_personal" = "Fetching your plan...";
+"fetch_info" = "Fetching some information...";
+"fetch_menu" = "Fetching the menu...";
+"name" = "Name";
+"classes" = "Classes";
+"courses" = "Courses";
+"splan" = "'s Plan";
+"nosplan" = "' Plan";
+"customize_alert_title" = "Customize personal page";
+
+"german" = "German (+ as a second language)";
+"english" = "English (+ for beginners)";
+"french" = "French";
+"spanish" = "Spanish";
+"latin" = "Latin";
+"turkish" = "Turkish";
+"chinese" = "Chinese";
+"arts" = "Arts";
+"music" = "Music";
+"theatre" = "Theatre";
+"geography" = "Geography & WUK";
+"history" = "History";
+"politics" = "Politics";
+"philosophy" = "Philosophy";
+"religion" = "Religion";
+"mathematics" = "Mathematics";
+"biology" = "Biology & Natural Sciences";
+"chemistry" = "Chemistry";
+"physics" = "Physics";
+"compsci" = "Computer Science";
+"physed" = "Physical Education";
+"gll" = "GLL";
+"wat" = "WAT";
+"forder" = "Special Education";
+"wp" = "WP & Methodenstunde";
+
+"white" = "White";
+"red" = "Red";
+"orange" = "Orange";
+"yellow" = "Yellow";
+"green" = "Green";
+"cyan" = "Cyan";
+"lightblue" = "Light blue";
+"blue" = "Blue";
+"purple" = "Purple";
+"pink" = "Pink";
+"brown" = "Brown";
+"grey" = "Grey";
+"personal_plan_empty" = "Your plan is empty :(";
+
+// titles
+"avh_plan" = "AvH Plan";
+"information" = "Information";
+"food_menu" = "Food Menu";
+
+"last_updated" = "Last updated: ";
+"back" = "Back";
+"your_plan" = "Your Plan";

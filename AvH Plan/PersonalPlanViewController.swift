@@ -41,13 +41,17 @@ class PersonalPlanViewController: PlanViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let user = self.prefs.string(forKey: "username")
+        var navigationBarTitle = ""
         if (user != nil && user != "") {
             if (user!.last == "x" || user!.last == "s" || user!.last == "z") {
-                self.navigationController?.navigationBar.topItem?.title = "\(user!)\(NSLocalizedString("nosplan", comment: ""))"
+                navigationBarTitle = "\(user!)\(NSLocalizedString("nosplan", comment: ""))"
             } else {
-                self.navigationController?.navigationBar.topItem?.title = "\(user!)\(NSLocalizedString("splan", comment: ""))"
+                navigationBarTitle = "\(user!)\(NSLocalizedString("splan", comment: ""))"
             }
+        } else {
+            navigationBarTitle = NSLocalizedString("your_plan", comment: "")
         }
+        self.navigationController?.navigationBar.topItem?.title = navigationBarTitle
     }
     
     override func getViewType() -> String {
