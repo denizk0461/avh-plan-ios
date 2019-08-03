@@ -35,7 +35,7 @@ class DataFetcher {
     func doAsync(do task: String, completionHandler: @escaping (_ substitutions: [Any]) -> ()) {
         DispatchQueue(label: "work-queue").async {
             let foodUrl = "https://djd4rkn355.github.io/food.html"
-            let url = "https://djd4rkn355.github.io/subst_test.html"
+            let url = "https://djd4rkn355.github.io/subst.html"
             Alamofire.request(url).responseString { response in
                 if let html = response.result.value {
                     Alamofire.request(foodUrl).responseString { response in
