@@ -84,12 +84,19 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! PlanViewCell
         cell.group.text = self.substs[indexPath.item].group
         cell.additional.text = self.substs[indexPath.item].additional
-        cell.date.text = self.substs[indexPath.item].date
         cell.time.text = self.substs[indexPath.item].time
-        cell.room.text = self.substs[indexPath.item].room
+        cell.date.text = self.substs[indexPath.item].date
         
         let course = self.substs[indexPath.item].course
         let image = df.getImage(from: course)
+        
+        let roomMutable = NSMutableAttributedString(string: self.substs[indexPath.item].room)
+        let room = self.substs[indexPath.item].room
+        if let qmark = room.firstIndex(of: "?") {
+            let distance = room.distance(from: room.startIndex, to: qmark)
+            roomMutable.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, distance))
+        }
+        cell.room.attributedText = roomMutable
         
         if image != nil {
             let attachment: NSTextAttachment = NSTextAttachment()
