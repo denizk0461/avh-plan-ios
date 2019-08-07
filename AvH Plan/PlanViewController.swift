@@ -94,6 +94,8 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         cell.additional.text = self.substs[indexPath.item].additional
         cell.time.text = self.substs[indexPath.item].time
         
+        var psa = false
+        
         let course = self.substs[indexPath.item].course
         var image = df.getImage(from: course)
         
@@ -107,12 +109,13 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
                 url = "\(dateString[dateString.index(dateString.startIndex, offsetBy: 3)...])"
                 indexOfPSA = indexPath.item
             }
-            image = UIImage(named: "ic_idea")
+            image = UIImage(named: "ic_idea_w")
             cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             cell.tintView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             cell.group.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.course.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.additional.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            psa = true
         } else {
             cell.date.text = self.substs[indexPath.item].date
             cell.group.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -137,9 +140,13 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             }
             attachment.image = image
             
-            let courseImage = NSMutableAttributedString(attachment: attachment)
+            let courseImage = NSMutableAttributedString(string: "")
+            courseImage.append(NSAttributedString(attachment: attachment))
             let courseString = NSAttributedString(string: " \(course)")
             courseImage.append(courseString)
+            if psa == true {
+                courseImage.addAttribute(NSAttributedString.Key.foregroundColor, value: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), range: NSMakeRange(0, 3))
+            }
             
             cell.course.attributedText = courseImage
         } else {
