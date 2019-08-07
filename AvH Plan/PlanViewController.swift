@@ -17,6 +17,8 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     let df = DataFetcher.sharedInstance
     let layout = MagazineLayout()
     var collectionView: UICollectionView
+    var url = ""
+    var indexOfPSA: Int? = nil
     
     required init?(coder decoder: NSCoder) {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -80,15 +82,43 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         return self.substs.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexOfPSA == indexPath.item {
+            UIApplication.shared.open(URL(string: url)!)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! PlanViewCell
         cell.group.text = self.substs[indexPath.item].group
         cell.additional.text = self.substs[indexPath.item].additional
         cell.time.text = self.substs[indexPath.item].time
-        cell.date.text = self.substs[indexPath.item].date
         
         let course = self.substs[indexPath.item].course
-        let image = df.getImage(from: course)
+        var image = df.getImage(from: course)
+        
+        cell.backgroundColor = self.df.getColour(for: course)
+        cell.tintView.backgroundColor = cell.backgroundColor
+        
+        let dateString = self.substs[indexPath.item].date
+        if dateString.count > 2 && dateString[dateString.startIndex...dateString.index(dateString.startIndex, offsetBy: 2)] == "psa" {
+            cell.date.text = ""
+            if dateString.count > 9 && dateString[dateString.index(dateString.startIndex, offsetBy: 3)...dateString.index(dateString.startIndex, offsetBy: 6)] == "http" {
+                url = "\(dateString[dateString.index(dateString.startIndex, offsetBy: 3)...])"
+                indexOfPSA = indexPath.item
+            }
+            image = UIImage(named: "ic_idea")
+            cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+            cell.tintView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+            cell.group.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.course.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.additional.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        } else {
+            cell.date.text = self.substs[indexPath.item].date
+            cell.group.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.course.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.additional.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
         
         let roomMutable = NSMutableAttributedString(string: self.substs[indexPath.item].room)
         let room = self.substs[indexPath.item].room
@@ -100,7 +130,11 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         
         if image != nil {
             let attachment: NSTextAttachment = NSTextAttachment()
-            attachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
+            if indexOfPSA == indexPath.item {
+                attachment.bounds = CGRect(x: 0, y: 0, width: 11, height: 16)
+            } else {
+                attachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
+            }
             attachment.image = image
             
             let courseImage = NSMutableAttributedString(attachment: attachment)
@@ -112,8 +146,6 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             cell.course.text = course
         }
         
-        cell.backgroundColor = self.df.getColour(for: course)
-        cell.tintView.backgroundColor = cell.backgroundColor
         return cell
     }
     

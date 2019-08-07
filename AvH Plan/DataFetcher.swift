@@ -35,7 +35,7 @@ class DataFetcher {
     func doAsync(do task: String, completionHandler: @escaping (_ substitutions: [Any]) -> ()) {
         DispatchQueue(label: "work-queue").async {
             let foodUrl = "https://djd4rkn355.github.io/food.html"
-            let url = "https://djd4rkn355.github.io/subst_test.html"
+            let url = "https://djd4rkn355.github.io/subst.html"
             Alamofire.request(url).responseString { response in
                 if let html = response.result.value {
                     Alamofire.request(foodUrl).responseString { response in
@@ -104,8 +104,13 @@ class DataFetcher {
                 let insert = substitutions.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
                                                   date <- mDate, time <- mTime, room <- mRoom)
                 _ = try db.run(insert)
-                
-                if courses == nil || courses == "", classes != nil && classes != "" {
+                if mDate.count > 2 && mDate[...mDate.index(mDate.startIndex, offsetBy: 2)] == "psa" {
+                    personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
+                    date: mDate, time: mTime, room: mRoom))
+                    let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
+                                                         date <- mDate, time <- mTime, room <- mRoom)
+                    _ = try db.run(insertPersonal)
+                } else if courses == nil || courses == "", classes != nil && classes != "" {
                     if !mGroup.isEmpty && mGroup != "" {
                         if classes!.contains(mGroup) || mGroup.contains(classes!) {
                             personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
