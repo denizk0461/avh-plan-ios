@@ -90,9 +90,6 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! PlanViewCell
-        cell.group.text = self.substs[indexPath.item].group
-        cell.additional.text = self.substs[indexPath.item].additional
-        cell.time.text = self.substs[indexPath.item].time
         
         var psa = false
         
@@ -123,13 +120,20 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             cell.additional.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
         
-        let roomMutable = NSMutableAttributedString(string: self.substs[indexPath.item].room)
-        let room = self.substs[indexPath.item].room
-        if let qmark = room.firstIndex(of: "?") {
-            let distance = room.distance(from: room.startIndex, to: qmark)
-            roomMutable.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, distance))
+        let mutableStrings = [NSMutableAttributedString(string: self.substs[indexPath.item].group), NSMutableAttributedString(string: self.substs[indexPath.item].time), NSMutableAttributedString(string: self.substs[indexPath.item].course), NSMutableAttributedString(string: self.substs[indexPath.item].room)]
+        let strings = [self.substs[indexPath.item].group, self.substs[indexPath.item].time, self.substs[indexPath.item].course, self.substs[indexPath.item].room]
+        
+        for i in 0..<4 {
+            if let qmark = strings[i].firstIndex(of: "?") {
+                let distance = strings[i].distance(from: strings[i].startIndex, to: qmark)
+                mutableStrings[i].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, distance))
+            }
         }
-        cell.room.attributedText = roomMutable
+        
+        cell.group.attributedText = mutableStrings[0]
+        cell.additional.text = self.substs[indexPath.item].additional
+        cell.time.attributedText = mutableStrings[1]
+        cell.room.attributedText = mutableStrings[3]
         
         if image != nil {
             let attachment: NSTextAttachment = NSTextAttachment()
@@ -142,7 +146,8 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             
             let courseImage = NSMutableAttributedString(string: "")
             courseImage.append(NSAttributedString(attachment: attachment))
-            let courseString = NSAttributedString(string: " \(course)")
+            courseImage.append(NSAttributedString(string: " "))
+            let courseString = mutableStrings[2]
             courseImage.append(courseString)
             if psa == true {
                 courseImage.addAttribute(NSAttributedString.Key.foregroundColor, value: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), range: NSMakeRange(0, 3))
@@ -150,7 +155,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             
             cell.course.attributedText = courseImage
         } else {
-            cell.course.text = course
+            cell.course.attributedText = mutableStrings[2]
         }
         
         return cell
@@ -159,7 +164,20 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     // stubs
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
-        let widthMode = MagazineLayoutItemWidthMode.fullWidth(respectsHorizontalInsets: true)
+        var widthMode: MagazineLayoutItemWidthMode
+        if UIDevice.current.userInterfaceIdiom == .pad { // iPad
+            if UIDevice.current.orientation.isLandscape {
+                widthMode = MagazineLayoutItemWidthMode.thirdWidth
+            } else {
+                widthMode = MagazineLayoutItemWidthMode.halfWidth
+            }
+        } else { // iPhone
+            if UIDevice.current.orientation.isLandscape {
+                widthMode = MagazineLayoutItemWidthMode.halfWidth
+            } else {
+                widthMode = MagazineLayoutItemWidthMode.fullWidth(respectsHorizontalInsets: true)
+            }
+        }
         let heightMode = MagazineLayoutItemHeightMode.dynamic
         return MagazineLayoutItemSizeMode(widthMode: widthMode, heightMode: heightMode)
     }
