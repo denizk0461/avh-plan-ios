@@ -54,6 +54,17 @@
 "pink" = "Pink";
 "brown" = "Braun";
 "grey" = "Grau";
+"redA" = "Rot (Android)";
+"orangeA" = "Orange (Android)";
+"yellowA" = "Gelb (Android)";
+"greenA" = "Grün (Android)";
+"cyanA" = "Cyan (Android)";
+"lightblueA" = "Hellblau (Android)";
+"blueA" = "Blau (Android)";
+"purpleA" = "Violett (Android)";
+"pinkA" = "Pink (Android)";
+"brownA" = "Braun (Android)";
+
 "personal_plan_empty" = "Dein Plan ist leer :(";
 
 // titles
