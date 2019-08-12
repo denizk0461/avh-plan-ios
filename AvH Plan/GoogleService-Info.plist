@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>90133755549-74enm9fefgrj5v5009c11194qi71m09f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.90133755549-74enm9fefgrj5v5009c11194qi71m09f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA72p4vjr7gbrQ1Y1V7-AMYuwJTF7asgiI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>90133755549</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>denizd.AvH-Plan</string>
+	<key>PROJECT_ID</key>
+	<string>avh-plan</string>
+	<key>STORAGE_BUCKET</key>
+	<string>avh-plan.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:90133755549:ios:7f4e659b77a89ab9</string>
+	<key>DATABASE_URL</key>
+	<string>https://avh-plan.firebaseio.com</string>
+</dict>
+</plist>

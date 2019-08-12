@@ -1,6 +1,62 @@
 PODS:
   - Alamofire (4.8.2)
+  - Firebase/CoreOnly (6.6.0):
+    - FirebaseCore (= 6.2.0)
+  - Firebase/Messaging (6.6.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.1.2)
+  - FirebaseAnalyticsInterop (1.3.0)
+  - FirebaseCore (6.2.0):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.0.1):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.3):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMessaging (4.1.2):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Reachability (~> 6.2)
+    - GoogleUtilities/UserDefaults (~> 6.2)
+    - Protobuf (~> 3.1)
+  - GoogleDataTransport (1.1.0)
+  - GoogleDataTransportCCTSupport (1.0.1):
+    - GoogleDataTransport (~> 1.1)
+    - nanopb
+  - GoogleUtilities/AppDelegateSwizzler (6.2.4):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.2.4)
+  - GoogleUtilities/Logger (6.2.4):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Network (6.2.4):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.2.4)"
+  - GoogleUtilities/Reachability (6.2.4):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.2.4):
+    - GoogleUtilities/Logger
   - MagazineLayout (1.5.0)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Protobuf (3.9.0)
   - SQLite.swift (0.12.2):
     - SQLite.swift/standard (= 0.12.2)
   - SQLite.swift/standard (0.12.2)
@@ -8,6 +64,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Firebase/Messaging
   - MagazineLayout
   - SQLite.swift
   - SwiftSoup
@@ -15,16 +72,40 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Firebase
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
     - MagazineLayout
+    - nanopb
+    - Protobuf
     - SQLite.swift
     - SwiftSoup
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Firebase: a2b5951f30ff38fd3b3bdae9c7d340f940fd3c51
+  FirebaseAnalyticsInterop: 0f250d71e8741352407a8db351e6de78c5c56d35
+  FirebaseCore: 8c9e08bce0c72a3affd83927d8184cf244918bc8
+  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
+  FirebaseMessaging: ddd74d13644ef24cc4e2d95cabd1cf408e99b7b0
+  GoogleDataTransport: b0115dbdf1943c998628dca30800ddd263aaa166
+  GoogleDataTransportCCTSupport: 3451e7d8ba19093e533362a6d78d6d9014c6a037
+  GoogleUtilities: 64b5e3982b1b01bda26712affd5c523ef32563cf
   MagazineLayout: fe41dc2cf1923e3bf377cd8d906a4455a0bf9c83
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: 193891d247791f0b53f0dc2ae08ce321f2c24c0d
+PODFILE CHECKSUM: cc18f1bd84bd3b240d35a016b860932470b4d4a1
 
 COCOAPODS: 1.6.1
