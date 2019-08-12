@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerForRemoteNotifications()
         
-        Messaging.messaging().subscribe(toTopic: "substitutions") { error in
+        Messaging.messaging().subscribe(toTopic: "substitutions-ios") { error in
             print("Subscribed to substitutions topic")
         }
         return true
