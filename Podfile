@@ -11,6 +11,9 @@ target 'AvH Plan' do
   pod 'SQLite.swift'
   pod 'MagazineLayout'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~> 3.13.4'
 
   target 'AvH PlanTests' do
     inherit! :search_paths
