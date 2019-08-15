@@ -71,11 +71,15 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! MenuViewCell
-        if self.items.count != 0 {
-            cell.content.text = self.items[indexPath.item]
-        }
-
-        cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        cell.content.text = self.items[indexPath.item]
+        cell.tintView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        let layer = cell.tintView.layer
+        layer.cornerRadius = 12.0
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        layer.shadowRadius = 1.5
+        layer.shadowOpacity = 0.7
         return cell
     }
     

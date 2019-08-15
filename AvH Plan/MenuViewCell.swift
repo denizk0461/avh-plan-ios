@@ -11,4 +11,5 @@ import UIKit
 class MenuViewCell: GenericViewCell {
     
     @IBOutlet weak var content: UILabel!
+    @IBOutlet weak var tintView: UIView!
 }

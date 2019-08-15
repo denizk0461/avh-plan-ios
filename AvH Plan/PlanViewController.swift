@@ -96,8 +96,13 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         let course = self.substs[indexPath.item].course
         var image = df.getImage(from: course)
         
-        cell.backgroundColor = self.df.getColour(for: course)
-        cell.tintView.backgroundColor = cell.backgroundColor
+        let layer = cell.tintView.layer
+        layer.cornerRadius = 12.0
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        layer.shadowRadius = 1.5
+        layer.shadowOpacity = 0.7
+        cell.tintView.backgroundColor = self.df.getColour(for: course)
         
         let dateString = self.substs[indexPath.item].date
         if dateString.count > 2 && dateString[dateString.startIndex...dateString.index(dateString.startIndex, offsetBy: 2)] == "psa" {
@@ -107,7 +112,6 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
                 indexOfPSA = indexPath.item
             }
             image = UIImage(named: "ic_idea_w")
-            cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             cell.tintView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             cell.group.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.course.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
