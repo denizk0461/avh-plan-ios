@@ -34,7 +34,7 @@ class DataFetcher {
     
     func doAsync(do task: String, completionHandler: @escaping (_ substitutions: [Any]) -> ()) {
         DispatchQueue(label: "work-queue").async {
-            let foodUrl = "https://djd4rkn355.github.io/food.html"
+            let foodUrl = "https://djd4rkn355.github.io/food_test.html"
             let url = "https://djd4rkn355.github.io/subst.html"
             Alamofire.request(url).responseString { response in
                 if let html = response.result.value {
@@ -170,10 +170,32 @@ class DataFetcher {
             
             try db.run(foodmenu.delete())
             
+//            for i in 0..<ef.size() {
+//                menuList.append(try ef.get(i).text())
+//                let insert = foodmenu.insert(text <- try ef.get(i).text())
+//                _ = try db.run(insert)
+//            }
+            
+            var indices = [Int]()
+            let daysAndVon = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "von"]
             for i in 0..<ef.size() {
-                menuList.append(try ef.get(i).text())
-                let insert = foodmenu.insert(text <- try ef.get(i).text())
-                _ = try db.run(insert)
+                if checkStringForArray(s: try ef.get(i).text(), checking: daysAndVon) {
+                    indices.append(i)
+                }
+            }
+            indices.append(ef.size())
+            
+            for l in 0..<indices.count - 1 {
+                var s = ""
+                for i2 in indices[l]..<indices[l + 1] {
+                    if (s.isEmpty) {
+                        s = try ef.get(i2).text()
+                    } else {
+                        s += "\n\(try ef.get(i2).text())"
+                    }
+                }
+                menuList.append(s)
+                _ = try db.run(foodmenu.insert(text <- s))
             }
             
         } catch {}
@@ -189,6 +211,16 @@ class DataFetcher {
             return menuList
         }
     }
+    
+    private func checkStringForArray(s: String, checking: [String]) -> Bool {
+        for i in checking.indices {
+            if s.contains(checking[i]) {
+                return true
+            }
+        }
+        return false
+    }
+
     
     func getFromDatabase() -> [SubstModel] {
         var substs = [SubstModel]()
