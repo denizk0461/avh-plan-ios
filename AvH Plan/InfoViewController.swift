@@ -11,6 +11,7 @@ import UIKit
 class InfoViewController : UIViewController {
     
     @IBOutlet weak var content: UILabel!
+    @IBOutlet weak var contentView: UIView!
     let prefs = UserDefaults.standard
     @IBOutlet weak var scrollView: UIScrollView!
     private let refreshControl = UIRefreshControl()
@@ -33,6 +34,12 @@ class InfoViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("information", comment: "")
+        let layer = contentView.layer
+        layer.cornerRadius = 12.0
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        layer.shadowRadius = 1.5
+        layer.shadowOpacity = 0.7
     }
     
     @objc private func objDoAsync(_ sender: Any) {
