@@ -55,6 +55,7 @@ class DataFetcher {
         var infoList = [String]()
         var menuList = [String]()
         var isPersonalEmpty = true
+        var personalPlanCount = 0
         do {
             let doc = try SwiftSoup.parse(html)
             
@@ -119,6 +120,7 @@ class DataFetcher {
                                                                  date <- mDate, time <- mTime, room <- mRoom)
                             _ = try db.run(insertPersonal)
                             isPersonalEmpty = false
+                            personalPlanCount += 1
                         }
                     }
                 } else if courses != nil && courses != "" && classes != nil && classes != "" {
@@ -131,6 +133,7 @@ class DataFetcher {
                                                                      date <- mDate, time <- mTime, room <- mRoom)
                                 _ = try db.run(insertPersonal)
                                 isPersonalEmpty = false
+                                personalPlanCount += 1
                             }
                         }
                     }
@@ -138,6 +141,7 @@ class DataFetcher {
                 
             }
             
+            prefs.set(personalPlanCount, forKey: "personalPlanCount")
             if isPersonalEmpty {
                 personalSubst.append(SubstModel(group: NSLocalizedString("personal_plan_empty", comment: ""), course: "", additional: "", date: "", time: "", room: ""))
                 let insertPersonal = personal.insert(group <- NSLocalizedString("personal_plan_empty", comment: ""), course <- "", additional <- "", date <- "", time <- "", room <- "")

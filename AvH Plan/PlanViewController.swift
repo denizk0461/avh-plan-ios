@@ -9,6 +9,7 @@
 import UIKit
 import MagazineLayout
 import Crashlytics
+import Firebase
 
 class PlanViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateMagazineLayout {
     
@@ -16,6 +17,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     var substs = [SubstModel]()
     let refreshControl = UIRefreshControl()
     let df = DataFetcher.sharedInstance
+    let planPrefs = UserDefaults.standard
     let layout = MagazineLayout()
     var collectionView: UICollectionView
     var url = ""
@@ -33,12 +35,16 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        Messaging.messaging().subscribe(toTopic: "substitutions-ios")
+        Messaging.messaging().subscribe(toTopic: "substitutions-broadcast")
+        Crashlytics.sharedInstance().setUserIdentifier(UserDefaults.standard.string(forKey: "username"))
+        
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor), // getToolbarBottomAnchor()),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             ])
         collectionView.register(UINib(nibName: "PlanViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
@@ -80,6 +86,14 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             self.substs = substitutions as! [SubstModel]
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
+            if let tabItems = self.tabBarController?.tabBar.items {
+                let tabItem = tabItems[1]
+                if self.planPrefs.integer(forKey: "personalPlanCount") != 0 {
+                    tabItem.badgeValue = "\(self.planPrefs.integer(forKey: "personalPlanCount"))"
+                } else {
+                    tabItem.badgeValue = nil
+                }
+            }
         }
     }
     

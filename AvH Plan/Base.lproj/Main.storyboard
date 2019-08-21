@@ -163,12 +163,25 @@
                     <connections>
                         <outlet property="collectionView" destination="hWP-3N-RUn" id="RFo-DP-uPX"/>
                         <outlet property="defaultSegments" destination="omP-RH-Hlh" id="hVo-ND-9EG"/>
+                        <outlet property="textToolbar" destination="cDy-2Q-2zk" id="UlY-Aa-f41"/>
                         <outlet property="txtClasses" destination="bCV-w1-hVY" id="lDD-NQ-f8f"/>
                         <outlet property="txtCourses" destination="69O-Fo-TQF" id="AC7-pO-Jms"/>
                         <outlet property="txtName" destination="TpM-Mz-EpI" id="W0o-NR-E96"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fIE-1y-qpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="cDy-2Q-2zk">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Tsa-Dg-qek"/>
+                        <barButtonItem systemItem="done" id="nSG-vf-dVd">
+                            <connections>
+                                <action selector="textDismissButton:" destination="8XB-jK-YFD" id="aXf-TS-Wxk"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
             </objects>
             <point key="canvasLocation" x="2691" y="-514"/>
         </scene>

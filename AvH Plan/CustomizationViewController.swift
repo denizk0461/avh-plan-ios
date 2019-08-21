@@ -9,7 +9,7 @@
 import UIKit
 import MagazineLayout
 
-class CustomizationViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateMagazineLayout {
+class CustomizationViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateMagazineLayout, UITextFieldDelegate {
 
     var courses = [String]()
     var translatedCourses = [String]()
@@ -23,6 +23,16 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var txtClasses: UITextField!
     @IBOutlet weak var txtCourses: UITextField!
     @IBOutlet weak var defaultSegments: UISegmentedControl!
+    
+    @IBOutlet weak var textToolbar: UIToolbar!
+    
+    @IBAction func textDismissButton(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.inputAccessoryView = textToolbar
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,6 +54,10 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.txtName.delegate = self
+        self.txtClasses.delegate = self
+        self.txtCourses.delegate = self
         
         self.txtName.text = prefs.string(forKey: "username")
         self.txtClasses.text = prefs.string(forKey: "classes")

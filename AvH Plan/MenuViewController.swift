@@ -17,6 +17,7 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
     let layout = MagazineLayout()
     var collectionView: UICollectionView
     let identifier = "menu_cell"
+    let prefs = UserDefaults.standard
     
     required init?(coder decoder: NSCoder) {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -62,6 +63,14 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
             self.items = menuItems as! [String]
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
+            if let tabItems = self.tabBarController?.tabBar.items {
+                let tabItem = tabItems[1]
+                if self.prefs.integer(forKey: "personalPlanCount") != 0 {
+                    tabItem.badgeValue = "\(self.prefs.integer(forKey: "personalPlanCount"))"
+                } else {
+                    tabItem.badgeValue = nil
+                }
+            }
         }
     }
     
@@ -82,8 +91,6 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
         layer.shadowOpacity = 0.7
         return cell
     }
-    
-    // generated stubs filled with return values
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
         let widthMode = MagazineLayoutItemWidthMode.fullWidth(respectsHorizontalInsets: true)
