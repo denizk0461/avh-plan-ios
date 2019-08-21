@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().subscribe(toTopic: "substitutions-ios")
         Messaging.messaging().subscribe(toTopic: "substitutions-broadcast")
+        Crashlytics.sharedInstance().setUserIdentifier(UserDefaults.standard.string(forKey: "username"))
         return true
     }
 

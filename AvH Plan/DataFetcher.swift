@@ -262,58 +262,33 @@ class DataFetcher {
     func getImage(from icon: String) -> UIImage? {
         var imagePath = ""
         let i = icon.lowercased()
-        if i.contains("deu") || i.contains("dep") || i.contains("daz") {
-            imagePath = "ic_german"
-        } else if i.contains("mat") || i.contains("map") {
-            imagePath = "ic_maths"
-        } else if i.contains("eng") || i.contains("enp") || i.contains("ena") {
-            imagePath = "ic_english"
-        } else if i.contains("spo") || i.contains("spp") || i.contains("spth") {
-            imagePath = "ic_pe"
-        } else if i.contains("pol") || i.contains("pop") {
-            imagePath = "ic_politics"
-        } else if i.contains("dar") || i.contains("dap") {
-            imagePath = "ic_drama"
-        } else if i.contains("phy") || i.contains("php") {
-            imagePath = "ic_physics"
-        } else if i.contains("bio") || i.contains("bip") || i.contains("nw") {
-            imagePath = "ic_biology"
-        } else if i.contains("che") || i.contains("chp") {
-            imagePath = "ic_chemistry"
-        } else if i.contains("phi") || i.contains("psp") {
-            imagePath = "ic_philosophy"
-        } else if i.contains("laa") || i.contains("laf") || i.contains("lat") {
-            imagePath = "ic_latin"
-        } else if i.contains("spa") || i.contains("spf") {
-            imagePath = "ic_spanish"
-        } else if i.contains("fra") || i.contains("frf") || i.contains("frz") {
-            imagePath = "ic_french"
-        } else if i.contains("inf") {
-            imagePath = "ic_compsci"
-        } else if i.contains("ges") {
-            imagePath = "ic_history"
-        } else if i.contains("rel") {
-            imagePath = "ic_religion"
-        } else if i.contains("geg") || i.contains("wuk") {
-            imagePath = "ic_geography"
-        } else if i.contains("kun") {
-            imagePath = "ic_arts"
-        } else if i.contains("mus") {
-            imagePath = "ic_music"
-        } else if i.contains("tue") {
-            imagePath = "ic_turkish"
-        } else if i.contains("chi") {
-            imagePath = "ic_chinese"
-        } else if i.contains("gll") {
-            imagePath = "ic_gll"
-        } else if i.contains("wat") {
-            imagePath = "ic_wat"
-        } else if i.contains("för") {
-            imagePath = "ic_help"
-        } else if i.contains("wp") || i.contains("met") {
-            imagePath = "ic_pencil"
-        } else {
-            return nil
+        switch true {
+        case i.contains("deu"), i.contains("dep"), i.contains("daz"): imagePath = "ic_german"
+        case i.contains("mat"), i.contains("map"): imagePath = "ic_maths"
+        case i.contains("eng"), i.contains("enp"), i.contains("ena"): imagePath = "ic_english"
+        case i.contains("spo"), i.contains("spp"), i.contains("spth"): imagePath = "ic_pe"
+        case i.contains("pol"), i.contains("pop"): imagePath = "ic_politics"
+        case i.contains("dar"), i.contains("dap"): imagePath = "ic_drama"
+        case i.contains("phy"), i.contains("php"): imagePath = "ic_physics"
+        case i.contains("bio"), i.contains("bip"), i.contains("nw"): imagePath = "ic_biology"
+        case i.contains("che"), i.contains("chp"): imagePath = "ic_chemistry"
+        case i.contains("phi"), i.contains("psp"): imagePath = "ic_philosophy"
+        case i.contains("laa"), i.contains("laf"), i.contains("lat"): imagePath = "ic_latin"
+        case i.contains("spa"), i.contains("spf"): imagePath = "ic_spanish"
+        case i.contains("fra") || i.contains("frf") || i.contains("frz"): imagePath = "ic_french"
+        case i.contains("inf"): imagePath = "ic_compsci"
+        case i.contains("ges"): imagePath = "ic_history"
+        case i.contains("rel"): imagePath = "ic_religion"
+        case i.contains("geg"), i.contains("wuk"): imagePath = "ic_geography"
+        case i.contains("kun"): imagePath = "ic_arts"
+        case i.contains("mus"): imagePath = "ic_music"
+        case i.contains("tue"): imagePath = "ic_turkish"
+        case i.contains("chi"): imagePath = "ic_chinese"
+        case i.contains("gll"): imagePath = "ic_gll"
+        case i.contains("wat"): imagePath = "ic_wat"
+        case i.contains("för"): imagePath = "ic_help"
+        case i.contains("wp"), i.contains("met"): imagePath = "ic_pencil"
+        default: return nil
         }
         return UIImage(named: imagePath)
     }

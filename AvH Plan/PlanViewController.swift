@@ -8,6 +8,7 @@
 
 import UIKit
 import MagazineLayout
+import Crashlytics
 
 class PlanViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateMagazineLayout {
     
@@ -56,6 +57,10 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         
         self.substs = getFromDatabase()
         self.collectionView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     func getViewType() -> String {
@@ -132,6 +137,12 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
                 let distance = strings[i].distance(from: strings[i].startIndex, to: qmark)
                 mutableStrings[i].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, distance))
             }
+        }
+        
+        let add = self.substs[indexPath.item].additional.lowercased()
+        if add.contains("eigenverantwortliches arbeiten") || add.contains("entfall") || add.contains("fällt aus"){
+            mutableStrings[2].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, mutableStrings[2].length))
+            mutableStrings[3].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, mutableStrings[3].length))
         }
         
         cell.group.attributedText = mutableStrings[0]
