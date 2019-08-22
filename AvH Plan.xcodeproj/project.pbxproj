@@ -38,6 +38,18 @@
 		C736A19A44C64423F3A695B7 /* Pods_AvH_PlanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74EDE3D8134812AB76BEB988 /* Pods_AvH_PlanUITests.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		A90F1191230F03A900D770B2 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "\"${PODS_ROOT}/Fabric/upload-symbols\" -gsp \"${PROJECT_DIR}/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		A96133932299867A00B541D4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -239,6 +251,7 @@
 				D4638A8231BADABB6CD590D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				A90F1191230F03A900D770B2 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);

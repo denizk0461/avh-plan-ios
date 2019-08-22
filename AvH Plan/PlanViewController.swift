@@ -67,6 +67,15 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let tabItems = self.tabBarController?.tabBar.items {
+            let tabItem = tabItems[1]
+            if self.planPrefs.integer(forKey: "personalPlanCount") != 0 {
+                tabItem.badgeValue = "\(self.planPrefs.integer(forKey: "personalPlanCount"))"
+            } else {
+                tabItem.badgeValue = nil
+            }
+        }
     }
     
     func getViewType() -> String {
