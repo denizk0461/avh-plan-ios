@@ -17,4 +17,5 @@ class PlanViewCell: GenericViewCell {
     @IBOutlet weak var additional: UILabel!
     @IBOutlet weak var room: UILabel!
     @IBOutlet weak var tintView: UIView!
+    @IBOutlet weak var teacher: UILabel!
 }

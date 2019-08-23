@@ -133,10 +133,10 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             cell.additional.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
         
-        let mutableStrings = [NSMutableAttributedString(string: self.substs[indexPath.item].group), NSMutableAttributedString(string: self.substs[indexPath.item].time), NSMutableAttributedString(string: self.substs[indexPath.item].course), NSMutableAttributedString(string: self.substs[indexPath.item].room)]
-        let strings = [self.substs[indexPath.item].group, self.substs[indexPath.item].time, self.substs[indexPath.item].course, self.substs[indexPath.item].room]
+        let mutableStrings = [NSMutableAttributedString(string: self.substs[indexPath.item].group), NSMutableAttributedString(string: self.substs[indexPath.item].time), NSMutableAttributedString(string: self.substs[indexPath.item].course), NSMutableAttributedString(string: self.substs[indexPath.item].room), NSMutableAttributedString(string: self.substs[indexPath.item].teacher)]
+        let strings = [self.substs[indexPath.item].group, self.substs[indexPath.item].time, self.substs[indexPath.item].course, self.substs[indexPath.item].room, self.substs[indexPath.item].teacher]
         
-        for i in 0..<4 {
+        for i in 0...4 {
             if let qmark = strings[i].firstIndex(of: "?") {
                 let distance = strings[i].distance(from: strings[i].startIndex, to: qmark)
                 mutableStrings[i].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, distance))
@@ -145,8 +145,9 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         
         let add = self.substs[indexPath.item].additional.lowercased()
         if add.contains("eigenverantwortliches arbeiten") || add.contains("entfall") || add.contains("fällt aus"){
-            mutableStrings[2].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, mutableStrings[2].length))
-            mutableStrings[3].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, mutableStrings[3].length))
+            for i in 2...4 {
+                mutableStrings[i].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, mutableStrings[i].length))
+            }
         }
         
         cell.group.attributedText = mutableStrings[0]
@@ -154,6 +155,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         cell.time.attributedText = mutableStrings[1]
         cell.room.attributedText = mutableStrings[3]
         
+        var courseText = NSMutableAttributedString(string: "")
         if image != nil {
             let attachment: NSTextAttachment = NSTextAttachment()
             if indexOfPSA == indexPath.item {
@@ -172,10 +174,17 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
                 courseImage.addAttribute(NSAttributedString.Key.foregroundColor, value: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), range: NSMakeRange(0, 3))
             }
             
-            cell.course.attributedText = courseImage
+            courseText = courseImage
         } else {
-            cell.course.attributedText = mutableStrings[2]
+            courseText = mutableStrings[2]
         }
+        if !courseText.isEqual(to: NSAttributedString(string: "")) && !substs[indexPath.item].teacher.isEmpty {
+            courseText.append(NSAttributedString(string: " • "))
+            courseText.append(mutableStrings[4])
+        } else if courseText.isEqual(to: NSAttributedString(string: "")) && !substs[indexPath.item].teacher.isEmpty {
+            courseText.append(mutableStrings[4])
+        }
+        cell.course.attributedText = courseText
         
         return cell
     }

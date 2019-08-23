@@ -15,13 +15,15 @@ class SubstModel {
     var date: String
     var time: String
     var room: String
+    var teacher: String
     
-    init(group: String, course: String, additional: String, date: String, time: String, room: String) {
+    init(group: String, course: String, additional: String, date: String, time: String, room: String, teacher: String) {
         self.group = group
         self.course = course
         self.additional = additional
         self.date = date
         self.time = time
         self.room = room
+        self.teacher = teacher
     }
 }
