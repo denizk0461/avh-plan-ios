@@ -174,12 +174,6 @@ class DataFetcher {
             
             try db.run(foodmenu.delete())
             
-//            for i in 0..<ef.size() {
-//                menuList.append(try ef.get(i).text())
-//                let insert = foodmenu.insert(text <- try ef.get(i).text())
-//                _ = try db.run(insert)
-//            }
-            
             var indices = [Int]()
             let daysAndVon = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "von"]
             for i in 0..<ef.size() {
@@ -364,4 +358,15 @@ class DataFetcher {
     let courses = ["German", "English", "French", "Spanish", "Latin", "Turkish", "Chinese", "Arts", "Music", "Theatre", "Geography", "History", "Politics", "Philosophy", "Religion", "Maths", "Biology", "Chemistry", "Physics", "CompSci", "PhysEd", "GLL", "WAT", "Forder", "WP"]
     
     let translatedCourses = [NSLocalizedString("german", comment: ""), NSLocalizedString("english", comment: ""), NSLocalizedString("french", comment: ""), NSLocalizedString("spanish", comment: ""), NSLocalizedString("latin", comment: ""), NSLocalizedString("turkish", comment: ""), NSLocalizedString("chinese", comment: ""), NSLocalizedString("arts", comment: ""), NSLocalizedString("music", comment: ""), NSLocalizedString("theatre", comment: ""), NSLocalizedString("geography", comment: ""), NSLocalizedString("history", comment: ""), NSLocalizedString("politics", comment: ""), NSLocalizedString("philosophy", comment: ""), NSLocalizedString("religion", comment: ""), NSLocalizedString("mathematics", comment: ""), NSLocalizedString("biology", comment: ""), NSLocalizedString("chemistry", comment: ""), NSLocalizedString("physics", comment: ""), NSLocalizedString("compsci", comment: ""), NSLocalizedString("physed", comment: ""), NSLocalizedString("gll", comment: ""), NSLocalizedString("wat", comment: ""), NSLocalizedString("forder", comment: ""), NSLocalizedString("wp", comment: "")]
+    
+    func setTabBarBadge(for tabBarItems: [UITabBarItem]?) {
+        if let tabItems = tabBarItems {
+            let tabItem = tabItems[1]
+            if self.prefs.integer(forKey: "personalPlanCount") != 0 {
+                tabItem.badgeValue = "\(self.prefs.integer(forKey: "personalPlanCount"))"
+            } else {
+                tabItem.badgeValue = nil
+            }
+        }
+    }
 }

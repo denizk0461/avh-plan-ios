@@ -15,7 +15,6 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     var translatedCourses = [String]()
     @IBOutlet weak var collectionView: UICollectionView!
     let identifier = "customisation_cell"
-//    let storyboard = UIStoryboard(name: "main", bundle: nil)
     let prefs = UserDefaults.standard
     let df = DataFetcher.sharedInstance
     
@@ -23,7 +22,6 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var txtClasses: UITextField!
     @IBOutlet weak var txtCourses: UITextField!
     @IBOutlet weak var defaultSegments: UISegmentedControl!
-    
     @IBOutlet weak var textToolbar: UIToolbar!
     
     @IBAction func textDismissButton(_ sender: Any) {

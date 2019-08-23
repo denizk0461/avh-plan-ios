@@ -17,7 +17,6 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     var substs = [SubstModel]()
     let refreshControl = UIRefreshControl()
     let df = DataFetcher.sharedInstance
-    let planPrefs = UserDefaults.standard
     let layout = MagazineLayout()
     var collectionView: UICollectionView
     var url = ""
@@ -26,10 +25,6 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     required init?(coder decoder: NSCoder) {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         super.init(coder: decoder)
-    }
-    
-    func getToolbarBottomAnchor() -> NSLayoutYAxisAnchor {
-        return view.topAnchor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,14 +63,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let tabItems = self.tabBarController?.tabBar.items {
-            let tabItem = tabItems[1]
-            if self.planPrefs.integer(forKey: "personalPlanCount") != 0 {
-                tabItem.badgeValue = "\(self.planPrefs.integer(forKey: "personalPlanCount"))"
-            } else {
-                tabItem.badgeValue = nil
-            }
-        }
+        self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
     }
     
     func getViewType() -> String {
@@ -95,14 +83,7 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
             self.substs = substitutions as! [SubstModel]
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
-            if let tabItems = self.tabBarController?.tabBar.items {
-                let tabItem = tabItems[1]
-                if self.planPrefs.integer(forKey: "personalPlanCount") != 0 {
-                    tabItem.badgeValue = "\(self.planPrefs.integer(forKey: "personalPlanCount"))"
-                } else {
-                    tabItem.badgeValue = nil
-                }
-            }
+            self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
         }
     }
     

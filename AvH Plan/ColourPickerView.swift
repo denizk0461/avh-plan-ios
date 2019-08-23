@@ -59,7 +59,7 @@ class ColourPickerView: UIViewController, UICollectionViewDataSource, UICollecti
         
         currentSelected = indexPath
         
-//        // For reload the selected cell
+        // For reload the selected cell
         self.collectionView.reloadItems(at: [currentSelected!])
     }
     

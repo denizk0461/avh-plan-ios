@@ -12,7 +12,6 @@ class InfoViewController : UIViewController {
     
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var contentView: UIView!
-    let prefs = UserDefaults.standard
     @IBOutlet weak var scrollView: UIScrollView!
     private let refreshControl = UIRefreshControl()
     let df = DataFetcher.sharedInstance
@@ -46,14 +45,7 @@ class InfoViewController : UIViewController {
         self.df.doAsync(do: "info") { infoArray in
             self.content.text = infoArray[0] as? String
             self.refreshControl.endRefreshing()
-            if let tabItems = self.tabBarController?.tabBar.items {
-                let tabItem = tabItems[1]
-                if self.prefs.integer(forKey: "personalPlanCount") != 0 {
-                    tabItem.badgeValue = "\(self.prefs.integer(forKey: "personalPlanCount"))"
-                } else {
-                    tabItem.badgeValue = nil
-                }
-            }
+            self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
         }
     }
 }

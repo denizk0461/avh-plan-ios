@@ -17,7 +17,6 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
     let layout = MagazineLayout()
     var collectionView: UICollectionView
     let identifier = "menu_cell"
-    let prefs = UserDefaults.standard
     
     required init?(coder decoder: NSCoder) {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -43,7 +42,7 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
         } else {
-            collectionView.addSubview(refreshControl) // likely unnecessary
+            collectionView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(objDoAsync(_:)), for: .valueChanged)
         refreshControl.tintColor = #colorLiteral(red: 0.07843137255, green: 0.5568627451, blue: 1, alpha: 1)
@@ -63,14 +62,7 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
             self.items = menuItems as! [String]
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
-            if let tabItems = self.tabBarController?.tabBar.items {
-                let tabItem = tabItems[1]
-                if self.prefs.integer(forKey: "personalPlanCount") != 0 {
-                    tabItem.badgeValue = "\(self.prefs.integer(forKey: "personalPlanCount"))"
-                } else {
-                    tabItem.badgeValue = nil
-                }
-            }
+            self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
         }
     }
     
