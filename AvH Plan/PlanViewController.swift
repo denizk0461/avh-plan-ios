@@ -11,20 +11,19 @@ import MagazineLayout
 import Crashlytics
 import Firebase
 
-class PlanViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateMagazineLayout {
+class PlanViewController : UICollectionViewController, UICollectionViewDelegateMagazineLayout {
     
     let identifier = "plan_cell"
     var substs = [SubstModel]()
     let refreshControl = UIRefreshControl()
     let df = DataFetcher.sharedInstance
     let layout = MagazineLayout()
-    var collectionView: UICollectionView
     var url = ""
     var indexOfPSA: Int? = nil
     
     required init?(coder decoder: NSCoder) {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         super.init(coder: decoder)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,13 +32,15 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         Messaging.messaging().subscribe(toTopic: "substitutions-ios")
         Messaging.messaging().subscribe(toTopic: "substitutions-broadcast")
         Crashlytics.sharedInstance().setUserIdentifier(UserDefaults.standard.string(forKey: "username"))
+        // check if these can be put in AppDelegate
         
         view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = true
+        
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.superview!.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             ])
         collectionView.register(UINib(nibName: "PlanViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
@@ -62,7 +63,8 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.collectionView.contentInsetAdjustmentBehavior = .always
         self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
     }
     
@@ -87,21 +89,19 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.substs.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexOfPSA == indexPath.item {
             UIApplication.shared.open(URL(string: url)!)
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! PlanViewCell
-        
         var psa = false
-        
         let course = self.substs[indexPath.item].course
         var image = df.getImage(from: course)
         
@@ -188,8 +188,6 @@ class PlanViewController : UIViewController, UICollectionViewDataSource, UIColle
         
         return cell
     }
-    
-    // stubs
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
         var widthMode: MagazineLayoutItemWidthMode

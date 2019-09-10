@@ -9,29 +9,29 @@
 import UIKit
 import MagazineLayout
 
-class MenuViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateMagazineLayout {
+class MenuViewController : UICollectionViewController, UICollectionViewDelegateMagazineLayout {
     
     var items = [String]()
     private let refreshControl = UIRefreshControl()
     let df = DataFetcher.sharedInstance
     let layout = MagazineLayout()
-    var collectionView: UICollectionView
     let identifier = "menu_cell"
     
     required init?(coder decoder: NSCoder) {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         super.init(coder: decoder)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = true
+        
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.superview!.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         collectionView.register(UINib(nibName: "MenuViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
@@ -54,6 +54,8 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.collectionView.contentInsetAdjustmentBehavior = .always
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("food_menu", comment: "")
     }
     
@@ -66,11 +68,11 @@ class MenuViewController : UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! MenuViewCell
         
         cell.content.text = self.items[indexPath.item]

@@ -32,6 +32,7 @@ class InfoViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.extendedLayoutIncludesOpaqueBars = true
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("information", comment: "")
         let layer = contentView.layer
         layer.cornerRadius = 12.0
