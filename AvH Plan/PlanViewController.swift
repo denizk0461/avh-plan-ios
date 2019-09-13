@@ -20,6 +20,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     let layout = MagazineLayout()
     var url = ""
     var indexOfPSA: Int? = nil
+    let cancellations = ["eigenverantwortliches arbeiten", "entfall", "entfällt", "fällt aus", "freisetzung", "vtr. ohne lehrer"]
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
@@ -106,11 +107,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         var image = df.getImage(from: course)
         
         let layer = cell.tintView.layer
-        layer.cornerRadius = 12.0
-        layer.shadowColor = UIColor.gray.cgColor
-        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        layer.shadowRadius = 1.5
-        layer.shadowOpacity = 0.7
+        df.setCardFormatting(for: layer)
         cell.tintView.backgroundColor = self.df.getColour(for: course)
         
         let dateString = self.substs[indexPath.item].date
@@ -144,14 +141,31 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         }
         
         let add = self.substs[indexPath.item].additional.lowercased()
+        let type = self.substs[indexPath.item].type.lowercased()
         if add.contains("eigenverantwortliches arbeiten") || add.contains("entfall") || add.contains("fällt aus"){
-            for i in 2...4 {
-                mutableStrings[i].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, mutableStrings[i].length))
+            
+        }
+        
+        if !add.isEmpty {
+            if check(string: add, for: cancellations) {
+                for i in 2...4 {
+                    mutableStrings[i].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, mutableStrings[i].length))
+                }
+            }
+        } else {
+            if check(string: type, for: cancellations) {
+                for i in 2...4 {
+                    mutableStrings[i].addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, mutableStrings[i].length))
+                }
             }
         }
         
         cell.group.attributedText = mutableStrings[0]
-        cell.additional.text = self.substs[indexPath.item].additional
+        if !self.substs[indexPath.item].additional.isEmpty {
+            cell.additional.text = self.substs[indexPath.item].additional
+        } else {
+            cell.additional.text = self.substs[indexPath.item].type
+        }
         cell.time.attributedText = mutableStrings[1]
         cell.room.attributedText = mutableStrings[3]
         
@@ -187,6 +201,16 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         cell.course.attributedText = courseText
         
         return cell
+    }
+    
+    private func check(string s: String, for array: [String]) -> Bool {
+        var b = false
+        array.forEach { string in
+            if s.contains(string) {
+                b = true
+            }
+        }
+        return b
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {

@@ -31,6 +31,7 @@ class DataFetcher {
     let time = Expression<String>("time")
     let room = Expression<String>("room")
     let teacher = Expression<String>("teacher")
+    let substType = Expression<String>("type")
     let text = Expression<String>("text")
     
     func doAsync(do task: String, completionHandler: @escaping (_ substitutions: [Any]) -> ()) {
@@ -76,6 +77,7 @@ class DataFetcher {
                 t.column(time)
                 t.column(room)
                 t.column(teacher)
+                t.column(substType)
             })
             
             try db.run(personal.create(ifNotExists: true) { t in
@@ -87,6 +89,7 @@ class DataFetcher {
                 t.column(time)
                 t.column(room)
                 t.column(teacher)
+                t.column(substType)
             })
             
             try db.run(substitutions.delete())
@@ -103,26 +106,27 @@ class DataFetcher {
                 let mTime = try cols.get(2).text()
                 let mRoom = try cols.get(4).text()
                 let mTeacher = try cols.get(6).text()
+                let mType = try cols.get(7).text()
                 
                 subst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
-                                        date: mDate, time: mTime, room: mRoom, teacher: mTeacher))
+                                        date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType))
                 let insert = substitutions.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
-                                                  date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher)
-                _ = try db.run(insert)
+                                                  date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher, substType <- mType)
+                try db.run(insert)
                 if mDate.count > 2 && mDate[...mDate.index(mDate.startIndex, offsetBy: 2)] == "psa" {
                     personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
-                                                    date: mDate, time: mTime, room: mRoom, teacher: mTeacher))
+                                                    date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType))
                     let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
-                                                         date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher)
-                    _ = try db.run(insertPersonal)
+                                                         date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher, substType <- mType)
+                    try db.run(insertPersonal)
                 } else if courses == nil || courses == "", classes != nil && classes != "" {
                     if !mGroup.isEmpty && mGroup != "" {
                         if classes!.contains(mGroup) || mGroup.contains(classes!) {
                             personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
-                                                            date: mDate, time: mTime, room: mRoom, teacher: mTeacher))
+                                                            date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType))
                             let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
-                                                                 date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher)
-                            _ = try db.run(insertPersonal)
+                                                                 date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher, substType <- mType)
+                            try db.run(insertPersonal)
                             isPersonalEmpty = false
                             personalPlanCount += 1
                         }
@@ -132,10 +136,10 @@ class DataFetcher {
                         if courses!.contains(mCourse) {
                             if classes!.contains(mGroup) || mGroup.contains(classes!) {
                                 personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
-                                                                date: mDate, time: mTime, room: mRoom, teacher: mTeacher))
+                                                                date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType))
                                 let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
-                                                                     date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher)
-                                _ = try db.run(insertPersonal)
+                                                                     date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher, substType <- mType)
+                                try db.run(insertPersonal)
                                 isPersonalEmpty = false
                                 personalPlanCount += 1
                             }
@@ -147,9 +151,9 @@ class DataFetcher {
             
             prefs.set(personalPlanCount, forKey: "personalPlanCount")
             if isPersonalEmpty {
-                personalSubst.append(SubstModel(group: NSLocalizedString("personal_plan_empty", comment: ""), course: "", additional: "", date: "", time: "", room: "", teacher: ""))
-                let insertPersonal = personal.insert(group <- NSLocalizedString("personal_plan_empty", comment: ""), course <- "", additional <- "", date <- "", time <- "", room <- "", teacher <- "")
-                _ = try db.run(insertPersonal)
+                personalSubst.append(SubstModel(group: NSLocalizedString("personal_plan_empty", comment: ""), course: "", additional: "", date: "", time: "", room: "", teacher: "", type: ""))
+                let insertPersonal = personal.insert(group <- NSLocalizedString("personal_plan_empty", comment: ""), course <- "", additional <- "", date <- "", time <- "", room <- "", teacher <- "", substType <- "")
+                try db.run(insertPersonal)
             }
             
             let lastUpdated = try doc.select("h1").get(0).text()
@@ -159,11 +163,11 @@ class DataFetcher {
             for item in pi {
                 info += "\n\n\(try item.text())"
             }
-            _ = prefs.set(info, forKey: "information")
+            prefs.set(info.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "information")
             
         } catch {}
         
-        infoList.append(info)
+        infoList.append(info.trimmingCharacters(in: .whitespacesAndNewlines))
         
         do {
             let foodDoc: Document = try SwiftSoup.parse(food)
@@ -197,10 +201,11 @@ class DataFetcher {
                     }
                 }
                 menuList.append(s)
-                _ = try db.run(foodmenu.insert(text <- s))
+                try db.run(foodmenu.insert(text <- s))
             }
             
-        } catch {}
+        } catch {
+        }
         
         switch type {
         case "plan":
@@ -229,7 +234,7 @@ class DataFetcher {
         do {
             let db = try Connection("\(path)/db.sqlite3")
             for subst in try db.prepare(substitutions) {
-                substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room], teacher: subst[teacher]))
+                substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room], teacher: subst[teacher], type: subst[substType]))
             }
         } catch {}
         return substs
@@ -240,7 +245,7 @@ class DataFetcher {
         do {
             let db = try Connection("\(path)/db.sqlite3")
             for subst in try db.prepare(personal) {
-                substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room], teacher: subst[teacher]))
+                substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room], teacher: subst[teacher], type: subst[substType]))
             }
         } catch {}
         return substs
@@ -372,5 +377,13 @@ class DataFetcher {
                 tabItem.badgeValue = nil
             }
         }
+    }
+    
+    func setCardFormatting(for layer: CALayer) {
+        layer.cornerRadius = 12.0
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        layer.shadowRadius = 1.5
+        layer.shadowOpacity = 0.7
     }
 }
