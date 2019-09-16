@@ -40,4 +40,7 @@ class PersonalPlanViewController: PlanViewController {
         return df.getPersonalFromDatabase()
     }
 
+    override func getIndex() -> Int {
+        return 1
+    }
 }

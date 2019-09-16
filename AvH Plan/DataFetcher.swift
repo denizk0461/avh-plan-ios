@@ -151,8 +151,8 @@ class DataFetcher {
             
             prefs.set(personalPlanCount, forKey: "personalPlanCount")
             if isPersonalEmpty {
-                personalSubst.append(SubstModel(group: NSLocalizedString("personal_plan_empty", comment: ""), course: "", additional: "", date: "", time: "", room: "", teacher: "", type: ""))
-                let insertPersonal = personal.insert(group <- NSLocalizedString("personal_plan_empty", comment: ""), course <- "", additional <- "", date <- "", time <- "", room <- "", teacher <- "", substType <- "")
+                personalSubst.append(SubstModel(group: "", course: NSLocalizedString("personal_plan_empty", comment: ""), additional: "", date: "", time: "", room: "", teacher: "", type: ""))
+                let insertPersonal = personal.insert(group <- "", course <- NSLocalizedString("personal_plan_empty", comment: ""), additional <- "", date <- "", time <- "", room <- "", teacher <- "", substType <- "")
                 try db.run(insertPersonal)
             }
             
@@ -385,5 +385,27 @@ class DataFetcher {
         layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         layer.shadowRadius = 1.5
         layer.shadowOpacity = 0.7
+    }
+    
+    func presentInformationAlert(for tabBarController: UITabBarController, at index: Int) -> UIAlertController? {
+        if tabBarController.selectedIndex == 2 {
+            tabBarController.selectedIndex = index
+            let alert = UIAlertController(title: NSLocalizedString("information", comment: ""), message: self.readInformation(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("dismiss", comment: ""), style: .default) { action in
+            })
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = NSTextAlignment.left
+            let messageText = NSMutableAttributedString(
+                string: self.readInformation(),
+                attributes: [
+                    NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                    NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
+                ]
+            )
+            alert.setValue(messageText, forKey: "attributedMessage")
+            return alert
+        } else {
+            return nil
+        }
     }
 }

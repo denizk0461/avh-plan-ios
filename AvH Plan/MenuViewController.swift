@@ -9,7 +9,7 @@
 import UIKit
 import MagazineLayout
 
-class MenuViewController : UICollectionViewController, UICollectionViewDelegateMagazineLayout {
+class MenuViewController : UICollectionViewController, UICollectionViewDelegateMagazineLayout, UITabBarControllerDelegate {
     
     var items = [String]()
     private let refreshControl = UIRefreshControl()
@@ -47,6 +47,7 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
         refreshControl.addTarget(self, action: #selector(objDoAsync(_:)), for: .valueChanged)
         refreshControl.tintColor = #colorLiteral(red: 0.07843137255, green: 0.5568627451, blue: 1, alpha: 1)
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("fetch_menu", comment: ""))
+        self.tabBarController?.delegate = self
         
         self.items = self.df.readMenu()
         self.collectionView.reloadData()
@@ -65,6 +66,12 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
             self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
+        }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if let alert = self.df.presentInformationAlert(for: tabBarController, at: 3) {
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

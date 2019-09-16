@@ -242,65 +242,6 @@
             </objects>
             <point key="canvasLocation" x="3503" y="-514"/>
         </scene>
-        <!--Info View Controller-->
-        <scene sceneID="tt5-VM-aeV">
-            <objects>
-                <viewController id="Ve9-lV-ekU" customClass="InfoViewController" customModule="AvH_Plan" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eFO-Bf-72I">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uw2-gR-W7a">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fL-cf-hwr">
-                                        <rect key="frame" x="8" y="3" width="398" height="46.333333333333336"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H8-lj-boN">
-                                                <rect key="frame" x="16" y="12.999999999999998" width="366" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="6H8-lj-boN" firstAttribute="top" secondItem="3fL-cf-hwr" secondAttribute="top" constant="13" id="7vg-94-kgE"/>
-                                            <constraint firstAttribute="trailing" secondItem="6H8-lj-boN" secondAttribute="trailing" constant="16" id="L2I-aF-rMP"/>
-                                            <constraint firstItem="6H8-lj-boN" firstAttribute="leading" secondItem="3fL-cf-hwr" secondAttribute="leading" constant="16" id="XFt-8f-uB8"/>
-                                            <constraint firstAttribute="bottom" secondItem="6H8-lj-boN" secondAttribute="bottom" constant="13" id="ix6-T3-Xby"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="3fL-cf-hwr" firstAttribute="width" secondItem="uw2-gR-W7a" secondAttribute="width" constant="-16" id="2Zp-WB-kqG"/>
-                                    <constraint firstItem="3fL-cf-hwr" firstAttribute="top" secondItem="uw2-gR-W7a" secondAttribute="top" constant="3" id="CK9-Ci-1Uz"/>
-                                    <constraint firstItem="3fL-cf-hwr" firstAttribute="leading" secondItem="uw2-gR-W7a" secondAttribute="leading" constant="8" id="H8E-nR-Ao4"/>
-                                    <constraint firstAttribute="trailing" secondItem="3fL-cf-hwr" secondAttribute="trailing" constant="8" id="Qn2-pu-ejr"/>
-                                    <constraint firstAttribute="bottom" secondItem="3fL-cf-hwr" secondAttribute="bottom" constant="3" id="h0k-Nd-ev6"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="uw2-gR-W7a" firstAttribute="leading" secondItem="fuI-1W-d0u" secondAttribute="leading" id="SHL-lX-cF5"/>
-                            <constraint firstItem="fuI-1W-d0u" firstAttribute="trailing" secondItem="uw2-gR-W7a" secondAttribute="trailing" id="Ypb-ba-cQV"/>
-                            <constraint firstItem="uw2-gR-W7a" firstAttribute="top" secondItem="fuI-1W-d0u" secondAttribute="top" id="hcg-67-avl"/>
-                            <constraint firstItem="fuI-1W-d0u" firstAttribute="bottom" secondItem="uw2-gR-W7a" secondAttribute="bottom" id="uXS-YK-oIz"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="fuI-1W-d0u"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ZSj-6h-iwN"/>
-                    <connections>
-                        <outlet property="content" destination="6H8-lj-boN" id="Q49-OJ-zsl"/>
-                        <outlet property="contentView" destination="3fL-cf-hwr" id="boC-XG-8z1"/>
-                        <outlet property="scrollView" destination="uw2-gR-W7a" id="C2y-Jf-fgR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JwL-CA-SQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1631.8840579710147" y="572.54464285714278"/>
-        </scene>
         <!--Menu View Controller-->
         <scene sceneID="JTo-oO-5Xc">
             <objects>
@@ -377,6 +318,7 @@
         <!--Information-->
         <scene sceneID="8Mm-U7-JgF">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IMM-XL-aYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QLo-hR-KTA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Information" image="ic_information" selectedImage="ic_information" id="BQ7-VO-yI4"/>
                     <toolbarItems/>
@@ -385,11 +327,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Ve9-lV-ekU" kind="relationship" relationship="rootViewController" id="CgO-X2-kmQ"/>
-                    </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IMM-XL-aYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="721.73913043478262" y="572.54464285714278"/>
         </scene>
@@ -420,6 +358,6 @@
         <image name="ic_writing" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Bb-6a-gkf"/>
+        <segue reference="OZ6-ZZ-xdo"/>
     </inferredMetricsTieBreakers>
 </document>

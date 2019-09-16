@@ -11,7 +11,7 @@ import MagazineLayout
 import Crashlytics
 import Firebase
 
-class PlanViewController : UICollectionViewController, UICollectionViewDelegateMagazineLayout {
+class PlanViewController : UICollectionViewController, UICollectionViewDelegateMagazineLayout, UITabBarControllerDelegate {
     
     let identifier = "plan_cell"
     var substs = [SubstModel]()
@@ -57,6 +57,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         refreshControl.addTarget(self, action: #selector(objDoAsync(_:)), for: .valueChanged)
         refreshControl.tintColor = #colorLiteral(red: 0.07843137255, green: 0.5568627451, blue: 1, alpha: 1)
         refreshControl.attributedTitle = NSAttributedString(string: getRefreshViewString())
+        self.tabBarController?.delegate = self
         
         self.substs = getFromDatabase()
         self.collectionView.reloadData()
@@ -81,12 +82,22 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         return NSLocalizedString("fetch_plan", comment: "")
     }
     
+    func getIndex() -> Int {
+        return 0
+    }
+    
     @objc private func objDoAsync(_ sender: Any) {
         self.df.doAsync(do: self.getViewType()) { substitutions in
             self.substs = substitutions as! [SubstModel]
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
             self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
+        }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if let alert = self.df.presentInformationAlert(for: tabBarController, at: self.getIndex()) {
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
