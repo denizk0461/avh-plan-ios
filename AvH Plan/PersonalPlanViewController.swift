@@ -26,6 +26,8 @@ class PersonalPlanViewController: PlanViewController {
             navigationBarTitle = NSLocalizedString("your_plan", comment: "")
         }
         self.navigationController?.navigationBar.topItem?.title = navigationBarTitle
+        self.prefs.set(0, forKey: "personalPlanCount")
+        self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
     }
     
     override func getViewType() -> String {

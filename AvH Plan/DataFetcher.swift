@@ -148,7 +148,9 @@ class DataFetcher {
                 }
                 
             }
-            
+            if type == "personal" {
+                personalPlanCount = 0
+            }
             prefs.set(personalPlanCount, forKey: "personalPlanCount")
             if isPersonalEmpty {
                 personalSubst.append(SubstModel(group: "", course: NSLocalizedString("personal_plan_empty", comment: ""), additional: "", date: "", time: "", room: "", teacher: "", type: ""))
