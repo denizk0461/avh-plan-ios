@@ -77,3 +77,8 @@
 "back" = "Back";
 "your_plan" = "Your Plan";
 "dismiss" = "Dismiss";
+
+"enter_grade_title" = "How to enter your grade";
+"enter_course_title" = "How to enter your courses";
+"enter_grade_help" = "Enter your current grade to have it appear in your personal plan.\n\nNote:\n\nIn junior phase, put the number and letter together, as in \"5a\".\n\nIn E-Phase, separate them by a space, as in \"18 a\".\n\nIn Q1/Q2, only put in the number, as in \"17\".\n\nMultiple grades can only be entered when no courses have been entered.";
+"enter_course_help" = "You need to enter the course abbreviation for every course you want in your personal plan. You can find them on your time table.\n\nHere\'s a few examples:\n\nMathematics in 5th grade (juniors) would be MAT.\n\nAdvanced English in E-Phase (seniors) for the English profile may be ENP1.\n\nBasic Biology in Q1 could be bio1.\n\nIn most cases, entering courses while in junior phase is redundant.\nSeparate multiple courses by spaces, commas are optional.\nCapitalisation is required.";

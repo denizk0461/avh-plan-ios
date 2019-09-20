@@ -46,7 +46,7 @@ class ColourPickerView: UIViewController, UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // For remove previously selection
+        // For removing the previous selection
         if currentSelected != nil {
             if let cell = collectionView.cellForItem(at: currentSelected!) as? ColourViewCell {
                 cell.imageView.image = UIImage(named: "ic_empty")
@@ -59,7 +59,7 @@ class ColourPickerView: UIViewController, UICollectionViewDataSource, UICollecti
         
         currentSelected = indexPath
         
-        // For reload the selected cell
+        // For reloading the selected cell
         self.collectionView.reloadItems(at: [currentSelected!])
     }
     

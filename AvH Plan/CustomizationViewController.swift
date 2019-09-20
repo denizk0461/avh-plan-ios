@@ -24,8 +24,19 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var defaultSegments: UISegmentedControl!
     @IBOutlet weak var textToolbar: UIToolbar!
     
-    @IBAction func textDismissButton(_ sender: Any) {
+    @IBOutlet weak var inputsView: UIView!
+    @IBOutlet weak var colourView: UIView!
+    
+    @IBAction func textDismissButton(_ sender: UIBarButtonItem) {
         view.endEditing(true)
+    }
+    
+    @IBAction func groupHelpButton(_ sender: UIButton) {
+        self.present(self.getAlert(for: "grade"), animated: true)
+    }
+    
+    @IBAction func courseHelpButton(_ sender: UIButton) {
+        self.present(self.getAlert(for: "course"), animated: true)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -125,5 +136,12 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
         cell.colorView.backgroundColor = self.df.getColourPalette()[prefs.integer(forKey: "colour-index-\(courses[indexPath.item])")]
         cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell
+    }
+    
+    func getAlert(for type: String) -> UIAlertController {
+        let alert = UIAlertController(title: NSLocalizedString("enter_\(type)_title", comment: ""), message: NSLocalizedString("enter_\(type)_help", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("dismiss", comment: ""), style: .default) { action in
+        })
+        return alert
     }
 }

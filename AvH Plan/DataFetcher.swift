@@ -395,16 +395,6 @@ class DataFetcher {
             let alert = UIAlertController(title: NSLocalizedString("information", comment: ""), message: self.readInformation(), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("dismiss", comment: ""), style: .default) { action in
             })
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = NSTextAlignment.left
-            let messageText = NSMutableAttributedString(
-                string: self.readInformation(),
-                attributes: [
-                    NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                    NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
-                ]
-            )
-            alert.setValue(messageText, forKey: "attributedMessage")
             return alert
         } else {
             return nil

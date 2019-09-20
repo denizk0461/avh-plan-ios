@@ -10,6 +10,12 @@ import UIKit
 
 class GeneralViewController: PlanViewController {
 
+    @IBAction func customize(_ sender: UIBarButtonItem) {
+        if let s = storyboard?.instantiateViewController(withIdentifier: "Customize") as? CustomizationViewController {
+            self.present(s, animated: true)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("avh_plan", comment: "")
