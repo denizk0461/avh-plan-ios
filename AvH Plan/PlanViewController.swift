@@ -21,6 +21,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     var url = ""
     var indexOfPSA: Int? = nil
     let cancellations = ["eigenverantwortliches arbeiten", "entfall", "entfällt", "fällt aus", "freisetzung", "vtr. ohne lehrer"]
+    let prefs = UserDefaults.standard
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
@@ -28,12 +29,26 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
+        if !self.prefs.bool(forKey: "logged_in") {
+            if let s = storyboard?.instantiateViewController(withIdentifier: "Login") as? UINavigationController {
+                self.present(s, animated: true)
+            }
+        } else if !self.prefs.bool(forKey: "setup_finished") {
+            if let s = storyboard?.instantiateViewController(withIdentifier: "FirstTime") as? UINavigationController {
+                self.present(s, animated: true)
+            }
+        }
+        
         super.viewWillAppear(animated)
         
-        Messaging.messaging().subscribe(toTopic: "substitutions-ios")
-        Messaging.messaging().subscribe(toTopic: "substitutions-broadcast")
-        Crashlytics.sharedInstance().setUserIdentifier(UserDefaults.standard.string(forKey: "username"))
-        // check if these can be put in AppDelegate
+        if self.prefs.bool(forKey: "logged_in") {
+            Messaging.messaging().subscribe(toTopic: "substitutions-ios")
+            Messaging.messaging().subscribe(toTopic: "substitutions-broadcast")
+            Crashlytics.sharedInstance().setUserIdentifier(UserDefaults.standard.string(forKey: "username"))
+            // check if these can be put in AppDelegate
+        }
         
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = true
@@ -65,6 +80,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.extendedLayoutIncludesOpaqueBars = true
         self.collectionView.contentInsetAdjustmentBehavior = .always
         self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
@@ -128,7 +144,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
                 url = "\(dateString[dateString.index(dateString.startIndex, offsetBy: 3)...])"
                 indexOfPSA = indexPath.item
             }
-            image = UIImage(named: "ic_idea_w")
+            image = UIImage(named: "ic_idea_psa_white")
             cell.tintView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             cell.group.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.course.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -195,9 +211,6 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
             courseImage.append(NSAttributedString(string: " "))
             let courseString = mutableStrings[2]
             courseImage.append(courseString)
-            if psa == true {
-                courseImage.addAttribute(NSAttributedString.Key.foregroundColor, value: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), range: NSMakeRange(0, 3))
-            }
             
             courseText = courseImage
         } else {

@@ -10,8 +10,6 @@ import UIKit
 
 class PersonalPlanViewController: PlanViewController {
     
-    let prefs = UserDefaults.standard
-    
     @IBAction func customize(_ sender: UIBarButtonItem) {
         if let s = storyboard?.instantiateViewController(withIdentifier: "Customize") as? CustomizationViewController {
             self.present(s, animated: true)

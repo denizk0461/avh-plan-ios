@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1BF3A6CA97BA41C38482C1A6 /* Pods_AvH_PlanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D6269E96544A9242A29611 /* Pods_AvH_PlanTests.framework */; };
 		2E65263AFD35D6B542E89AE4 /* Pods_AvH_Plan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605BB0678C9E27A1D3E9DAA /* Pods_AvH_Plan.framework */; };
+		A9378D352336015000C07D07 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9378D342336015000C07D07 /* LoginViewController.swift */; };
+		A9378D37233619F300C07D07 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9378D36233619F300C07D07 /* WebKit.framework */; };
+		A9378D392336300700C07D07 /* FirstTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9378D382336300700C07D07 /* FirstTimeViewController.swift */; };
 		A957A75122DDC15500E0A2ED /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A957A74F22DDC15500E0A2ED /* MenuViewCell.swift */; };
 		A957A75222DDC15500E0A2ED /* MenuViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A957A75022DDC15500E0A2ED /* MenuViewCell.xib */; };
 		A958A92222DF5388007052B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A958A92422DF5388007052B0 /* Localizable.strings */; };
@@ -70,6 +73,9 @@
 		589FBD2CE6A9C73CD9B81441 /* Pods-AvH PlanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AvH PlanUITests.release.xcconfig"; path = "Target Support Files/Pods-AvH PlanUITests/Pods-AvH PlanUITests.release.xcconfig"; sourceTree = "<group>"; };
 		74EDE3D8134812AB76BEB988 /* Pods_AvH_PlanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_PlanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7605BB0678C9E27A1D3E9DAA /* Pods_AvH_Plan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AvH_Plan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9378D342336015000C07D07 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A9378D36233619F300C07D07 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A9378D382336300700C07D07 /* FirstTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeViewController.swift; sourceTree = "<group>"; };
 		A957A74F22DDC15500E0A2ED /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		A957A75022DDC15500E0A2ED /* MenuViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewCell.xib; sourceTree = "<group>"; };
 		A958A92322DF5388007052B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -117,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9378D37233619F300C07D07 /* WebKit.framework in Frameworks */,
 				2E65263AFD35D6B542E89AE4 /* Pods_AvH_Plan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +163,7 @@
 		A7F8C8C9CE4E171D98EE659D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A9378D36233619F300C07D07 /* WebKit.framework */,
 				7605BB0678C9E27A1D3E9DAA /* Pods_AvH_Plan.framework */,
 				D9D6269E96544A9242A29611 /* Pods_AvH_PlanTests.framework */,
 				74EDE3D8134812AB76BEB988 /* Pods_AvH_PlanUITests.framework */,
@@ -212,6 +220,8 @@
 				A9B0465322E448EC005FB0DB /* GenericViewCell.swift */,
 				A9B033D622E4D0AB009ACF8A /* ColourViewCell.swift */,
 				A9B033D722E4D0AB009ACF8A /* ColourViewCell.xib */,
+				A9378D342336015000C07D07 /* LoginViewController.swift */,
+				A9378D382336300700C07D07 /* FirstTimeViewController.swift */,
 			);
 			path = "AvH Plan";
 			sourceTree = "<group>";
@@ -483,6 +493,7 @@
 				A9B0465422E448EC005FB0DB /* GenericViewCell.swift in Sources */,
 				A9B0464E22E1F75A005FB0DB /* CustomizationViewController.swift in Sources */,
 				A96133802299867400B541D4 /* AppDelegate.swift in Sources */,
+				A9378D352336015000C07D07 /* LoginViewController.swift in Sources */,
 				A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */,
 				A9C1D30022D656DD00139043 /* MenuViewController.swift in Sources */,
 				A957A75122DDC15500E0A2ED /* MenuViewCell.swift in Sources */,
@@ -493,6 +504,7 @@
 				A9C1D30222D7237200139043 /* DataFetcher.swift in Sources */,
 				A96D4CCA22DDE184006BAB34 /* PersonalPlanViewController.swift in Sources */,
 				A9B033D822E4D0AB009ACF8A /* ColourViewCell.swift in Sources */,
+				A9378D392336300700C07D07 /* FirstTimeViewController.swift in Sources */,
 				A9B0465022E21207005FB0DB /* ColourPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

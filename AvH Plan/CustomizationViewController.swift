@@ -32,11 +32,11 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     }
     
     @IBAction func groupHelpButton(_ sender: UIButton) {
-        self.present(self.getAlert(for: "grade"), animated: true)
+        self.present(self.df.getInfoAlert(for: "grade"), animated: true)
     }
     
     @IBAction func courseHelpButton(_ sender: UIButton) {
-        self.present(self.getAlert(for: "course"), animated: true)
+        self.present(self.df.getInfoAlert(for: "course"), animated: true)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -73,7 +73,7 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
         self.txtCourses.text = prefs.string(forKey: "courses")
         self.defaultSegments.selectedSegmentIndex = prefs.integer(forKey: "default-plan")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     @objc func loadList(notification: NSNotification){
@@ -136,12 +136,5 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
         cell.colorView.backgroundColor = self.df.getColourPalette()[prefs.integer(forKey: "colour-index-\(courses[indexPath.item])")]
         cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell
-    }
-    
-    func getAlert(for type: String) -> UIAlertController {
-        let alert = UIAlertController(title: NSLocalizedString("enter_\(type)_title", comment: ""), message: NSLocalizedString("enter_\(type)_help", comment: ""), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("dismiss", comment: ""), style: .default) { action in
-        })
-        return alert
     }
 }

@@ -400,4 +400,11 @@ class DataFetcher {
             return nil
         }
     }
+    
+    func getInfoAlert(for type: String) -> UIAlertController {
+        let alert = UIAlertController(title: NSLocalizedString("enter_\(type)_title", comment: ""), message: NSLocalizedString("enter_\(type)_help", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("dismiss", comment: ""), style: .default) { action in
+        })
+        return alert
+    }
 }
