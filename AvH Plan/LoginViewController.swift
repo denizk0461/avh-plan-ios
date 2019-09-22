@@ -13,15 +13,24 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     let prefs = UserDefaults.standard
+    let request = URLRequest(url: URL(string: "https://307.joomla.schule.bremen.de/index.php/component/users/#top")!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let request = URLRequest(url: URL(string: "https://307.joomla.schule.bremen.de/index.php/component/users/#top")!)
-        self.webView.load(request)
+        self.reloadLoginPage(in: webView)
         self.webView.navigationDelegate = self
     }
     
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        let page = webView.url?.absoluteString
+        if (page != "https://307.joomla.schule.bremen.de/index.php/component/users/profile?Itemid=171"
+            && page != "https://307.joomla.schule.bremen.de/index.php/component/users/#top"
+            && page != "https://307.joomla.schule.bremen.de/index.php/component/users/?task=user.login&Itemid=171") {
+            self.reloadLoginPage(in: webView)
+        }
+    }
+        
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
             for cookie in cookies {
@@ -30,6 +39,10 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
                 }
             }
         }
+    }
+    
+    private func reloadLoginPage(in webView: WKWebView) {
+        self.webView.load(request)
     }
     
     private func success() {
