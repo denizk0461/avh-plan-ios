@@ -1,3 +1,4 @@
+
 /* Class = "UITabBarController"; title = "AvH Plan"; ObjectID = "49e-Tb-3d3"; */
 "49e-Tb-3d3.title" = "AvH-Plan";
 
@@ -7,8 +8,8 @@
 /* Class = "UITextField"; placeholder = "Your courses"; ObjectID = "69O-Fo-TQF"; */
 "69O-Fo-TQF.placeholder" = "Deine Kurse";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "6H8-lj-boN"; */
-"6H8-lj-boN.text" = "Label";
+/* Class = "UIBarButtonItem"; title = "Finish"; ObjectID = "6Ce-T9-ZJX"; */
+"6Ce-T9-ZJX.title" = "Fertigstellen";
 
 /* Class = "UINavigationItem"; title = "Customize"; ObjectID = "9Pf-pB-wLS"; */
 "9Pf-pB-wLS.title" = "Anpassen";
@@ -16,17 +17,35 @@
 /* Class = "UIViewController"; title = "AvH Plan"; ObjectID = "9pv-A4-QxB"; */
 "9pv-A4-QxB.title" = "AvH-Plan";
 
+/* Class = "UINavigationItem"; title = "Hello there!"; ObjectID = "AmM-kS-Dd7"; */
+"AmM-kS-Dd7.title" = "Hallo!";
+
 /* Class = "UITabBarItem"; title = "Information"; ObjectID = "BQ7-VO-yI4"; */
 "BQ7-VO-yI4.title" = "Informationen";
+
+/* Class = "UILabel"; text = "Lastly, please pick the type of substitution plan you want to see when you launch the app. Click the button at the top to finish setup."; ObjectID = "Eor-Sq-zqK"; */
+"Eor-Sq-zqK.text" = "Wähle bitte zuletzt den Plan aus, den du sehen möchtest, wenn du die App öffnest. Klick die Schaltfläche oben, um die Einrichtung abzuschließen.";
+
+/* Class = "UILabel"; text = "If you're in senior phase (E-Phase, Q-Phase), please also tell me which courses you're enrolled in."; ObjectID = "F3r-Ao-Iih"; */
+"F3r-Ao-Iih.text" = "Falls du in der Oberstufe bist, nenne mir bitte auch deine Kurse.";
 
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "HYG-gj-KYl"; */
 "HYG-gj-KYl.title" = "Title";
 
 /* Class = "UITabBarItem"; title = "Menu"; ObjectID = "IfX-2p-YWq"; */
-"IfX-2p-YWq.title" = "Menü";
+"IfX-2p-YWq.title" = "Speiseplan";
+
+/* Class = "UINavigationItem"; title = "Welcome!"; ObjectID = "KbA-z7-Ss6"; */
+"KbA-z7-Ss6.title" = "Willkommen!";
+
+/* Class = "UIBarButtonItem"; title = "Log in"; ObjectID = "NUo-Rl-vf4"; */
+"NUo-Rl-vf4.title" = "Einloggen";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "PWA-cp-z6o"; */
 "PWA-cp-z6o.title" = "Speichern";
+
+/* Class = "UILabel"; text = "Next, tell me which grade you're in."; ObjectID = "QEa-bk-RFE"; */
+"QEa-bk-RFE.text" = "Sag mir als nächstes, in welcher Klasse du bist.";
 
 /* Class = "UITextField"; accessibilityHint = "Name"; ObjectID = "TpM-Mz-EpI"; */
 "TpM-Mz-EpI.accessibilityHint" = "Name";
@@ -34,23 +53,35 @@
 /* Class = "UITextField"; placeholder = "Your name"; ObjectID = "TpM-Mz-EpI"; */
 "TpM-Mz-EpI.placeholder" = "Dein Name";
 
+/* Class = "UIViewController"; title = "Log in"; ObjectID = "VcC-PU-4w2"; */
+"VcC-PU-4w2.title" = "Einloggen";
+
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "ZI8-Ec-yYU"; */
 "ZI8-Ec-yYU.title" = "Speichern";
+
+/* Class = "UILabel"; text = "Please click the button above to enter your username and password to verify that you're occupied at the Alexander-von-Humboldt-Gymnasium.\n\nThis login is only required once and your information will not be shared with anybody."; ObjectID = "ZIX-7y-psY"; */
+"ZIX-7y-psY.text" = "Bitte klicke die Schaltfläche oben und gib deinen Nutzernamen und dein Passwort ein, um zu zeigen, dass du am Alexander-von-Humboldt-Gymnasium beschäftigt bist.\n\nDieser Login ist nur einmalig und deine Informationen werden nicht mit anderen geteilt.\n\nFalls du dich erfolgreich eingeloggt hast, die Einrichtung aber nicht fortfährt, dann geh bitte zurück und versuche es noch mal.";
 
 /* Class = "UITabBarItem"; title = "General"; ObjectID = "acW-dT-cKf"; */
 "acW-dT-cKf.title" = "Allgemein";
 
+/* Class = "UITextField"; placeholder = "Your grade"; ObjectID = "b6K-FB-rfo"; */
+"b6K-FB-rfo.placeholder" = "Deine Klasse";
+
 /* Class = "UITextField"; accessibilityHint = "Classes"; ObjectID = "bCV-w1-hVY"; */
-"bCV-w1-hVY.accessibilityHint" = "Klassen";
+"bCV-w1-hVY.accessibilityHint" = "Klasse";
 
 /* Class = "UITextField"; placeholder = "Your classes"; ObjectID = "bCV-w1-hVY"; */
-"bCV-w1-hVY.placeholder" = "Deine Klassen";
+"bCV-w1-hVY.placeholder" = "Deine Kurse";
 
 /* Class = "UIBarButtonItem"; title = "Customize"; ObjectID = "bae-uC-OAx"; */
 "bae-uC-OAx.title" = "Anpassen";
 
 /* Class = "UITabBarItem"; title = "Personal"; ObjectID = "cPa-gy-q4n"; */
 "cPa-gy-q4n.title" = "Persönlich";
+
+/* Class = "UITextField"; placeholder = "Your course"; ObjectID = "dWO-0U-i1C"; */
+"dWO-0U-i1C.placeholder" = "Deine Kurse";
 
 /* Class = "UILabel"; text = "Default plan"; ObjectID = "hkV-XP-jXe"; */
 "hkV-XP-jXe.text" = "Standardplan";
@@ -61,8 +92,20 @@
 /* Class = "UISegmentedControl"; omP-RH-Hlh.segmentTitles[1] = "Personal"; ObjectID = "omP-RH-Hlh"; */
 "omP-RH-Hlh.segmentTitles[1]" = "Persönlich";
 
+/* Class = "UITextField"; placeholder = "Your name"; ObjectID = "pH1-JE-B6v"; */
+"pH1-JE-B6v.placeholder" = "Dein Name";
+
 /* Class = "UILabel"; text = "Custom colours"; ObjectID = "rks-gf-AM4"; */
 "rks-gf-AM4.text" = "Benutzerdefinierte Farben";
+
+/* Class = "UILabel"; text = "First, let's setup some things.\n\nTell me your name."; ObjectID = "szd-aA-XdS"; */
+"szd-aA-XdS.text" = "Lass uns erst einige Sachen einrichten.\n\nNenne mir deinen Namen.";
+
+/* Class = "UISegmentedControl"; xXa-1j-Cw3.segmentTitles[0] = "General"; ObjectID = "xXa-1j-Cw3"; */
+"xXa-1j-Cw3.segmentTitles[0]" = "Allgemein";
+
+/* Class = "UISegmentedControl"; xXa-1j-Cw3.segmentTitles[1] = "Personal"; ObjectID = "xXa-1j-Cw3"; */
+"xXa-1j-Cw3.segmentTitles[1]" = "Persönlich";
 
 /* Class = "UIBarButtonItem"; title = "Customize"; ObjectID = "zsF-Jh-U3n"; */
 "zsF-Jh-U3n.title" = "Anpassen";

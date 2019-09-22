@@ -75,7 +75,7 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAl-ff-skU">
-                                <rect key="frame" x="0.0" y="88" width="414" height="231"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="231"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TpM-Mz-EpI">
                                         <rect key="frame" x="24" y="16" width="366" height="30"/>
@@ -149,7 +149,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ae-Qn-llh">
-                                <rect key="frame" x="0.0" y="319" width="414" height="543"/>
+                                <rect key="frame" x="0.0" y="320" width="414" height="542"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Custom colours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rks-gf-AM4">
                                         <rect key="frame" x="24" y="0.0" width="366" height="21"/>
@@ -158,7 +158,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hWP-3N-RUn">
-                                        <rect key="frame" x="8" y="37" width="398" height="506"/>
+                                        <rect key="frame" x="8" y="37" width="398" height="505"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewLayout key="collectionViewLayout" id="sCM-Sc-0Zw" customClass="MagazineLayout" customModule="MagazineLayout"/>
                                         <cells/>
@@ -186,7 +186,7 @@
                             <constraint firstItem="iN7-lf-GS3" firstAttribute="trailing" secondItem="iAl-ff-skU" secondAttribute="trailing" id="AoD-6m-Zah"/>
                             <constraint firstItem="iN7-lf-GS3" firstAttribute="bottom" secondItem="3ae-Qn-llh" secondAttribute="bottom" id="H2b-Bw-SPo"/>
                             <constraint firstItem="3ae-Qn-llh" firstAttribute="leading" secondItem="iN7-lf-GS3" secondAttribute="leading" id="JSj-x6-uUy"/>
-                            <constraint firstItem="iAl-ff-skU" firstAttribute="top" secondItem="1XB-6S-dGV" secondAttribute="bottom" id="KyF-sn-SYG"/>
+                            <constraint firstItem="iAl-ff-skU" firstAttribute="top" secondItem="1XB-6S-dGV" secondAttribute="bottom" constant="1" id="KyF-sn-SYG"/>
                             <constraint firstItem="3ae-Qn-llh" firstAttribute="leading" secondItem="iAl-ff-skU" secondAttribute="trailing" id="Ojd-xl-Edq"/>
                             <constraint firstItem="iAl-ff-skU" firstAttribute="leading" secondItem="3L4-c2-Pow" secondAttribute="leading" id="SI9-hB-Om4"/>
                             <constraint firstItem="3ae-Qn-llh" firstAttribute="top" secondItem="1XB-6S-dGV" secondAttribute="bottom" constant="16" id="T5g-Sq-0j2"/>
@@ -301,7 +301,7 @@
                                 </items>
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PuQ-HH-9DW">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="773"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="U1s-L9-Ptw" customClass="MagazineLayout" customModule="MagazineLayout">
                                     <size key="itemSize" width="50" height="50"/>
@@ -322,7 +322,7 @@
                             <constraint firstItem="hA8-ki-X8m" firstAttribute="top" secondItem="sxo-IA-DXC" secondAttribute="top" id="cSc-da-pRP"/>
                             <constraint firstItem="hA8-ki-X8m" firstAttribute="trailing" secondItem="sxo-IA-DXC" secondAttribute="trailing" id="eLY-V4-1lX"/>
                             <constraint firstItem="sxo-IA-DXC" firstAttribute="trailing" secondItem="PuQ-HH-9DW" secondAttribute="trailing" id="iAf-Pv-Hl8"/>
-                            <constraint firstItem="PuQ-HH-9DW" firstAttribute="top" secondItem="hA8-ki-X8m" secondAttribute="bottom" id="lNF-lt-wSq"/>
+                            <constraint firstItem="PuQ-HH-9DW" firstAttribute="top" secondItem="hA8-ki-X8m" secondAttribute="bottom" constant="1" id="lNF-lt-wSq"/>
                             <constraint firstItem="sxo-IA-DXC" firstAttribute="bottom" secondItem="PuQ-HH-9DW" secondAttribute="bottom" id="m44-uV-U72"/>
                             <constraint firstItem="hA8-ki-X8m" firstAttribute="leading" secondItem="sxo-IA-DXC" secondAttribute="leading" id="vWh-ct-B5X"/>
                         </constraints>
@@ -470,10 +470,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIX-7y-psY">
-                                <rect key="frame" x="20" y="156" width="374" height="142.33333333333337"/>
+                                <rect key="frame" x="20" y="156" width="374" height="203"/>
                                 <string key="text">Please click the button above to enter your username and password to verify that you're occupied at the Alexander-von-Humboldt-Gymnasium.
 
-This login is only required once and your information will not be shared with anybody.</string>
+This login is only required once and your information will not be shared with anybody.
+
+If you have logged in successfully, but the setup does not continue, please go back and try again.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
