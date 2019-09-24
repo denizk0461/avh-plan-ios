@@ -17,8 +17,11 @@ class SubstModel {
     var room: String
     var teacher: String
     var type: String
+    var groupPriority: Int
+    var datePriority: Int
+    var websitePriority: Int
     
-    init(group: String, course: String, additional: String, date: String, time: String, room: String, teacher: String, type: String) {
+    init(group: String, course: String, additional: String, date: String, time: String, room: String, teacher: String, type: String, groupPriority: Int, datePriority: Int, websitePriority: Int) {
         self.group = group
         self.course = course
         self.additional = additional
@@ -27,5 +30,8 @@ class SubstModel {
         self.room = room
         self.teacher = teacher
         self.type = type
+        self.groupPriority = groupPriority
+        self.datePriority = datePriority
+        self.websitePriority = websitePriority
     }
 }

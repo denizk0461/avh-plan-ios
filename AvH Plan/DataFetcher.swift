@@ -18,11 +18,13 @@ class DataFetcher {
     
     let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     let prefs = UserDefaults.standard
+    let juniors = ["5", "6", "7", "8", "9"]
     
     let substitutions = Table("substitutions")
     let personal = Table("personal")
     let information = Table("information")
     let foodmenu = Table("foodmenu")
+    
     let id = Expression<Int64>("id")
     let group = Expression<String>("group")
     let course = Expression<String>("course")
@@ -31,10 +33,14 @@ class DataFetcher {
     let time = Expression<String>("time")
     let room = Expression<String>("room")
     let teacher = Expression<String>("teacher")
-    let substType = Expression<String>("type")
+    let subst_type = Expression<String>("type")
+    let group_priority = Expression<Int64>("group_priority")
+    let date_priority = Expression<Int64>("date_priority")
+    let website_priority = Expression<Int64>("website_priority")
+    
     let text = Expression<String>("text")
     
-    func doAsync(do task: String, completionHandler: @escaping (_ substitutions: [Any]) -> ()) {
+    func doAsync(do task: String, completionHandler: @escaping (_ substitutions: Any) -> ()) {
         DispatchQueue(label: "work-queue").async {
             let foodUrl = "https://djd4rkn355.github.io/food.html"
             let url = "https://djd4rkn355.github.io/avh_substitutions.html"
@@ -50,24 +56,8 @@ class DataFetcher {
         }
     }
     
-    func parseHTML(html: String, food: String, type: String) -> [Any] {
-        var subst = [SubstModel]()
-        var personalSubst = [SubstModel]()
-        var info = ""
-        var infoList = [String]()
-        var menuList = [String]()
-        var isPersonalEmpty = true
-        var personalPlanCount = 0
+    private func createAndClearTables(in db: Connection) -> Bool {
         do {
-            let doc = try SwiftSoup.parse(html)
-            
-            let rows: Elements = try doc.select("tr")
-            
-            let courses = prefs.string(forKey: "courses")
-            let classes = prefs.string(forKey: "classes")
-            
-            let db = try Connection("\(path)/db.sqlite3")
-            
             try db.run(substitutions.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: true)
                 t.column(group)
@@ -77,7 +67,10 @@ class DataFetcher {
                 t.column(time)
                 t.column(room)
                 t.column(teacher)
-                t.column(substType)
+                t.column(subst_type)
+                t.column(group_priority)
+                t.column(date_priority)
+                t.column(website_priority)
             })
             
             try db.run(personal.create(ifNotExists: true) { t in
@@ -89,15 +82,108 @@ class DataFetcher {
                 t.column(time)
                 t.column(room)
                 t.column(teacher)
-                t.column(substType)
+                t.column(subst_type)
+                t.column(group_priority)
+                t.column(date_priority)
+                t.column(website_priority)
+            })
+            
+            try db.run(foodmenu.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: true)
+                t.column(text)
             })
             
             try db.run(substitutions.delete())
             try db.run(personal.delete())
+            try db.run(foodmenu.delete())
+            
+            return true
+        } catch {
+            return false
+        }
+    }
+    
+    private func insert(into table: Table, substitution s: SubstModel) -> Insert {
+        
+        return table.insert(group <- s.group, course <- s.course, additional <- s.additional, date <- s.date, time <- s.time, room <- s.room, teacher <- s.teacher, subst_type <- s.type, group_priority <- Int64(s.groupPriority), date_priority <- Int64(s.datePriority), website_priority <- Int64(s.websitePriority))
+    }
+    
+    private func isPersonal(with g: String, and c: String, for s: SubstModel) -> Bool {
+        if !g.isEmpty && c.isEmpty {
+            if !s.group.isEmpty {
+                if g.contains(s.group) || s.group.contains(g) {
+                    return true
+                }
+            }
+        } else if !g.isEmpty && !c.isEmpty {
+            if s.group != "" && s.course != "" {
+                if (g.contains(s.group) || s.group.contains(g)) && c.contains(s.course) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    private func assignRanking(for group: String, _ isPSA: Bool) -> Int {
+        if isPSA {
+            return -31
+        }
+        
+        if group.count > 0 {
+            let a = String(group[...group.startIndex])
+            if self.checkStringForArray(s: a, checking: juniors) == true {
+                return -30
+            } else if a == "1" || a == "2" {
+                if group.count > 1 {
+                    let b = Int(String(group[group.index(group.startIndex, offsetBy: 1)...group.index(group.startIndex, offsetBy: 1)]))
+                    if b == nil {
+                        return 0
+                    } else {
+                        return (b! - (b! * 2))
+                    }
+                } else {
+                    return 0
+                }
+            } else {
+                return -29
+            }
+        }
+        
+        return 0
+    }
+    
+    private func assignDatePriority(for d: String, _ isPSA: Bool) -> Int? {
+        
+        if isPSA {
+            return -1
+        }
+        
+        let periodIndex = d.firstIndex(of: ".")
+        
+        return Int(String(d[d.index(periodIndex ?? d.startIndex, offsetBy: 1)...d.index(d.startIndex, offsetBy: d.count - 1)]))
+    }
+    
+    private func parseHTML(html: String, food: String, type: String) -> Any {
+        
+        var infoString = ""
+        
+        var isPersonalEmpty = true
+        var personalPlanCount = 0
+        var mWebsitePriority = 0
+        
+        do {
+            let db = try Connection("\(path)/db.sqlite3")
+            _ = self.createAndClearTables(in: db)
+            
+            let substitutionsDocument = try SwiftSoup.parse(html)
+            let rows = try substitutionsDocument.select("tr")
+            
+            let groupPreference = prefs.string(forKey: "classes")
+            let coursePreference = prefs.string(forKey: "courses")
             
             for i in (0..<rows.size()) {
-                let row = rows.get(i)
-                let cols = try row.select("th")
+                let cols = try rows.get(i).select("th")
                 
                 let mGroup = try cols.get(0).text()
                 let mCourse = try cols.get(3).text()
@@ -108,101 +194,76 @@ class DataFetcher {
                 let mTeacher = try cols.get(6).text()
                 let mType = try cols.get(7).text()
                 
-                subst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
-                                        date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType))
-                let insert = substitutions.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
-                                                  date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher, substType <- mType)
-                try db.run(insert)
+                var isPSA = false
                 if mDate.count > 2 && mDate[...mDate.index(mDate.startIndex, offsetBy: 2)] == "psa" {
-                    personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
-                                                    date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType))
-                    let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
-                                                         date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher, substType <- mType)
-                    try db.run(insertPersonal)
-                } else if courses == nil || courses == "", classes != nil && classes != "" {
-                    if !mGroup.isEmpty && mGroup != "" {
-                        if classes!.contains(mGroup) || mGroup.contains(classes!) {
-                            personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
-                                                            date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType))
-                            let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
-                                                                 date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher, substType <- mType)
-                            try db.run(insertPersonal)
-                            isPersonalEmpty = false
-                            personalPlanCount += 1
-                        }
-                    }
-                } else if courses != nil && courses != "" && classes != nil && classes != "" {
-                    if mGroup != "" && mCourse != "" {
-                        if courses!.contains(mCourse) {
-                            if classes!.contains(mGroup) || mGroup.contains(classes!) {
-                                personalSubst.append(SubstModel(group: mGroup, course: mCourse, additional: mAdditional,
-                                                                date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType))
-                                let insertPersonal = personal.insert(group <- mGroup, course <- mCourse, additional <- mAdditional,
-                                                                     date <- mDate, time <- mTime, room <- mRoom, teacher <- mTeacher, substType <- mType)
-                                try db.run(insertPersonal)
-                                isPersonalEmpty = false
-                                personalPlanCount += 1
-                            }
-                        }
-                    }
+                    isPSA = true
                 }
                 
+                let mDatePriority = self.assignDatePriority(for: mDate, isPSA) ?? 0
+                let mGroupPriority = self.assignRanking(for: mGroup, isPSA)
+                
+                let substitution = SubstModel(group: mGroup, course: mCourse, additional: mAdditional, date: mDate, time: mTime, room: mRoom, teacher: mTeacher, type: mType, groupPriority: mGroupPriority, datePriority: mDatePriority, websitePriority: mWebsitePriority)
+                
+                mWebsitePriority += 1
+                
+                try db.run(self.insert(into: substitutions, substitution: substitution))
+                
+                if self.isPersonal(with: groupPreference ?? "", and: coursePreference ?? "", for: substitution) || isPSA {
+                    try db.run(self.insert(into: personal, substitution: substitution))
+                    if !isPSA {
+                        isPersonalEmpty = false
+                        personalPlanCount += 1
+                    }
+                }
             }
+            
             if type == "personal" {
                 personalPlanCount = 0
             }
+            
             prefs.set(personalPlanCount, forKey: "personalPlanCount")
+            
             if isPersonalEmpty {
-                personalSubst.append(SubstModel(group: "", course: NSLocalizedString("personal_plan_empty", comment: ""), additional: "", date: "", time: "", room: "", teacher: "", type: ""))
-                let insertPersonal = personal.insert(group <- "", course <- NSLocalizedString("personal_plan_empty", comment: ""), additional <- "", date <- "", time <- "", room <- "", teacher <- "", substType <- "")
-                try db.run(insertPersonal)
+                let emptySubstitution = SubstModel(group: "", course: NSLocalizedString("personal_plan_empty", comment: ""), additional: "", date: "", time: "", room: "", teacher: "", type: "", groupPriority: 0, datePriority: 0, websitePriority: 0)
+                try db.run(self.insert(into: personal, substitution: emptySubstitution))
             }
             
-            let lastUpdated = try doc.select("h1").get(0).text()
-            info = "\(NSLocalizedString("last_updated", comment: ""))\(lastUpdated)."
-            let pi: Elements = try doc.select("p")
+            // start info fetch
+            // TODO: better documentation, please
             
-            for item in pi {
-                info += "\n\n\(try item.text())"
+            let lastUpdated = try substitutionsDocument.select("h1").get(0).text()
+            infoString = "\(NSLocalizedString("last_updated", comment: ""))\(lastUpdated)."
+            let informationTableElements = try substitutionsDocument.select("p")
+            
+            for item in informationTableElements {
+                infoString += "\n\n\(try item.text())"
             }
-            prefs.set(info.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "information")
             
-        } catch {}
-        
-        infoList.append(info.trimmingCharacters(in: .whitespacesAndNewlines))
-        
-        do {
-            let foodDoc: Document = try SwiftSoup.parse(food)
-            let ef: Elements = try foodDoc.select("th")
+            prefs.set(infoString.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "information")
             
-            let db = try Connection("\(path)/db.sqlite3")
+            // start food fetch
             
-            try db.run(foodmenu.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: true)
-                t.column(text)
-            })
-            
-            try db.run(foodmenu.delete())
+            let foodDocument = try SwiftSoup.parse(food)
+            let foodItems = try foodDocument.select("th")
             
             var indices = [Int]()
             let daysAndVon = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "von"]
-            for i in 0..<ef.size() {
-                if checkStringForArray(s: try ef.get(i).text(), checking: daysAndVon) {
+            for i in 0..<foodItems.size() {
+                if checkStringForArray(s: try foodItems.get(i).text(), checking: daysAndVon) {
                     indices.append(i)
                 }
             }
-            indices.append(ef.size())
+            indices.append(foodItems.size())
             
             for l in 0..<indices.count - 1 {
                 var s = ""
                 for i2 in indices[l]..<indices[l + 1] {
                     if (s.isEmpty) {
-                        s = try ef.get(i2).text()
+                        s = try foodItems.get(i2).text()
                     } else {
-                        s += "\n\(try ef.get(i2).text())"
+                        s += "\n\(try foodItems.get(i2).text())"
                     }
                 }
-                menuList.append(s)
                 try db.run(foodmenu.insert(text <- s))
             }
             
@@ -211,13 +272,13 @@ class DataFetcher {
         
         switch type {
         case "plan":
-            return subst
+            return self.getSubstitutionsFromDatabase()
         case "personal":
-            return personalSubst
+            return self.getPersonalSubstitutionsFromDatabase()
         case "info":
-            return infoList
+            return infoString
         default:
-            return menuList
+            return self.readMenu()
         }
     }
     
@@ -231,26 +292,50 @@ class DataFetcher {
     }
 
     
-    func getFromDatabase() -> [SubstModel] {
+    func getSubstitutionsFromDatabase() -> [SubstModel] {
         var substs = [SubstModel]()
         do {
             let db = try Connection("\(path)/db.sqlite3")
-            for subst in try db.prepare(substitutions) {
-                substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room], teacher: subst[teacher], type: subst[substType]))
+            
+            var table: AnySequence<Row>
+            if !prefs.bool(forKey: "original_sorting") {
+                table = try db.prepare(substitutions.order(date_priority.asc, date.asc, group_priority.asc, group.asc, time.asc))
+            } else {
+                table = try db.prepare(substitutions.order(website_priority.asc))
             }
-        } catch {}
+            
+            for subst in table {
+                
+                let substitution = SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room], teacher: subst[teacher], type: subst[subst_type], groupPriority: Int(subst[group_priority]), datePriority: Int(subst[date_priority]), websitePriority: Int(subst[website_priority]))
+                
+                substs.append(substitution)
+            }
+        } catch {
+        }
         return substs
     }
     
-    func getPersonalFromDatabase() -> [SubstModel] {
-        var substs = [SubstModel]()
+    func getPersonalSubstitutionsFromDatabase() -> [SubstModel] {
+        var personalSubsts = [SubstModel]()
         do {
             let db = try Connection("\(path)/db.sqlite3")
-            for subst in try db.prepare(personal) {
-                substs.append(SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room], teacher: subst[teacher], type: subst[substType]))
+            
+            var table: AnySequence<Row>
+            if !prefs.bool(forKey: "original_sorting") {
+                table = try db.prepare(personal.order(date_priority.asc, date.asc, group_priority.asc, group.asc, time.asc))
+            } else {
+                table = try db.prepare(personal.order(website_priority.asc))
             }
-        } catch {}
-        return substs
+            
+            for subst in table {
+                
+                let substitution = SubstModel(group: subst[group], course: subst[course], additional: subst[additional], date: subst[date], time: subst[time], room: subst[room], teacher: subst[teacher], type: subst[subst_type], groupPriority: Int(subst[group_priority]), datePriority: Int(subst[date_priority]), websitePriority: Int(subst[website_priority]))
+                
+                personalSubsts.append(substitution)
+            }
+        } catch {
+        }
+        return personalSubsts
     }
     
     func readInformation() -> String {

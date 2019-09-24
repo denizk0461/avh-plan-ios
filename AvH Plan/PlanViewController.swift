@@ -91,7 +91,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     }
     
     func getFromDatabase() -> [SubstModel] {
-        return self.df.getFromDatabase()
+        return self.df.getSubstitutionsFromDatabase()
     }
     
     func getRefreshViewString() -> String {
@@ -128,8 +128,9 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! PlanViewCell
-        var psa = false
+        
         let course = self.substs[indexPath.item].course
         var image = df.getImage(from: course)
         
@@ -149,7 +150,6 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
             cell.group.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.course.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.additional.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            psa = true
         } else {
             cell.date.text = self.substs[indexPath.item].date
             cell.group.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

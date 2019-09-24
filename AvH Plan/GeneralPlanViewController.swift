@@ -30,7 +30,7 @@ class GeneralViewController: PlanViewController {
     }
     
     override func getFromDatabase() -> [SubstModel] {
-        return df.getFromDatabase()
+        return df.getSubstitutionsFromDatabase()
     }
     
 }

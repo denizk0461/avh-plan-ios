@@ -43,7 +43,7 @@ class PersonalPlanViewController: PlanViewController {
     }
     
     override func getFromDatabase() -> [SubstModel] {
-        return df.getPersonalFromDatabase()
+        return df.getPersonalSubstitutionsFromDatabase()
     }
 
     override func getIndex() -> Int {
