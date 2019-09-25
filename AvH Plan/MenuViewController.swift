@@ -63,7 +63,11 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
     @objc private func objDoAsync(_ sender: Any) {
         df.doAsync(do: "menu") { menuItems in
             self.items = menuItems as! [String]
-            self.collectionView.reloadData()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.collectionView.reloadData()
+            }
+            
             self.refreshControl.endRefreshing()
             self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
         }

@@ -109,3 +109,23 @@
 
 /* Class = "UIBarButtonItem"; title = "Customize"; ObjectID = "zsF-Jh-U3n"; */
 "zsF-Jh-U3n.title" = "Anpassen";
+
+"ZCm-7a-IUx.placeholder" = "Dein Name";
+
+"gOX-RF-Brg.placeholder" = "Deine Klasse";
+
+"EDB-Mm-gGh.placeholder" = "Deine Kurse";
+
+"JMH-JV-eMe.text" = "Standardplan";
+
+"DPm-52-1Ww.segmentTitles[0]" = "Allgemein";
+
+"DPm-52-1Ww.segmentTitles[1]" = "Persönlich";
+
+"3iB-va-Cjs.text" = "Sortierweise";
+
+"ol8-tW-I69.segmentTitles[0]" = "App-spezifisch";
+
+"ol8-tW-I69.segmentTitles[1]" = "Website-Original";
+
+"YlM-R8-zk5.text" = "Aktualisiere Plan automatisch";

@@ -30,7 +30,6 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     
     override func viewWillAppear(_ animated: Bool) {
         
-        
         if !self.prefs.bool(forKey: "logged_in") {
             if let s = storyboard?.instantiateViewController(withIdentifier: "Login") as? UINavigationController {
                 self.present(s, animated: true)
@@ -47,7 +46,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
             Messaging.messaging().subscribe(toTopic: "substitutions-ios")
             Messaging.messaging().subscribe(toTopic: "substitutions-broadcast")
             Crashlytics.sharedInstance().setUserIdentifier(UserDefaults.standard.string(forKey: "username"))
-            // check if these can be put in AppDelegate
+            // TODO: check if these can be put in AppDelegate
         }
         
         view.addSubview(collectionView)
@@ -57,7 +56,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.superview!.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.superview!.bottomAnchor),
             ])
         collectionView.register(UINib(nibName: "PlanViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         collectionView.dataSource = self
@@ -74,14 +73,20 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         refreshControl.attributedTitle = NSAttributedString(string: getRefreshViewString())
         self.tabBarController?.delegate = self
         
-        self.substs = getFromDatabase()
+        self.substs = self.getFromDatabase()
         self.collectionView.reloadData()
+        
+        if self.df.shouldRefresh {
+            self.collectionView.setContentOffset(CGPoint(x: 0, y: -self.refreshControl.frame.size.height), animated: true)
+            self.refreshControl.beginRefreshing()
+            self.refreshControl.sendActions(for: .valueChanged)
+            self.df.shouldRefresh = false
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.extendedLayoutIncludesOpaqueBars = true
         self.collectionView.contentInsetAdjustmentBehavior = .always
         self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
     }

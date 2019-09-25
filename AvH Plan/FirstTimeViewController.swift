@@ -34,7 +34,7 @@ class FirstTimeViewController: UIViewController {
         self.prefs.set(self.courseTextField.text, forKey: "courses")
         self.prefs.set(self.defaultPlanSegmentedControl.selectedSegmentIndex, forKey: "default-plan")
         self.prefs.set(true, forKey: "setup_finished")
-        self.prefs.synchronize()
+        self.prefs.set(true, forKey: "auto_refresh")
         
         if let s = storyboard?.instantiateViewController(withIdentifier: "AppTabBarController") as? CustomTabBarController {
             self.present(s, animated: true)

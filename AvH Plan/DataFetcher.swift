@@ -20,6 +20,12 @@ class DataFetcher {
     let prefs = UserDefaults.standard
     let juniors = ["5", "6", "7", "8", "9"]
     
+    var shouldRefresh: Bool
+    
+    init() {
+        shouldRefresh = self.prefs.bool(forKey: "auto_refresh")
+    }
+    
     let substitutions = Table("substitutions")
     let personal = Table("personal")
     let information = Table("information")
@@ -136,7 +142,9 @@ class DataFetcher {
                 return -30
             } else if a == "1" || a == "2" {
                 if group.count > 1 {
+                    
                     let b = Int(String(group[group.index(group.startIndex, offsetBy: 1)...group.index(group.startIndex, offsetBy: 1)]))
+                    
                     if b == nil {
                         return 0
                     } else {

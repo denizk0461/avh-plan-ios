@@ -23,6 +23,8 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var txtCourses: UITextField!
     @IBOutlet weak var defaultSegments: UISegmentedControl!
     @IBOutlet weak var textToolbar: UIToolbar!
+    @IBOutlet weak var orderingSegments: UISegmentedControl!
+    @IBOutlet weak var autoRefreshToggle: UISwitch!
     
     @IBOutlet weak var inputsView: UIView!
     @IBOutlet weak var colourView: UIView!
@@ -37,6 +39,10 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
     
     @IBAction func courseHelpButton(_ sender: UIButton) {
         self.present(self.df.getInfoAlert(for: "course"), animated: true)
+    }
+    
+    @IBAction func orderHelpButton(_ sender: UIButton) {
+        self.present(self.df.getInfoAlert(for: "order"), animated: true)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -56,6 +62,8 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
         self.prefs.set(self.txtClasses.text, forKey: "classes")
         self.prefs.set(self.txtCourses.text, forKey: "courses")
         self.prefs.set(self.defaultSegments.selectedSegmentIndex, forKey: "default-plan")
+        self.prefs.set(self.orderingSegments.selectedSegmentIndex == 1, forKey: "original_sorting")
+        self.prefs.set(self.autoRefreshToggle.isOn, forKey: "auto_refresh")
         
         self.prefs.synchronize()
         self.dismiss(animated: true, completion: nil)
@@ -72,6 +80,14 @@ class CustomizationViewController: UIViewController, UICollectionViewDataSource,
         self.txtClasses.text = prefs.string(forKey: "classes")
         self.txtCourses.text = prefs.string(forKey: "courses")
         self.defaultSegments.selectedSegmentIndex = prefs.integer(forKey: "default-plan")
+        var order: Int
+        if self.prefs.bool(forKey: "original_sorting") {
+            order = 1
+        } else {
+            order = 0
+        }
+        self.orderingSegments.selectedSegmentIndex = order
+        self.autoRefreshToggle.isOn = self.prefs.bool(forKey: "auto_refresh")
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
     }
