@@ -133,28 +133,17 @@ class DataFetcher {
     
     private func assignRanking(for group: String, _ isPSA: Bool) -> Int {
         if isPSA {
-            return -31
+            return -102
         }
         
         if group.count > 0 {
             let a = String(group[...group.startIndex])
-            if self.checkStringForArray(s: a, checking: juniors) == true {
-                return -30
-            } else if a == "1" || a == "2" {
-                if group.count > 1 {
-                    
-                    let b = Int(String(group[group.index(group.startIndex, offsetBy: 1)...group.index(group.startIndex, offsetBy: 1)]))
-                    
-                    if b == nil {
-                        return 0
-                    } else {
-                        return (b! - (b! * 2))
-                    }
-                } else {
-                    return 0
-                }
+            if group.count > 1, let b = Int(String(group[group.index(group.startIndex, offsetBy: 0)...group.index(group.startIndex, offsetBy: 1)])) {
+                return -b
+            } else if self.checkStringForArray(s: a, checking: juniors) == true {
+                return -101
             } else {
-                return -29
+                return -100
             }
         }
         

@@ -8,12 +8,17 @@
 
 import UIKit
 
-class FirstTimeViewController: UIViewController {
+class FirstTimeViewController: UIViewController, UITextFieldDelegate {
 
-    
     @IBOutlet weak var scrollView: UIScrollView!
     let df = DataFetcher.sharedInstance
     let prefs = UserDefaults.standard
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var gradeTextField: UITextField!
+    @IBOutlet weak var courseTextField: UITextField!
+    @IBOutlet weak var defaultPlanSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var textToolbar: UIToolbar!
     
     @IBAction func gradeInfoButton(_ sender: UIButton) {
         self.present(self.df.getInfoAlert(for: "grade"), animated: true)
@@ -23,11 +28,14 @@ class FirstTimeViewController: UIViewController {
         self.present(self.df.getInfoAlert(for: "course"), animated: true)
     }
     
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var gradeTextField: UITextField!
-    @IBOutlet weak var courseTextField: UITextField!
-    @IBOutlet weak var defaultPlanSegmentedControl: UISegmentedControl!
-
+    @IBAction func textDismissButton(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.inputAccessoryView = textToolbar
+    }
+    
     @IBAction func finishSetupButton(_ sender: UIBarButtonItem) {
         self.prefs.set(self.nameTextField.text, forKey: "username")
         self.prefs.set(self.gradeTextField.text, forKey: "classes")
@@ -41,10 +49,12 @@ class FirstTimeViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.nameTextField.delegate = self
+        self.gradeTextField.delegate = self
+        self.courseTextField.delegate = self
         self.scrollView.isDirectionalLockEnabled = true
     }
 

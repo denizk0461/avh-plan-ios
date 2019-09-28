@@ -110,11 +110,11 @@
 /* Class = "UIBarButtonItem"; title = "Customize"; ObjectID = "zsF-Jh-U3n"; */
 "zsF-Jh-U3n.title" = "Anpassen";
 
-"ZCm-7a-IUx.placeholder" = "Dein Name";
+"A2b-5v-r2j.placeholder" = "Dein Name";
 
-"gOX-RF-Brg.placeholder" = "Deine Klasse";
+"x8A-kh-LX4.placeholder" = "Deine Klasse";
 
-"EDB-Mm-gGh.placeholder" = "Deine Kurse";
+"zxv-h1-Q8u.placeholder" = "Deine Kurse";
 
 "JMH-JV-eMe.text" = "Standardplan";
 
@@ -122,10 +122,26 @@
 
 "DPm-52-1Ww.segmentTitles[1]" = "Persönlich";
 
-"3iB-va-Cjs.text" = "Sortierweise";
+"1Nm-Wb-8js.segmentTitles[0]" = "App-Sortierung";
 
-"ol8-tW-I69.segmentTitles[0]" = "App-spezifisch";
+"1Nm-Wb-8js.segmentTitles[1]" = "Website-Sortierung";
 
-"ol8-tW-I69.segmentTitles[1]" = "Website-Original";
+"Dkg-Jy-5Sf.text" = "Persönlichen Plan bei App-Start öffnen";
 
-"YlM-R8-zk5.text" = "Aktualisiere Plan automatisch";
+"oiQ-2o-sH8.text" = "Bei App-Start aktualisieren";
+
+"jng-S6-ZuJ.normalTitle" = "Stelle Kursfarben ein";
+
+"bj2-hB-vVb.title" = "Benutzerdefinierte Farben";
+
+"FhN-ih-qVW.title" = "Speichern";
+
+"in4-ZK-bqT.title" = "Anpassen";
+
+"g4a-cE-7bJ.title" = "Fertig";
+
+"whN-45-XN6.headerTitle" = "Personalisieren";
+
+"BHV-EE-xi3.headerTitle" = "Filter";
+
+"N8h-rV-nYA.headerTitle" = "Diverses";

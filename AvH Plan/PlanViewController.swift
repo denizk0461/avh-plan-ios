@@ -89,6 +89,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         
         self.collectionView.contentInsetAdjustmentBehavior = .always
         self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
+        self.collectionView.isPrefetchingEnabled = false
     }
     
     func getViewType() -> String {

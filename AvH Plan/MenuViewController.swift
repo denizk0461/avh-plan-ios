@@ -58,6 +58,7 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
         self.extendedLayoutIncludesOpaqueBars = true
         self.collectionView.contentInsetAdjustmentBehavior = .always
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("food_menu", comment: "")
+        self.collectionView.isPrefetchingEnabled = false
     }
     
     @objc private func objDoAsync(_ sender: Any) {

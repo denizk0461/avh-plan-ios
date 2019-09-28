@@ -24,6 +24,7 @@
 		A96133A22299867A00B541D4 /* AvH_PlanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96133A12299867A00B541D4 /* AvH_PlanUITests.swift */; };
 		A96D4CC822DDE01A006BAB34 /* GeneralPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */; };
 		A96D4CCA22DDE184006BAB34 /* PersonalPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */; };
+		A976907A233F2E680015AF1A /* CoursePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9769079233F2E680015AF1A /* CoursePickerViewController.swift */; };
 		A996BFF922E05AAB00E7BE42 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A996BFFB22E05AAB00E7BE42 /* InfoPlist.strings */; };
 		A99AB5F8230155DE00555295 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A99AB5F7230155DE00555295 /* GoogleService-Info.plist */; };
 		A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3496B22D4859200F35AE0 /* SubstModel.swift */; };
@@ -95,6 +96,7 @@
 		A96133A32299867A00B541D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPlanViewController.swift; sourceTree = "<group>"; };
 		A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPlanViewController.swift; sourceTree = "<group>"; };
+		A9769079233F2E680015AF1A /* CoursePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePickerViewController.swift; sourceTree = "<group>"; };
 		A996BFF322E05AAB00E7BE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		A996BFFC22E05AAB00E7BE42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A996BFFD22E05AAB00E7BE42 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */,
 				A9C1D2FF22D656DD00139043 /* MenuViewController.swift */,
 				A9B0464D22E1F75A005FB0DB /* CustomizationViewController.swift */,
+				A9769079233F2E680015AF1A /* CoursePickerViewController.swift */,
 				A9B0464F22E21207005FB0DB /* ColourPickerView.swift */,
 				A9C1D30122D7237200139043 /* DataFetcher.swift */,
 				A96133852299867400B541D4 /* Main.storyboard */,
@@ -480,7 +483,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AvH Plan/Pods-AvH Plan-frameworks.sh\"\n\"${PODS_ROOT}/Fabric/run\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AvH Plan/Pods-AvH Plan-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -495,6 +498,7 @@
 				A96133802299867400B541D4 /* AppDelegate.swift in Sources */,
 				A9378D352336015000C07D07 /* LoginViewController.swift in Sources */,
 				A9A3496C22D4859200F35AE0 /* SubstModel.swift in Sources */,
+				A976907A233F2E680015AF1A /* CoursePickerViewController.swift in Sources */,
 				A9C1D30022D656DD00139043 /* MenuViewController.swift in Sources */,
 				A957A75122DDC15500E0A2ED /* MenuViewCell.swift in Sources */,
 				A9B0464C22E1F255005FB0DB /* CustomTabBarController.swift in Sources */,

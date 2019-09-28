@@ -11,7 +11,7 @@ import UIKit
 class GeneralViewController: PlanViewController {
 
     @IBAction func customize(_ sender: UIBarButtonItem) {
-        if let s = storyboard?.instantiateViewController(withIdentifier: "Customize") as? CustomizationViewController {
+        if let s = storyboard?.instantiateViewController(withIdentifier: "CustomizationNavigationController") as? UINavigationController {
             self.present(s, animated: true)
         }
     }
