@@ -76,11 +76,12 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         self.substs = self.getFromDatabase()
         self.collectionView.reloadData()
         
-        if self.df.shouldRefresh {
+        if self.df.shouldRefresh || (self.prefs.bool(forKey: "setup_finished") && !self.prefs.bool(forKey: "first_refresh")) {
             self.collectionView.setContentOffset(CGPoint(x: 0, y: -self.refreshControl.frame.size.height), animated: true)
             self.refreshControl.beginRefreshing()
             self.refreshControl.sendActions(for: .valueChanged)
             self.df.shouldRefresh = false
+            self.prefs.set(true, forKey: "first_refresh")
         }
     }
     
@@ -111,7 +112,9 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     @objc private func objDoAsync(_ sender: Any) {
         self.df.doAsync(do: self.getViewType()) { substitutions in
             self.substs = substitutions as! [SubstModel]
-            self.collectionView.reloadData()
+            UIView.performWithoutAnimation {
+                self.collectionView.reloadData()
+            }
             self.refreshControl.endRefreshing()
             self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
         }

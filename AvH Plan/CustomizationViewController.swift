@@ -12,6 +12,7 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate {
 
     let prefs = UserDefaults.standard
     let df = DataFetcher.sharedInstance
+    var buttonTextChanged = false
     
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtClasses: UITextField!
@@ -20,6 +21,7 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var textToolbar: UIToolbar!
     @IBOutlet weak var orderingSegments: UISegmentedControl!
     @IBOutlet weak var autoRefreshToggle: UISwitch!
+    @IBOutlet weak var customizeCourseColorsButton: UIButton!
     
     @IBAction func textDismissButton(_ sender: UIBarButtonItem) {
         view.endEditing(true)
@@ -42,17 +44,11 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
-        
         self.prefs.set(self.txtName.text, forKey: "username")
         self.prefs.set(self.txtClasses.text, forKey: "classes")
         self.prefs.set(self.txtCourses.text, forKey: "courses")
         
-        var defaultPlan: Int
-        if self.defaultSwitch.isOn {
-            defaultPlan = 1
-        } else {
-            defaultPlan = 0
-        }
+        let defaultPlan = self.defaultSwitch.isOn ? 1 : 0
         self.prefs.set(defaultPlan, forKey: "default-plan")
         self.prefs.set(self.orderingSegments.selectedSegmentIndex == 1, forKey: "original_sorting")
         self.prefs.set(self.autoRefreshToggle.isOn, forKey: "auto_refresh")
@@ -66,6 +62,34 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func longPressListener(_ sender: UILongPressGestureRecognizer) {
+        sender.minimumPressDuration = 2
+        if sender.state == .ended {
+            if !buttonTextChanged {
+                self.customizeCourseColorsButton.setTitle(NSLocalizedString("made_by_deniz", comment: ""), for: .normal)
+                buttonTextChanged = true
+            } else {
+                self.customizeCourseColorsButton.setTitle(NSLocalizedString("customize_course_colors", comment: ""), for: .normal)
+                buttonTextChanged = false
+            }
+        }
+    }
+    
+    @IBAction func infoLongPressListener(_ sender: UILongPressGestureRecognizer) {
+        sender.minimumPressDuration = 2
+        if sender.state == .ended {
+            let youtubeId = "Jc2xfYuLWgE"
+            if let youtubeURL = URL(string: "youtube://\(youtubeId)"),
+                UIApplication.shared.canOpenURL(youtubeURL) {
+                // redirect to app
+                UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+            } else if let youtubeURL = URL(string: "https://www.youtube.com/watch?v=\(youtubeId)") {
+                // redirect through safari
+                UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,17 +100,8 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate {
         self.txtName.text = prefs.string(forKey: "username")
         self.txtClasses.text = prefs.string(forKey: "classes")
         self.txtCourses.text = prefs.string(forKey: "courses")
-        if self.prefs.integer(forKey: "default-plan") == 1 {
-            self.defaultSwitch.isOn = true
-        } else {
-            self.defaultSwitch.isOn = false
-        }
-        var order: Int
-        if self.prefs.bool(forKey: "original_sorting") {
-            order = 1
-        } else {
-            order = 0
-        }
+        self.defaultSwitch.isOn = self.prefs.integer(forKey: "default-plan") == 1 ? true : false
+        let order = self.prefs.bool(forKey: "original_sorting") ? 1 : 0
         self.orderingSegments.selectedSegmentIndex = order
         self.autoRefreshToggle.isOn = self.prefs.bool(forKey: "auto_refresh")
     }

@@ -97,7 +97,7 @@
 		A96D4CC722DDE01A006BAB34 /* GeneralPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPlanViewController.swift; sourceTree = "<group>"; };
 		A96D4CC922DDE184006BAB34 /* PersonalPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPlanViewController.swift; sourceTree = "<group>"; };
 		A9769079233F2E680015AF1A /* CoursePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePickerViewController.swift; sourceTree = "<group>"; };
-		A996BFF322E05AAB00E7BE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
+		A996BFF322E05AAB00E7BE42 /* Base */ = {isa = PBXFileReference; explicitFileType = text.html; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		A996BFFC22E05AAB00E7BE42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A996BFFD22E05AAB00E7BE42 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A99AB5F7230155DE00555295 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };

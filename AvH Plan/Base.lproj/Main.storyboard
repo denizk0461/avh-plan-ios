@@ -74,9 +74,11 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jng-S6-ZuJ">
                                                     <rect key="frame" x="16" y="8.0000000000000018" width="382" height="27.666666666666671"/>
+                                                    <gestureRecognizers/>
                                                     <state key="normal" title="Customize course colors"/>
                                                     <connections>
                                                         <action selector="customizeColoursButton:" destination="5GD-rn-jaq" eventType="touchUpInside" id="35i-it-53Q"/>
+                                                        <outletCollection property="gestureRecognizers" destination="M8p-Lq-ly5" appends="YES" id="wsn-xc-r0D"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -138,8 +140,10 @@
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Jr-BA-G9n">
                                                     <rect key="frame" x="368" y="8.0000000000000018" width="22" height="27.666666666666671"/>
+                                                    <gestureRecognizers/>
                                                     <connections>
                                                         <action selector="courseHelpButton:" destination="5GD-rn-jaq" eventType="touchUpInside" id="s6W-7N-y6f"/>
+                                                        <outletCollection property="gestureRecognizers" destination="z35-to-GHz" appends="YES" id="hRI-cP-ZTs"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -265,6 +269,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="autoRefreshToggle" destination="MmI-fr-TwC" id="OQW-Z7-t1S"/>
+                        <outlet property="customizeCourseColorsButton" destination="jng-S6-ZuJ" id="plZ-dg-MS6"/>
                         <outlet property="defaultSwitch" destination="Evc-f7-YMZ" id="lTz-cN-Cud"/>
                         <outlet property="orderingSegments" destination="1Nm-Wb-8js" id="XhR-GP-Y26"/>
                         <outlet property="textToolbar" destination="8oS-yh-q36" id="s0y-mh-0Bi"/>
@@ -286,6 +291,16 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="M8p-Lq-ly5">
+                    <connections>
+                        <action selector="longPressListener:" destination="5GD-rn-jaq" id="ybZ-vp-4Rd"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="z35-to-GHz">
+                    <connections>
+                        <action selector="infoLongPressListener:" destination="5GD-rn-jaq" id="kR0-b7-jg0"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3471" y="-1221"/>
         </scene>
@@ -338,7 +353,7 @@
                             <navigationBar contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyq-c3-PYx">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Customize colours" id="bj2-hB-vVb">
+                                    <navigationItem title="Course colors" id="bj2-hB-vVb">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="g4a-cE-7bJ">
                                             <connections>
                                                 <action selector="saveButton:" destination="whN-0o-req" id="Z83-bM-1yv"/>

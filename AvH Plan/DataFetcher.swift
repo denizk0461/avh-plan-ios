@@ -140,7 +140,7 @@ class DataFetcher {
             let a = String(group[...group.startIndex])
             if group.count > 1, let b = Int(String(group[group.index(group.startIndex, offsetBy: 0)...group.index(group.startIndex, offsetBy: 1)])) {
                 return -b
-            } else if self.checkStringForArray(s: a, checking: juniors) == true {
+            } else if self.checkStringForArray(s: a, checking: juniors, lowercase: false) == true {
                 return -101
             } else {
                 return -100
@@ -154,6 +154,8 @@ class DataFetcher {
         
         if isPSA {
             return -1
+        } else if d.isEmpty {
+            return 13
         }
         
         let periodIndex = d.firstIndex(of: ".")
@@ -244,9 +246,9 @@ class DataFetcher {
             let foodItems = try foodDocument.select("th")
             
             var indices = [Int]()
-            let daysAndVon = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "von"]
+            let daysAndVon = ["montag", "dienstag", "mittwoch", "donnerstag", "freitag", "von", "wünschen"]
             for i in 0..<foodItems.size() {
-                if checkStringForArray(s: try foodItems.get(i).text(), checking: daysAndVon) {
+                if checkStringForArray(s: try foodItems.get(i).text(), checking: daysAndVon, lowercase: true) {
                     indices.append(i)
                 }
             }
@@ -279,9 +281,10 @@ class DataFetcher {
         }
     }
     
-    private func checkStringForArray(s: String, checking: [String]) -> Bool {
+    private func checkStringForArray(s: String, checking: [String], lowercase: Bool) -> Bool {
+        let str = lowercase ? s.lowercased() : s
         for i in checking.indices {
-            if s.contains(checking[i]) {
+            if str.contains(checking[i]) {
                 return true
             }
         }

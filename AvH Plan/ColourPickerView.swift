@@ -21,7 +21,6 @@ class ColourPickerView: UIViewController, UICollectionViewDataSource, UICollecti
     var index = 0
     var key = ""
     @IBOutlet weak var collectionView: UICollectionView!
-    var previousSelected: IndexPath? = nil
     var currentSelected: IndexPath? = nil
     var selectedNewItem = false
     

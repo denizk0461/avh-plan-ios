@@ -23,10 +23,10 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <viewLayoutGuide key="safeArea" id="h2U-4g-7Ak"/>
                                 <items>
-                                    <tabBarItem title="" image="ic_writing" selectedImage="ic_writing" id="keQ-St-8hM"/>
-                                    <tabBarItem title="" image="ic_idea" selectedImage="ic_idea" id="spn-vi-J6I"/>
-                                    <tabBarItem title="" image="ic_information" selectedImage="ic_information" id="OBW-rE-k7z"/>
-                                    <tabBarItem title="" image="ic_tomato" selectedImage="ic_tomato" id="zev-fl-fMd"/>
+                                    <tabBarItem title=" " image="ic_writing" selectedImage="ic_writing" id="keQ-St-8hM"/>
+                                    <tabBarItem title=" " image="ic_idea" selectedImage="ic_idea" id="spn-vi-J6I"/>
+                                    <tabBarItem title=" " image="ic_information" selectedImage="ic_information" id="OBW-rE-k7z"/>
+                                    <tabBarItem title=" " image="ic_tomato" selectedImage="ic_tomato" id="zev-fl-fMd"/>
                                 </items>
                             </tabBar>
                         </subviews>

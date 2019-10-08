@@ -65,7 +65,7 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
         df.doAsync(do: "menu") { menuItems in
             self.items = menuItems as! [String]
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            UIView.performWithoutAnimation {
                 self.collectionView.reloadData()
             }
             
