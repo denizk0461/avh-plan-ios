@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,6 +18,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="437" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ynr-Dz-6Fo">
+                        <rect key="frame" x="0.0" y="0.0" width="437" height="50"/>
+                        <color key="backgroundColor" name="colorBackground"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="190-8v-eT2">
                         <rect key="frame" x="76" y="12" width="337" height="26"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -43,21 +46,25 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fud-ah-v5C">
                         <rect key="frame" x="24" y="49" width="413" height="1"/>
-                        <color key="backgroundColor" name="separatorColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="colorHint"/>
                     </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="190-8v-eT2" firstAttribute="leading" secondItem="HcR-OC-IDt" secondAttribute="trailing" constant="16" id="A8V-G8-mcv"/>
+                <constraint firstItem="Ynr-Dz-6Fo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="B0K-UE-uSY"/>
                 <constraint firstItem="Fud-ah-v5C" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="N0t-DL-DYu"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="HcR-OC-IDt" secondAttribute="trailing" constant="-60" id="OW3-CV-2xd"/>
                 <constraint firstItem="HcR-OC-IDt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="Ui2-Og-5Hi"/>
+                <constraint firstAttribute="trailing" secondItem="Ynr-Dz-6Fo" secondAttribute="trailing" id="Vyg-lQ-34d"/>
                 <constraint firstItem="Fud-ah-v5C" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="bottom" constant="-1" id="bET-hG-rlh"/>
                 <constraint firstAttribute="trailing" secondItem="190-8v-eT2" secondAttribute="trailing" constant="24" id="cCQ-92-k1q"/>
+                <constraint firstItem="Ynr-Dz-6Fo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cVe-Y7-ke5"/>
                 <constraint firstAttribute="bottom" secondItem="190-8v-eT2" secondAttribute="bottom" constant="12" id="l9x-Uc-okU"/>
                 <constraint firstAttribute="trailing" secondItem="Fud-ah-v5C" secondAttribute="trailing" id="m60-OB-EIA"/>
                 <constraint firstAttribute="bottom" secondItem="Fud-ah-v5C" secondAttribute="bottom" id="n20-zE-D1Z"/>
                 <constraint firstItem="190-8v-eT2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="n9S-Tz-k1f"/>
+                <constraint firstAttribute="bottom" secondItem="Ynr-Dz-6Fo" secondAttribute="bottom" id="tEM-DI-Ywg"/>
                 <constraint firstItem="190-8v-eT2" firstAttribute="centerY" secondItem="HcR-OC-IDt" secondAttribute="centerY" id="uJE-7A-i8w"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -70,4 +77,12 @@
             <point key="canvasLocation" x="412.31884057971018" y="158.70535714285714"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="colorBackground">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorHint">
+            <color red="0.19215686274509805" green="0.19215686274509805" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

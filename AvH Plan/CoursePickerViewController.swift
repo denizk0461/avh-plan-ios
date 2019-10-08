@@ -28,6 +28,7 @@ class CoursePickerViewController: UIViewController, UICollectionViewDataSource, 
         courses = self.df.courses
         translatedCourses = self.df.translatedCourses
         self.collectionView.register(UINib(nibName: "ColourViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
+        self.collectionView.backgroundColor = UIColor(named: "colorBackground")
     }
 
     override func viewDidLoad() {

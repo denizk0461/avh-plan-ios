@@ -25,16 +25,12 @@ class ColourPickerView: UIViewController, UICollectionViewDataSource, UICollecti
     var selectedNewItem = false
     
     @IBAction func done(_ sender: UIBarButtonItem) {
-        prefs.set(currentSelected!.item, forKey: key) // index is used for the colour array in DataFetcher
-        let dict: [String: IndexPath] = ["indexPath": currentIndexPath!]
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil, userInfo: dict)
         self.dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         key = "colour-index-\(internalCourse)"
-        
         self.collectionView.register(UINib(nibName: "ColourViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
     }
     
@@ -59,9 +55,14 @@ class ColourPickerView: UIViewController, UICollectionViewDataSource, UICollecti
         }
         
         currentSelected = indexPath
+        self.prefs.set(currentSelected!.item, forKey: key) // index is used for the colour array in DataFetcher
         
         // For reloading the selected cell
         self.collectionView.reloadItems(at: [currentSelected!])
+        
+        // For reloading the cell in the course picker view
+        let dict: [String: IndexPath] = ["indexPath": currentIndexPath!]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil, userInfo: dict)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {

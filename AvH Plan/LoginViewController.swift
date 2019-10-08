@@ -48,6 +48,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     private func success() {
         self.prefs.set(true, forKey: "logged_in")
         if let s = storyboard?.instantiateViewController(withIdentifier: "FirstTime") as? UINavigationController {
+            s.modalPresentationStyle = .fullScreen
             self.present(s, animated: true)
         }
     }

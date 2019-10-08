@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomizationViewController: UITableViewController, UITextFieldDelegate {
+class CustomizationViewController: UITableViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate {
 
     let prefs = UserDefaults.standard
     let df = DataFetcher.sharedInstance
@@ -44,15 +44,6 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
-        self.prefs.set(self.txtName.text, forKey: "username")
-        self.prefs.set(self.txtClasses.text, forKey: "classes")
-        self.prefs.set(self.txtCourses.text, forKey: "courses")
-        
-        let defaultPlan = self.defaultSwitch.isOn ? 1 : 0
-        self.prefs.set(defaultPlan, forKey: "default-plan")
-        self.prefs.set(self.orderingSegments.selectedSegmentIndex == 1, forKey: "original_sorting")
-        self.prefs.set(self.autoRefreshToggle.isOn, forKey: "auto_refresh")
-        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -104,5 +95,25 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate {
         let order = self.prefs.bool(forKey: "original_sorting") ? 1 : 0
         self.orderingSegments.selectedSegmentIndex = order
         self.autoRefreshToggle.isOn = self.prefs.bool(forKey: "auto_refresh")
+        
+        if #available(iOS 13.0, *) {
+            presentedViewController?.isModalInPresentation = true
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.savePreferences()
+    }
+    
+    private func savePreferences() {
+        self.prefs.set(self.txtName.text, forKey: "username")
+        self.prefs.set(self.txtClasses.text, forKey: "classes")
+        self.prefs.set(self.txtCourses.text, forKey: "courses")
+        
+        let defaultPlan = self.defaultSwitch.isOn ? 1 : 0
+        self.prefs.set(defaultPlan, forKey: "default-plan")
+        self.prefs.set(self.orderingSegments.selectedSegmentIndex == 1, forKey: "original_sorting")
+        self.prefs.set(self.autoRefreshToggle.isOn, forKey: "auto_refresh")
     }
 }

@@ -37,7 +37,7 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
         collectionView.register(UINib(nibName: "MenuViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        collectionView.backgroundColor = UIColor(named: "colorBackground")
         
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -65,9 +65,9 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
         df.doAsync(do: "menu") { menuItems in
             self.items = menuItems as! [String]
             
-            UIView.performWithoutAnimation {
+//            UIView.performWithoutAnimation {
                 self.collectionView.reloadData()
-            }
+//            }
             
             self.refreshControl.endRefreshing()
             self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
@@ -88,7 +88,7 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath as IndexPath) as! MenuViewCell
         
         cell.content.text = self.items[indexPath.item]
-        cell.tintView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.tintView.backgroundColor = UIColor(named: "colorDefault")
         let layer = cell.tintView.layer
         df.setCardFormatting(for: layer)
         return cell

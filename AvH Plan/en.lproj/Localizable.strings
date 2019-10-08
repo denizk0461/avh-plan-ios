@@ -43,7 +43,7 @@
 "forder" = "Special Education";
 "wp" = "WP & Methodenstunde";
 
-"white" = "White";
+"white" = "Default"; // value changed without modifying key due to implementing dark mode
 "red" = "Red";
 "orange" = "Orange";
 "yellow" = "Yellow";

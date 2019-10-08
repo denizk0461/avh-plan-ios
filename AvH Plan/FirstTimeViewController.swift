@@ -45,6 +45,7 @@ class FirstTimeViewController: UIViewController, UITextFieldDelegate {
         self.prefs.set(true, forKey: "auto_refresh")
         
         if let s = storyboard?.instantiateViewController(withIdentifier: "AppTabBarController") as? CustomTabBarController {
+            s.modalPresentationStyle = .fullScreen
             self.present(s, animated: true)
         }
     }

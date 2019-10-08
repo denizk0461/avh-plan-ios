@@ -32,10 +32,12 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         
         if !self.prefs.bool(forKey: "logged_in") {
             if let s = storyboard?.instantiateViewController(withIdentifier: "Login") as? UINavigationController {
+                s.modalPresentationStyle = .fullScreen
                 self.present(s, animated: true)
             }
         } else if !self.prefs.bool(forKey: "setup_finished") {
             if let s = storyboard?.instantiateViewController(withIdentifier: "FirstTime") as? UINavigationController {
+                s.modalPresentationStyle = .fullScreen
                 self.present(s, animated: true)
             }
         }
@@ -61,7 +63,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         collectionView.register(UINib(nibName: "PlanViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        collectionView.backgroundColor = UIColor(named: "colorBackground")!
         
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -112,9 +114,9 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     @objc private func objDoAsync(_ sender: Any) {
         self.df.doAsync(do: self.getViewType()) { substitutions in
             self.substs = substitutions as! [SubstModel]
-            UIView.performWithoutAnimation {
+//            UIView.performWithoutAnimation {
                 self.collectionView.reloadData()
-            }
+//            }
             self.refreshControl.endRefreshing()
             self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
         }
@@ -156,18 +158,25 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
             }
             image = UIImage(named: "ic_idea_psa_white")
             cell.tintView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-            cell.group.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            cell.course.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            cell.additional.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.course.textColor = UIColor(named: "colorBackground")!
         } else {
             cell.date.text = self.substs[indexPath.item].date
-            cell.group.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            cell.course.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            cell.additional.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
         
-        let mutableStrings = [NSMutableAttributedString(string: self.substs[indexPath.item].group), NSMutableAttributedString(string: self.substs[indexPath.item].time), NSMutableAttributedString(string: self.substs[indexPath.item].course), NSMutableAttributedString(string: self.substs[indexPath.item].room), NSMutableAttributedString(string: self.substs[indexPath.item].teacher)]
-        let strings = [self.substs[indexPath.item].group, self.substs[indexPath.item].time, self.substs[indexPath.item].course, self.substs[indexPath.item].room, self.substs[indexPath.item].teacher]
+        let mutableStrings = [
+            NSMutableAttributedString(string: self.substs[indexPath.item].group),
+            NSMutableAttributedString(string: self.substs[indexPath.item].time),
+            NSMutableAttributedString(string: self.substs[indexPath.item].course),
+            NSMutableAttributedString(string: self.substs[indexPath.item].room),
+            NSMutableAttributedString(string: self.substs[indexPath.item].teacher)
+        ]
+        let strings = [
+            self.substs[indexPath.item].group,
+            self.substs[indexPath.item].time,
+            self.substs[indexPath.item].course,
+            self.substs[indexPath.item].room,
+            self.substs[indexPath.item].teacher
+        ]
         
         for i in 0...4 {
             if let qmark = strings[i].firstIndex(of: "?") {
@@ -197,10 +206,10 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         }
         
         cell.group.attributedText = mutableStrings[0]
-        if !self.substs[indexPath.item].additional.isEmpty {
-            cell.additional.text = self.substs[indexPath.item].additional
-        } else {
+        if self.substs[indexPath.item].additional.isEmpty {
             cell.additional.text = self.substs[indexPath.item].type
+        } else {
+            cell.additional.text = self.substs[indexPath.item].additional
         }
         cell.time.attributedText = mutableStrings[1]
         cell.room.attributedText = mutableStrings[3]
@@ -209,9 +218,9 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         if image != nil {
             let attachment: NSTextAttachment = NSTextAttachment()
             if indexOfPSA == indexPath.item {
-                attachment.bounds = CGRect(x: 0, y: 0, width: 11, height: 16)
+                attachment.bounds = CGRect(x: 0, y: -3, width: 14, height: 20)
             } else {
-                attachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
+                attachment.bounds = CGRect(x: 0, y: -3, width: 20, height: 20)
             }
             attachment.image = image
             
