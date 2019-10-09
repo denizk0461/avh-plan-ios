@@ -266,7 +266,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Customize" id="in4-ZK-bqT">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="FhN-ih-qVW">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="FhN-ih-qVW">
                             <connections>
                                 <action selector="done:" destination="5GD-rn-jaq" id="41Z-mE-1g6"/>
                             </connections>
@@ -409,7 +409,7 @@
                                 <color key="barTintColor" name="colorToolbarPreferences"/>
                                 <items>
                                     <navigationItem title="Title" id="HYG-gj-KYl">
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="ZI8-Ec-yYU">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="ZI8-Ec-yYU">
                                             <connections>
                                                 <action selector="done:" destination="xQo-mK-Kfi" id="DK7-6I-kUG"/>
                                             </connections>
