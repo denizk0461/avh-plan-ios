@@ -7,13 +7,13 @@ target 'AvH Plan' do
 
   # Pods for AvH Plan
 	pod 'SwiftSoup'
-  pod 'Alamofire'
   pod 'SQLite.swift'
   pod 'MagazineLayout'
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.13.4'
+  pod 'Toast-Swift', '~> 5.0.0'
 
   target 'AvH PlanTests' do
     inherit! :search_paths
@@ -23,6 +23,17 @@ target 'AvH Plan' do
   target 'AvH PlanUITests' do
     inherit! :search_paths
     # Pods for testing
+  end
+  
+  # temporary fix for Xcode 11 not playing well with SwiftSoup
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'SwiftSoup'
+      target.build_configurations.each do |config|
+        next unless config.name.start_with?('Release')
+        config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Onone'
+      end
+    end
   end
 
 end

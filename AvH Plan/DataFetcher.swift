@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import Alamofire
 import SwiftSoup
 import SQLite
 
@@ -46,23 +45,14 @@ class DataFetcher {
     
     let text = Expression<String>("text")
     
-    func doAsync(do task: String, completionHandler: @escaping (_ substitutions: Any) -> ()) {
+    func doAsync(do task: String, completionHandler: @escaping () -> ()) {
         DispatchQueue(label: "work-queue").async {
-            let foodUrl = "https://djd4rkn355.github.io/food.html"
-            let url = "https://djd4rkn355.github.io/avh_substitutions.html"
-            Alamofire.request(url).responseString { response in
-                if let html = response.result.value {
-                    Alamofire.request(foodUrl).responseString { response in
-                        if let foodHtml = response.result.value {
-                            completionHandler(self.parseHTML(html: html, food: foodHtml, type: task))
-                        }
-                    }
-                }
-            }
+            self.fetchData(type: task)
+            completionHandler()
         }
     }
     
-    private func createAndClearTables(in db: Connection) -> Bool {
+    private func createTables(in db: Connection) -> Bool {
         do {
             try db.run(substitutions.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: true)
@@ -99,13 +89,18 @@ class DataFetcher {
                 t.column(text)
             })
             
-            try db.run(substitutions.delete())
-            try db.run(personal.delete())
-            try db.run(foodmenu.delete())
-            
             return true
         } catch {
             return false
+        }
+    }
+    
+    private func clearDatabase(in db: Connection) {
+        do {
+            try db.run(substitutions.delete())
+            try db.run(personal.delete())
+            try db.run(foodmenu.delete())
+        } catch {
         }
     }
     
@@ -163,19 +158,30 @@ class DataFetcher {
         return Int(String(d[d.index(periodIndex ?? d.startIndex, offsetBy: 1)...d.index(d.startIndex, offsetBy: d.count - 1)]))
     }
     
-    private func parseHTML(html: String, food: String, type: String) -> Any {
+    private func fetchData(type: String) {
+        var substitutionUrl = "https://djd4rkn355.github.io/avh_substitutions.html"
+        var foodUrl = "https://djd4rkn355.github.io/food.html"
         
-        var infoString = ""
+        if self.prefs.bool(forKey: "use_test_urls") {
+            substitutionUrl = "https://djd4rkn355.github.io/subst_test.html"
+            foodUrl = "https://djd4rkn355.github.io/food_test.html"
+        }
         
         var isPersonalEmpty = true
         var personalPlanCount = 0
         var mWebsitePriority = 0
         
+        var substitutionList = [SubstModel]()
+        var personalList = [SubstModel]()
+        var infoString = ""
+        var foodmenuList = [String]()
+        
         do {
             let db = try Connection("\(path)/db.sqlite3")
-            _ = self.createAndClearTables(in: db)
+            _ = self.createTables(in: db)
             
-            let substitutionsDocument = try SwiftSoup.parse(html)
+            let substitutionContents = try String(contentsOf: URL(string: substitutionUrl)!, encoding: .utf8)
+            let substitutionsDocument = try SwiftSoup.parse(substitutionContents)
             let rows = try substitutionsDocument.select("tr")
             
             let groupPreference = prefs.string(forKey: "classes")
@@ -205,10 +211,10 @@ class DataFetcher {
                 
                 mWebsitePriority += 1
                 
-                try db.run(self.insert(into: substitutions, substitution: substitution))
+                substitutionList.append(substitution)
                 
                 if self.isPersonal(with: groupPreference ?? "", and: coursePreference ?? "", for: substitution) || isPSA {
-                    try db.run(self.insert(into: personal, substitution: substitution))
+                    personalList.append(substitution)
                     if !isPSA {
                         isPersonalEmpty = false
                         personalPlanCount += 1
@@ -224,7 +230,7 @@ class DataFetcher {
             
             if isPersonalEmpty {
                 let emptySubstitution = SubstModel(group: "", course: NSLocalizedString("personal_plan_empty", comment: ""), additional: "", date: "", time: "", room: "", teacher: "", type: "", groupPriority: 0, datePriority: 0, websitePriority: 0)
-                try db.run(self.insert(into: personal, substitution: emptySubstitution))
+                personalList.append(emptySubstitution)
             }
             
             // start info fetch
@@ -238,11 +244,10 @@ class DataFetcher {
                 infoString += "\n\n\(try item.text())"
             }
             
-            prefs.set(infoString.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "information")
-            
             // start food fetch
             
-            let foodDocument = try SwiftSoup.parse(food)
+            let foodContents = try String(contentsOf: URL(string: foodUrl)!, encoding: .utf8)
+            let foodDocument = try SwiftSoup.parse(foodContents)
             let foodItems = try foodDocument.select("th")
             
             var indices = [Int]()
@@ -263,21 +268,26 @@ class DataFetcher {
                         s += "\n\(try foodItems.get(i2).text())"
                     }
                 }
-                try db.run(foodmenu.insert(text <- s))
+                foodmenuList.append(s)
+            }
+            
+            self.clearDatabase(in: db)
+            
+            for subst in substitutionList {
+                try db.run(self.insert(into: substitutions, substitution: subst))
+            }
+            
+            for subst in personalList {
+                try db.run(self.insert(into: personal, substitution: subst))
+            }
+            
+            prefs.set(infoString.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "information")
+            
+            for food in foodmenuList {
+                try db.run(foodmenu.insert(text <- food))
             }
             
         } catch {
-        }
-        
-        switch type {
-        case "plan":
-            return self.getSubstitutionsFromDatabase()
-        case "personal":
-            return self.getPersonalSubstitutionsFromDatabase()
-        case "info":
-            return infoString
-        default:
-            return self.readMenu()
         }
     }
     
@@ -517,5 +527,12 @@ class DataFetcher {
         alert.addAction(UIAlertAction(title: NSLocalizedString("dismiss", comment: ""), style: .default) { action in
         })
         return alert
+    }
+    
+    func hasHomeButton() -> Bool {
+        if #available(iOS 11.0, *), let keyWindow = UIApplication.shared.keyWindow, keyWindow.safeAreaInsets.bottom > 0 {
+            return false
+        }
+        return true
     }
 }

@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (4.9.0)
   - Crashlytics (3.13.4):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
@@ -86,9 +85,9 @@ PODS:
     - SQLite.swift/standard (= 0.12.2)
   - SQLite.swift/standard (0.12.2)
   - SwiftSoup (2.2.1)
+  - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
-  - Alamofire
   - Crashlytics (~> 3.13.4)
   - Fabric (~> 1.10.2)
   - Firebase/Analytics
@@ -96,10 +95,10 @@ DEPENDENCIES:
   - MagazineLayout
   - SQLite.swift
   - SwiftSoup
+  - Toast-Swift (~> 5.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
     - Crashlytics
     - Fabric
     - Firebase
@@ -119,9 +118,9 @@ SPEC REPOS:
     - Protobuf
     - SQLite.swift
     - SwiftSoup
+    - Toast-Swift
 
 SPEC CHECKSUMS:
-  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 2d750c54cda57d5a6ae31212cfe5cc813c6be7e4
@@ -141,7 +140,8 @@ SPEC CHECKSUMS:
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SwiftSoup: a91d3c96ecb6f8f13005552ef60f9075aae4a7f3
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: 7f6326ef14655be23fc36338b9e0cfd25cc76666
+PODFILE CHECKSUM: 6db3ddebd0623d3b51c97baf9c698a144646da8a
 
 COCOAPODS: 1.6.1

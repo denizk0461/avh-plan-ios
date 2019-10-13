@@ -176,8 +176,10 @@
                                                 </segmentedControl>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3J-cU-Fkz">
                                                     <rect key="frame" x="365.66666666666669" y="8" width="24.333333333333314" height="28"/>
+                                                    <gestureRecognizers/>
                                                     <connections>
                                                         <action selector="orderHelpButton:" destination="5GD-rn-jaq" eventType="touchUpInside" id="0eZ-qg-y9V"/>
+                                                        <outletCollection property="gestureRecognizers" destination="nv1-BD-WsC" appends="YES" id="Ldx-dh-Epl"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -240,6 +242,7 @@
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto refresh on app start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiQ-2o-sH8">
                                                     <rect key="frame" x="16" y="8" width="317" height="28"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -306,6 +309,11 @@
                         <action selector="infoLongPressListener:" destination="5GD-rn-jaq" id="kR0-b7-jg0"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="nv1-BD-WsC">
+                    <connections>
+                        <action selector="openHiddenInputDialog:" destination="5GD-rn-jaq" id="9JK-zc-scO"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3471" y="-1221"/>
         </scene>
@@ -370,7 +378,7 @@
                                 </items>
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="osl-6A-DdT">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" name="colorBackground"/>
                                 <collectionViewLayout key="collectionViewLayout" id="Rj8-fR-cpM" customClass="MagazineLayout" customModule="MagazineLayout"/>
                                 <cells/>
@@ -380,7 +388,7 @@
                         <constraints>
                             <constraint firstItem="pyq-c3-PYx" firstAttribute="top" secondItem="hyb-lI-39K" secondAttribute="top" id="ICp-uJ-Gf8"/>
                             <constraint firstAttribute="trailing" secondItem="osl-6A-DdT" secondAttribute="trailing" id="VbM-jY-jbB"/>
-                            <constraint firstItem="hyb-lI-39K" firstAttribute="bottom" secondItem="osl-6A-DdT" secondAttribute="bottom" id="XTp-jd-vxs"/>
+                            <constraint firstAttribute="bottom" secondItem="osl-6A-DdT" secondAttribute="bottom" id="XTp-jd-vxs"/>
                             <constraint firstItem="hyb-lI-39K" firstAttribute="trailing" secondItem="pyq-c3-PYx" secondAttribute="trailing" id="dZt-Hu-jad"/>
                             <constraint firstItem="osl-6A-DdT" firstAttribute="leading" secondItem="hyb-lI-39K" secondAttribute="leading" id="hHO-M8-dy2"/>
                             <constraint firstItem="osl-6A-DdT" firstAttribute="top" secondItem="pyq-c3-PYx" secondAttribute="bottom" id="jd6-3S-R8v"/>
@@ -418,7 +426,7 @@
                                 </items>
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PuQ-HH-9DW">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" name="colorBackground"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="U1s-L9-Ptw" customClass="MagazineLayout" customModule="MagazineLayout">
                                     <size key="itemSize" width="50" height="50"/>
@@ -440,7 +448,7 @@
                             <constraint firstItem="hA8-ki-X8m" firstAttribute="trailing" secondItem="sxo-IA-DXC" secondAttribute="trailing" id="eLY-V4-1lX"/>
                             <constraint firstItem="sxo-IA-DXC" firstAttribute="trailing" secondItem="PuQ-HH-9DW" secondAttribute="trailing" id="iAf-Pv-Hl8"/>
                             <constraint firstItem="PuQ-HH-9DW" firstAttribute="top" secondItem="hA8-ki-X8m" secondAttribute="bottom" id="lNF-lt-wSq"/>
-                            <constraint firstItem="sxo-IA-DXC" firstAttribute="bottom" secondItem="PuQ-HH-9DW" secondAttribute="bottom" id="m44-uV-U72"/>
+                            <constraint firstAttribute="bottom" secondItem="PuQ-HH-9DW" secondAttribute="bottom" id="m44-uV-U72"/>
                             <constraint firstItem="hA8-ki-X8m" firstAttribute="leading" secondItem="sxo-IA-DXC" secondAttribute="leading" id="vWh-ct-B5X"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sxo-IA-DXC"/>
@@ -807,7 +815,7 @@ Tell me your name.</string>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xo2-qg-VPG">
                                 <rect key="frame" x="0.0" y="140" width="414" height="722"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="colorBackground"/>
                                 <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO" allowsPictureInPictureMediaPlayback="NO">
                                     <dataDetectorTypes key="dataDetectorTypes" none="YES"/>
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>

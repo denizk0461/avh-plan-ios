@@ -40,6 +40,10 @@ class ColourPickerView: UIViewController, UICollectionViewDataSource, UICollecti
         self.toolbar!.topItem!.title = "\(course)"
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        if !self.df.hasHomeButton() {
+            self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 34, right: 0)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

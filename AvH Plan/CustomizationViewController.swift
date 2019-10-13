@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Crashlytics
+import Toast_Swift
 
 class CustomizationViewController: UITableViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate {
 
@@ -78,6 +80,53 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate, U
                 // redirect through safari
                 UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
             }
+        }
+    }
+    
+    @IBAction func openHiddenInputDialog(_ sender: UILongPressGestureRecognizer) {
+        sender.minimumPressDuration = 2
+        if sender.state == .ended {
+            let alert = UIAlertController(title: NSLocalizedString("hidden_dialog_title", comment: ""), message: NSLocalizedString("hidden_dialog_desc", comment: ""), preferredStyle: .alert)
+            alert.addTextField { textField in }
+            alert.addAction(UIAlertAction(title: NSLocalizedString("apply", comment: ""), style: .default, handler: { [weak alert] (action) -> Void in
+                let toastMessage: String
+                switch alert!.textFields![0].text {
+                    case "_FIRSTTIME":
+                        self.prefs.set(false, forKey: "setup_finished")
+                        toastMessage = "First time flag cleared"
+                        break
+                    case "_LOGIN":
+                        self.prefs.set(false, forKey: "logged_in")
+                        toastMessage = "Login flag cleared"
+                        break
+                    case "_DEVCHANNEL":
+                        let newValue = !self.prefs.bool(forKey: "subscribed_to_dev_channel")
+                        self.prefs.set(newValue, forKey: "subscribed_to_dev_channel")
+                        let sub: String
+                        if newValue {
+                            sub = "Subscribed to"
+                        } else {
+                            sub = "Unsubscribed from"
+                        }
+                        toastMessage = "\(sub) Firebase development channel"
+                        break
+                    case "_CRASH":
+                        toastMessage = ""
+                        Crashlytics.sharedInstance().crash()
+                        break
+                    case "_TESTURLS":
+                        let newValue = !self.prefs.bool(forKey: "use_test_urls")
+                        self.prefs.set(newValue, forKey: "use_test_urls")
+                        toastMessage = "Test URLs set to \(newValue)"
+                        break
+                    default:
+                        toastMessage = NSLocalizedString("invalid_code", comment: "")
+                        break
+                }
+                self.view.makeToast(toastMessage, position: .center)
+            }))
+            self.present(alert, animated: true, completion: nil)
+
         }
     }
     

@@ -36,6 +36,11 @@ class CoursePickerViewController: UIViewController, UICollectionViewDataSource, 
 
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        if !self.df.hasHomeButton() {
+            self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 34, right: 0)
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     

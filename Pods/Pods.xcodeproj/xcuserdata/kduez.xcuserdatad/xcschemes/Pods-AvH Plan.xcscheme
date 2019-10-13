@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0CF6B7C3FED31C508438B142645D5B80"
+               BlueprintIdentifier = "862071A646D039587EB3BA939708086C"
                BuildableName = "Pods_AvH_Plan.framework"
                BlueprintName = "Pods-AvH Plan"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -47,8 +47,12 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         if self.prefs.bool(forKey: "logged_in") {
             Messaging.messaging().subscribe(toTopic: "substitutions-ios")
             Messaging.messaging().subscribe(toTopic: "substitutions-broadcast")
-            Crashlytics.sharedInstance().setUserIdentifier(UserDefaults.standard.string(forKey: "username"))
-            // TODO: check if these can be put in AppDelegate
+            
+            if self.prefs.bool(forKey: "subscribed_to_dev_channel") {
+                Messaging.messaging().subscribe(toTopic: "substitutions-debug")
+            } else {
+                Messaging.messaging().unsubscribe(fromTopic: "substitutions-debug")
+            }
         }
         
         view.addSubview(collectionView)
@@ -112,13 +116,15 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
     }
     
     @objc private func objDoAsync(_ sender: Any) {
-        self.df.doAsync(do: self.getViewType()) { substitutions in
-            self.substs = substitutions as! [SubstModel]
-//            UIView.performWithoutAnimation {
-                self.collectionView.reloadData()
-//            }
-            self.refreshControl.endRefreshing()
-            self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
+        self.df.doAsync(do: self.getViewType()) {
+            DispatchQueue.main.async {
+                self.substs = self.getFromDatabase()
+    //            UIView.performWithoutAnimation {
+                    self.collectionView.reloadData()
+    //            }
+                self.refreshControl.endRefreshing()
+                self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
+            }
         }
     }
     

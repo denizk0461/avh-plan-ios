@@ -86,3 +86,8 @@
 "enter_order_help" = "You may pick between two ordering systems that dictate the order in which the items on the substitution plan will appear in.\n\nThe default \'app order\' is an algorithm implemented in this app that provides a consistently-sorted substitution plan ordered just like the substitution plan on the website used to; sorted by classes, then by time.\n\n\'Website order\' offers the items on the substitution plan just like they\'re presented on the school website, but since these are not guaranteed to be consistent, \'app order\' is picked by default.";
 "made_by_deniz" = "Developed by Deniz :)";
 "customize_course_colors" = "Customize course colors";
+
+"hidden_dialog_title" = "Testing Menu";
+"hidden_dialog_desc" = "This menu is intended for testing only.";
+"invalid_code" = "Invalid code";
+"apply" = "Apply";

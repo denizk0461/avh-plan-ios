@@ -85,3 +85,8 @@
 "enter_order_help" = "Du kannst zwischen zwei Sortierweisen auswählen, welche die Reihenfolge der Einträge auf dem Vertretungsplan bestimmen.\n\nStandardmäßig ist \'App-Sortierung\' ausgewählt; dies bietet einen konsistenten Plan sortiert nach Klassen, dann nach Stunden.\n\n\'Website-Sortierung\' bietet die Original-Reihenfolge der Website. Diese ist jedoch nicht konsistent, weswegen \'App-Sortierung\' standardmäßig ausgewählt ist.";
 "made_by_deniz" = "Entwickelt von Deniz :)";
 "customize_course_colors" = "Kursfarben einstellen";
+
+"hidden_dialog_title" = "Testmenü";
+"hidden_dialog_desc" = "Dieses Menü dient für Tests.";
+"invalid_code" = "Ungültiger Code";
+"apply" = "Anwenden";
