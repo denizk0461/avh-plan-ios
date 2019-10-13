@@ -91,15 +91,15 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate, U
             alert.addAction(UIAlertAction(title: NSLocalizedString("apply", comment: ""), style: .default, handler: { [weak alert] (action) -> Void in
                 let toastMessage: String
                 switch alert!.textFields![0].text {
-                    case "_FIRSTTIME":
+                    case "_firsttime":
                         self.prefs.set(false, forKey: "setup_finished")
                         toastMessage = "First time flag cleared"
                         break
-                    case "_LOGIN":
+                    case "_login":
                         self.prefs.set(false, forKey: "logged_in")
                         toastMessage = "Login flag cleared"
                         break
-                    case "_DEVCHANNEL":
+                    case "_devchannel":
                         let newValue = !self.prefs.bool(forKey: "subscribed_to_dev_channel")
                         self.prefs.set(newValue, forKey: "subscribed_to_dev_channel")
                         let sub: String
@@ -110,11 +110,11 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate, U
                         }
                         toastMessage = "\(sub) Firebase development channel"
                         break
-                    case "_CRASH":
+                    case "_crash":
                         toastMessage = ""
                         Crashlytics.sharedInstance().crash()
                         break
-                    case "_TESTURLS":
+                    case "_testurls":
                         let newValue = !self.prefs.bool(forKey: "use_test_urls")
                         self.prefs.set(newValue, forKey: "use_test_urls")
                         toastMessage = "Test URLs set to \(newValue)"
