@@ -167,6 +167,7 @@ class DataFetcher {
             foodUrl = "https://djd4rkn355.github.io/food_test.html"
         }
         
+        var isPlanEmpty = true
         var isPersonalEmpty = true
         var personalPlanCount = 0
         var mWebsitePriority = 0
@@ -188,6 +189,7 @@ class DataFetcher {
             let coursePreference = prefs.string(forKey: "courses")
             
             for i in (0..<rows.size()) {
+                isPlanEmpty = false
                 let cols = try rows.get(i).select("th")
                 
                 let mGroup = try cols.get(0).text()
@@ -228,6 +230,11 @@ class DataFetcher {
             
             prefs.set(personalPlanCount, forKey: "personalPlanCount")
             
+            if isPlanEmpty {
+                let emptySubstitution = SubstModel(group: "", course: NSLocalizedString("plan_empty", comment: ""), additional: "", date: "", time: "", room: "", teacher: "", type: "", groupPriority: 0, datePriority: 0, websitePriority: 0)
+                substitutionList.append(emptySubstitution)
+            }
+            
             if isPersonalEmpty {
                 let emptySubstitution = SubstModel(group: "", course: NSLocalizedString("personal_plan_empty", comment: ""), additional: "", date: "", time: "", room: "", teacher: "", type: "", groupPriority: 0, datePriority: 0, websitePriority: 0)
                 personalList.append(emptySubstitution)
@@ -238,10 +245,10 @@ class DataFetcher {
             
             let lastUpdated = try substitutionsDocument.select("h1").get(0).text()
             infoString = "\(NSLocalizedString("last_updated", comment: ""))\(lastUpdated)."
-            let informationTableElements = try substitutionsDocument.select("p")
+            let informationTableElements = try substitutionsDocument.select("h6")
             
             for item in informationTableElements {
-                infoString += "\n\n\(try item.text())"
+                infoString += "\n\n\(try item.html().replacingOccurrences(of: "<br>", with: "\n"))"
             }
             
             // start food fetch

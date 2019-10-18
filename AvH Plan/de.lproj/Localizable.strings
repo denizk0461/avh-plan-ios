@@ -65,6 +65,7 @@
 "pinkA" = "Pink (Android)";
 "brownA" = "Braun (Android)";
 
+"plan_empty" = "Der Vertretungsplan ist leer";
 "personal_plan_empty" = "Dein Plan ist leer :(";
 
 // titles
