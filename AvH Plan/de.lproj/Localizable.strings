@@ -67,6 +67,7 @@
 
 "plan_empty" = "Der Vertretungsplan ist leer";
 "personal_plan_empty" = "Dein Plan ist leer :(";
+"food_menu_empty" = "Der Speiseplan ist leer";
 
 // titles
 "avh_plan" = "AvH-Plan";

@@ -119,6 +119,13 @@ class CustomizationViewController: UITableViewController, UITextFieldDelegate, U
                         self.prefs.set(newValue, forKey: "use_test_urls")
                         toastMessage = "Test URLs set to \(newValue)"
                         break
+                    case "_version":
+                        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                            toastMessage = "App version: \(version)"
+                        } else {
+                            toastMessage = "Version couldn't be resolved"
+                        }
+                        break
                     default:
                         toastMessage = NSLocalizedString("invalid_code", comment: "")
                         break

@@ -169,6 +169,7 @@ class DataFetcher {
         
         var isPlanEmpty = true
         var isPersonalEmpty = true
+        var isFoodMenuEmpty = true
         var personalPlanCount = 0
         var mWebsitePriority = 0
         
@@ -267,6 +268,7 @@ class DataFetcher {
             indices.append(foodItems.size())
             
             for l in 0..<indices.count - 1 {
+                isFoodMenuEmpty = false
                 var s = ""
                 for i2 in indices[l]..<indices[l + 1] {
                     if (s.isEmpty) {
@@ -290,8 +292,12 @@ class DataFetcher {
             
             prefs.set(infoString.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "information")
             
-            for food in foodmenuList {
-                try db.run(foodmenu.insert(text <- food))
+            if isFoodMenuEmpty {
+                try db.run(foodmenu.insert(text <- NSLocalizedString("food_menu_empty", comment: "")))
+            } else {
+                for food in foodmenuList {
+                    try db.run(foodmenu.insert(text <- food))
+                }
             }
             
         } catch {

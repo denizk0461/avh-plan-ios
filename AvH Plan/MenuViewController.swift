@@ -22,6 +22,11 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     }
     
+    override func loadView() {
+        super.loadView()
+        self.collectionView.isPrefetchingEnabled = false
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -58,7 +63,6 @@ class MenuViewController : UICollectionViewController, UICollectionViewDelegateM
         self.extendedLayoutIncludesOpaqueBars = true
         self.collectionView.contentInsetAdjustmentBehavior = .always
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("food_menu", comment: "")
-        self.collectionView.isPrefetchingEnabled = false
     }
     
     @objc private func objDoAsync(_ sender: Any) {

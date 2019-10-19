@@ -68,6 +68,7 @@
 
 "plan_empty" = "The substitution plan is empty";
 "personal_plan_empty" = "Your plan is empty :(";
+"food_menu_empty" = "The food menu is empty";
 
 // titles
 "avh_plan" = "AvH Plan";
