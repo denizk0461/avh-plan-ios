@@ -109,17 +109,29 @@ class DataFetcher {
         return table.insert(group <- s.group, course <- s.course, additional <- s.additional, date <- s.date, time <- s.time, room <- s.room, teacher <- s.teacher, subst_type <- s.type, group_priority <- Int64(s.groupPriority), date_priority <- Int64(s.datePriority), website_priority <- Int64(s.websitePriority))
     }
     
-    private func isPersonal(with g: String, and c: String, for s: SubstModel) -> Bool {
-        if !g.isEmpty && c.isEmpty {
-            if !s.group.isEmpty {
-                if g.contains(s.group) || s.group.contains(g) {
+    private func isPersonal(with group: String, and course: String, for substitution: SubstModel) -> Bool {
+        if !group.isEmpty && course.isEmpty {
+            if !substitution.group.isEmpty {
+                if group.contains(substitution.group) || substitution.group.contains(group) {
                     return true
                 }
             }
-        } else if !g.isEmpty && !c.isEmpty {
-            if s.group != "" && s.course != "" {
-                if (g.contains(s.group) || s.group.contains(g)) && c.contains(s.course) {
-                    return true
+        } else if !group.isEmpty && !course.isEmpty {
+            if substitution.group != "" && substitution.course != "" {
+                
+                if let qmark = substitution.course.firstIndex(of: "?") {
+                    if group.contains(substitution.group) || substitution.group.contains(group) {
+                        
+                        if course.contains(substitution.course[..<qmark]) {
+                            return true
+                        } else if course.contains(substitution.course[substitution.course.index(qmark, offsetBy: 1)...]) {
+                            return true
+                        }
+                    }
+                } else {
+                    if (group.contains(substitution.group) || substitution.group.contains(group)) && course.contains(substitution.course) {
+                        return true
+                    }
                 }
             }
         }

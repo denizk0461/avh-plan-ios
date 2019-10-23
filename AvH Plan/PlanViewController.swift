@@ -28,11 +28,6 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     }
     
-    override func loadView() {
-        super.loadView()
-        self.collectionView.isPrefetchingEnabled = false
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         
         if !self.prefs.bool(forKey: "logged_in") {
@@ -101,6 +96,7 @@ class PlanViewController : UICollectionViewController, UICollectionViewDelegateM
         
         self.collectionView.contentInsetAdjustmentBehavior = .always
         self.df.setTabBarBadge(for: self.tabBarController?.tabBar.items)
+        self.collectionView.isPrefetchingEnabled = false
     }
     
     func getViewType() -> String {
